@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrive in Japan - Navigation</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navigation specific classes */
+        .tj-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 20px 0;
+            height: 120px;
+        }
+
+        .tj-nav.scrolled {
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(177, 45, 61, 0.1);
+        }
+
+        .tj-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .tj-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .tj-nav-left img{
+            max-width: 120px;
+        }
+
+        .tj-logo {
+            height: 50px;
+            transition: height 0.3s ease;
+        }
+
+        .tj-nav.scrolled .tj-logo {
+            height: 40px;
+        }
+
+        .tj-tagline {
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .tj-nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .tj-nav-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tj-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #b12d3d;
+            transition: width 0.3s ease;
+        }
+
+        .tj-nav-link:hover {
+            color: #b12d3d;
+        }
+
+        .tj-nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu button */
+        .tj-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .tj-mobile-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .tj-mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .tj-mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .tj-mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile menu */
+        .tj-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 100px;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .tj-mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .tj-nav.scrolled + .tj-mobile-menu {
+            top: 74px;
+        }
+
+        .tj-mobile-menu .tj-nav-links {
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .tj-tagline {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tj-nav {
+                padding: 15px 0;
+            }
+
+            .tj-nav.scrolled {
+                padding: 10px 0;
+            }
+
+            .tj-logo {
+                height: 40px;
+            }
+
+            .tj-nav.scrolled .tj-logo {
+                height: 35px;
+            }
+
+            .tj-nav-links {
+                display: none;
+            }
+
+            .tj-mobile-toggle {
+                display: block;
+            }
+
+            .tj-mobile-menu {
+                display: block;
+            }
+
+            .tj-mobile-menu .tj-nav-links {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="tj-nav" id="tjNav">
+        <div class="tj-nav-container">
+            <div class="tj-nav-left">
+                <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/04/1-1.png?w=500&ssl=1" 
+                     alt="Thrive in Japan" 
+                     class="tj-logo">
+                <span class="tj-tagline">Learn Japanese. Truly belong. Live Your Purpose.</span>
+            </div>
+            
+            <ul class="tj-nav-links">
+                <li><a href="#welcome" class="tj-nav-link">Welcome to Thrive in Japan</a></li>
+                <li><a href="#program" class="tj-nav-link">Program Details & Sign Up</a></li>
+                <li><a href="#contact" class="tj-nav-link">FAQ/Contact Us</a></li>
+            </ul>
+
+            <button class="tj-mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="tj-mobile-menu" id="mobileMenu">
+        <ul class="tj-nav-links">
+            <li><a href="#welcome" class="tj-nav-link">Welcome to Thrive in Japan</a></li>
+            <li><a href="#program" class="tj-nav-link">Program Details & Sign Up</a></li>
+            <li><a href="#contact" class="tj-nav-link">FAQ/Contact Us</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Scroll effects
+        let lastScroll = 0;
+        const nav = document.getElementById('tjNav');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileToggle = document.getElementById('mobileToggle');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('.tj-nav-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
