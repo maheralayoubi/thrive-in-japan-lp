@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hard Truth Section - Thrive in Japan</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        /* Hard Truth Section */
+        .tj-hard-truth {
+            position: relative;
+            padding: 100px 20px;
+            min-height: 70vh;
+            overflow: hidden;
+            background: linear-gradient(180deg, #0f1419 0%, #1a1f2e 100%);
+        }
+
+        /* Parallax Background Layers */
+        .tj-parallax-layer {
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            top: -5%;
+            left: -5%;
+        }
+
+        .tj-parallax-1 {
+            background: radial-gradient(circle at 20% 50%, rgba(177, 45, 61, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 30%, rgba(177, 45, 61, 0.05) 0%, transparent 50%);
+            transform: translateY(0);
+            animation: parallaxDrift 20s ease-in-out infinite;
+        }
+
+        @keyframes parallaxDrift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-20px, -10px) scale(1.02); }
+            50% { transform: translate(20px, -20px) scale(1.01); }
+            75% { transform: translate(-10px, 10px) scale(1.03); }
+        }
+
+        .tj-parallax-2 {
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255,255,255,.02) 100px, rgba(255,255,255,.02) 200px);
+            transform: translateY(0);
+            animation: gridSlide 30s linear infinite;
+        }
+
+        @keyframes gridSlide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(200px); }
+        }
+
+        /* Floating Elements */
+        .tj-float-element {
+            position: absolute;
+            opacity: 0;
+            font-size: 120px;
+            color: #b12d3d;
+            font-weight: bold;
+            animation: floatSlow 20s ease-in-out infinite, fadeInFloat 2s ease forwards;
+        }
+
+        .tj-float-1 {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s, 0.5s;
+        }
+
+        .tj-float-2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s, 0.8s;
+        }
+
+        .tj-float-3 {
+            bottom: 20%;
+            left: 50%;
+            animation-delay: 10s, 1.1s;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-30px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(20px) rotate(-3deg) scale(0.95); }
+            75% { transform: translateY(-15px) rotate(2deg) scale(1.02); }
+        }
+
+        @keyframes fadeInFloat {
+            0% { opacity: 0; transform: scale(0.8) rotate(-10deg); }
+            100% { opacity: 0.03; transform: scale(1) rotate(0deg); }
+        }
+
+        /* Content Container */
+        .tj-truth-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        .tj-truth-header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .tj-truth-label {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(177, 45, 61, 0.2);
+            border: 1px solid rgba(177, 45, 61, 0.3);
+            border-radius: 30px;
+            color: #b12d3d;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: labelPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes labelPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .tj-truth-label::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(177, 45, 61, 0.3), transparent);
+            animation: labelShine 3s ease-in-out infinite;
+        }
+
+        @keyframes labelShine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .tj-truth-title {
+            font-size: clamp(32px, 5vw, 48px);
+            color: #fff;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            animation: titleReveal 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes titleReveal {
+            0% { 
+                opacity: 0; 
+                letter-spacing: -0.5px;
+                filter: blur(4px);
+            }
+            100% { 
+                opacity: 1; 
+                letter-spacing: 0;
+                filter: blur(0);
+            }
+        }
+
+        .tj-truth-highlight {
+            color: #b12d3d;
+            position: relative;
+            display: inline-block;
+            font-style: italic;
+            animation: highlightGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes highlightGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(177, 45, 61, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(177, 45, 61, 0.8), 0 0 30px rgba(177, 45, 61, 0.5); }
+        }
+
+        .tj-truth-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #b12d3d;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: underlineReveal 1s ease 0.5s forwards;
+        }
+
+        @keyframes underlineReveal {
+            to { transform: scaleX(1); }
+        }
+
+        /* Pain Points Grid */
+        .tj-pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .tj-pain-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px) rotateX(-10deg);
+            animation: cardReveal 0.8s ease forwards;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        @keyframes cardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        .tj-pain-card:nth-child(1) { animation-delay: 0.3s; }
+        .tj-pain-card:nth-child(2) { animation-delay: 0.5s; }
+        .tj-pain-card:nth-child(3) { animation-delay: 0.7s; }
+
+        .tj-pain-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(177, 45, 61, 0.4);
+            box-shadow: 0 20px 40px rgba(177, 45, 61, 0.2);
+        }
+
+        /* Card Glow Effect */
+        .tj-pain-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(177, 45, 61, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: cardPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes cardPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .tj-pain-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Pain Icons */
+        .tj-pain-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            position: relative;
+            animation: iconBounce 4s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-5px); }
+            75% { transform: translateY(3px); }
+        }
+
+        .tj-icon-bg {
+            position: absolute;
+            inset: 0;
+            background: rgba(177, 45, 61, 0.1);
+            border-radius: 16px;
+            transform: rotate(45deg);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: iconRotate 10s linear infinite;
+        }
+
+        @keyframes iconRotate {
+            0% { transform: rotate(45deg); }
+            100% { transform: rotate(405deg); }
+        }
+
+        .tj-pain-card:hover .tj-icon-bg {
+            background: rgba(177, 45, 61, 0.25);
+            transform: rotate(225deg) scale(1.1);
+            animation-play-state: paused;
+        }
+
+        .tj-icon-symbol {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #b12d3d;
+            animation: symbolPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes symbolPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .tj-pain-title {
+            font-size: 20px;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease 0.2s forwards;
+        }
+
+        @keyframes fadeInLeft {
+            0% { 
+                opacity: 0; 
+                transform: translateX(-20px);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        .tj-pain-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease 0.4s forwards;
+        }
+
+        /* Truth Statement */
+        .tj-truth-statement {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: rgba(177, 45, 61, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(177, 45, 61, 0.2);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            animation: statementReveal 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.9s forwards;
+        }
+
+        @keyframes statementReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .tj-truth-statement::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #b12d3d, transparent, #b12d3d);
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { 
+                opacity: 0;
+                transform: rotate(0deg);
+            }
+            50% { 
+                opacity: 0.5;
+                transform: rotate(180deg);
+            }
+        }
+
+        .tj-statement-text {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-weight: 500;
+            opacity: 0;
+            animation: textFadeIn 1s ease 1.2s forwards;
+        }
+
+        @keyframes textFadeIn {
+            0% { 
+                opacity: 0;
+                filter: blur(4px);
+            }
+            100% { 
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        .tj-statement-highlight {
+            color: #b12d3d;
+            font-weight: 700;
+            position: relative;
+            animation: highlightPop 0.6s ease 1.5s both;
+        }
+
+        @keyframes highlightPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Decorative Quote Marks */
+        .tj-quote-mark {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(177, 45, 61, 0.1);
+            font-family: Georgia, serif;
+            pointer-events: none;
+            opacity: 0;
+            animation: quoteFade 1s ease 1.4s forwards;
+        }
+
+        @keyframes quoteFade {
+            0% { 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tj-quote-left {
+            top: 10px;
+            left: 20px;
+            animation: quoteFade 1s ease 1.4s forwards, quoteBounce 4s ease-in-out 2.4s infinite;
+        }
+
+        .tj-quote-right {
+            bottom: 10px;
+            right: 20px;
+            transform: rotate(180deg);
+            animation: quoteFade 1s ease 1.5s forwards, quoteBounce 4s ease-in-out 2.5s infinite;
+        }
+
+        @keyframes quoteBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-5deg); }
+            75% { transform: translateY(5px) rotate(5deg); }
+        }
+
+        /* CTA Section */
+        .tj-truth-cta {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s ease 1.1s forwards;
+        }
+
+        .tj-cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: #b12d3d;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(177, 45, 61, 0.3);
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(177, 45, 61, 0.3);
+            }
+            50% { 
+                transform: scale(1.02);
+                box-shadow: 0 15px 40px rgba(177, 45, 61, 0.4);
+            }
+        }
+
+        .tj-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tj-cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .tj-cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(177, 45, 61, 0.5);
+            animation-play-state: paused;
+        }
+
+        .tj-cta-button:hover::before {
+            left: 100%;
+        }
+
+        .tj-cta-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Glitch Effect on Hover */
+        @keyframes glitch {
+            0%, 100% { 
+                text-shadow: 2px 2px 0 rgba(177, 45, 61, 0.5);
+                transform: translate(0);
+            }
+            20% { 
+                text-shadow: -2px -2px 0 rgba(177, 45, 61, 0.5);
+                transform: translate(2px, -2px);
+            }
+            40% { 
+                text-shadow: 2px -2px 0 rgba(177, 45, 61, 0.5);
+                transform: translate(-2px, 2px);
+            }
+            60% { 
+                text-shadow: -2px 2px 0 rgba(177, 45, 61, 0.5);
+                transform: translate(2px, 2px);
+            }
+            80% {
+                text-shadow: 2px 2px 0 rgba(177, 45, 61, 0.5);
+                transform: translate(-2px, -2px);
+            }
+        }
+
+        .tj-truth-title:hover .tj-truth-highlight {
+            animation: glitch 0.3s ease infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tj-hard-truth {
+                padding: 60px 15px;
+                min-height: auto;
+            }
+
+            .tj-truth-header {
+                margin-bottom: 40px;
+            }
+
+            .tj-pain-points {
+                gap: 25px;
+            }
+
+            .tj-pain-card {
+                padding: 30px 20px;
+            }
+
+            .tj-truth-statement {
+                padding: 30px 20px;
+            }
+
+            .tj-cta-button {
+                padding: 18px 40px;
+                font-size: 14px;
+            }
+
+            .tj-float-element {
+                font-size: 80px;
+            }
+        }
+
+        /* Animated Background Particles */
+        .tj-particles-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .tj-particle-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFall 15s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes particleFall {
+            0% {
+                transform: translateY(-100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(-80vh) translateX(20px) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(80vh) translateX(100px) scale(1);
+            }
+            100% {
+                transform: translateY(100vh) translateX(120px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Loading animation for initial page load */
+        @keyframes initialLoad {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tj-hard-truth {
+            animation: initialLoad 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hard Truth Section -->
+    <section class="tj-hard-truth" id="hardTruth">
+        <!-- Parallax Background Layers -->
+        <div class="tj-parallax-layer tj-parallax-1"></div>
+        <div class="tj-parallax-layer tj-parallax-2"></div>
+        
+        <!-- Floating Kanji Elements -->
+        <div class="tj-float-element tj-float-1">困</div>
+        <div class="tj-float-element tj-float-2">難</div>
+        <div class="tj-float-element tj-float-3">悩</div>
+        
+        <!-- Animated Particles -->
+        <div class="tj-particles-bg" id="particlesBg"></div>
+        
+        <!-- Content -->
+        <div class="tj-truth-container">
+            <!-- Header -->
+            <div class="tj-truth-header">
+                <span class="tj-truth-label">Reality Check</span>
+                <h2 class="tj-truth-title">
+                    Hard Truth: Most Foreigners living in Japan are 
+                    <span class="tj-truth-highlight">not doing so well</span>.
+                </h2>
+            </div>
+            
+            <!-- Pain Points Grid -->
+            <div class="tj-pain-points">
+                <!-- Pain Point 1 -->
+                <div class="tj-pain-card">
+                    <div class="tj-pain-icon">
+                        <div class="tj-icon-bg"></div>
+                        <div class="tj-icon-symbol">💔</div>
+                    </div>
+                    <h3 class="tj-pain-title">Struggling Relationships</h3>
+                    <p class="tj-pain-text">
+                        Struggling in your relationships with Japanese colleagues, friends, or romantic partners despite speaking the language?
+                    </p>
+                </div>
+                
+                <!-- Pain Point 2 -->
+                <div class="tj-pain-card">
+                    <div class="tj-pain-icon">
+                        <div class="tj-icon-bg"></div>
+                        <div class="tj-icon-symbol">🔗</div>
+                    </div>
+                    <h3 class="tj-pain-title">Difficult Connections</h3>
+                    <p class="tj-pain-text">
+                        Trying to make the most out of your time in Japan, but finding it difficult to make any real connections?
+                    </p>
+                </div>
+                
+                <!-- Pain Point 3 -->
+                <div class="tj-pain-card">
+                    <div class="tj-pain-icon">
+                        <div class="tj-icon-bg"></div>
+                        <div class="tj-icon-symbol">🚧</div>
+                    </div>
+                    <h3 class="tj-pain-title">Feeling Stuck</h3>
+                    <p class="tj-pain-text">
+                        Feeling isolated, overlooked and stuck? Missing out on promotions, deep connections and fulfilling relationships?
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Truth Statement -->
+            <div class="tj-truth-statement">
+                <span class="tj-quote-mark tj-quote-left">"</span>
+                <p class="tj-statement-text">
+                    Even if you have <span class="tj-statement-highlight">JLPT certifications</span> (or not), 
+                    if this describes you it's because no one ever taught you how to understand 
+                    <span class="tj-statement-highlight">high-context communication</span> in Japanese.
+                </p>
+                <span class="tj-quote-mark tj-quote-right">"</span>
+            </div>
+            
+            <!-- CTA Section -->
+            <div class="tj-truth-cta">
+                <a href="https://thriveinjapan.com/program-details/" class="tj-cta-button">
+                    Program Details
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create animated particles with enhanced animation
+        const particlesBg = document.getElementById('particlesBg');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'tj-particle-dot';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 15}s`;
+            particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+            
+            // Add varying sizes and opacity
+            const size = 1 + Math.random() * 3;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.opacity = 0.2 + Math.random() * 0.3;
+            
+            particlesBg.appendChild(particle);
+        }
+
+        // Enhanced parallax scrolling effect
+        let ticking = false;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const scrollProgress = scrolled / windowHeight;
+            
+            const parallax1 = document.querySelector('.tj-parallax-1');
+            const parallax2 = document.querySelector('.tj-parallax-2');
+            const floatElements = document.querySelectorAll('.tj-float-element');
+            
+            if (parallax1) {
+                parallax1.style.transform = `translateY(${scrolled * 0.5}px) scale(${1 + scrollProgress * 0.1})`;
+            }
+            if (parallax2) {
+                parallax2.style.transform = `translateY(${scrolled * 0.3}px) rotate(${scrolled * 0.02}deg)`;
+            }
+            
+            floatElements.forEach((el, index) => {
+                const speed = 0.2 * (index + 1);
+                const rotation = Math.sin(scrolled * 0.001) * 10;
+                el.style.transform = `translateY(${scrolled * speed}px) rotate(${rotation}deg)`;
+            });
+            
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+
+        // Enhanced Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        const animatedElements = document.querySelectorAll('.tj-truth-header, .tj-pain-card, .tj-truth-statement, .tj-truth-cta');
+        animatedElements.forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Enhanced hover effect for pain cards with 3D tilt
+        const painCards = document.querySelectorAll('.tj-pain-card');
+        painCards.forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                this.style.transform = `translateY(-10px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                this.style.transform = `translateY(-10px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // Enhanced mouse parallax effect
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        const smoothFactor = 0.1;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth - 0.5;
+            mouseY = e.clientY / window.innerHeight - 0.5;
+        });
+
+        function animateMouseParallax() {
+            currentX += (mouseX - currentX) * smoothFactor;
+            currentY += (mouseY - currentY) * smoothFactor;
+            
+            const parallax1 = document.querySelector('.tj-parallax-1');
+            const parallax2 = document.querySelector('.tj-parallax-2');
+            
+            if (parallax1) {
+                parallax1.style.transform += ` translate(${currentX * 20}px, ${currentY * 20}px)`;
+            }
+            if (parallax2) {
+                parallax2.style.transform += ` translate(${-currentX * 10}px, ${-currentY * 10}px)`;
+            }
+            
+            requestAnimationFrame(animateMouseParallax);
+        }
+
+        animateMouseParallax();
+
+        // Add subtle breathing animation to the main section
+        const hardTruthSection = document.querySelector('.tj-hard-truth');
+        let breatheScale = 1;
+        let breatheDirection = 1;
+
+        function breatheAnimation() {
+            breatheScale += 0.0001 * breatheDirection;
+            
+            if (breatheScale > 1.01 || breatheScale < 0.99) {
+                breatheDirection *= -1;
+            }
+            
+            hardTruthSection.style.transform = `scale(${breatheScale})`;
+            requestAnimationFrame(breatheAnimation);
+        }
+
+        breatheAnimation();
+
+        // Add ripple effect on click
+        document.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            ripple.style.position = 'fixed';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.background = 'rgba(177, 45, 61, 0.3)';
+            ripple.style.borderRadius = '50%';
+            ripple.style.left = e.clientX - 10 + 'px';
+            ripple.style.top = e.clientY - 10 + 'px';
+            ripple.style.pointerEvents = 'none';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
+            
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.style.transform = 'scale(10)';
+                ripple.style.opacity = '0';
+            }, 10);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    </script>
+</body>
+</html>
