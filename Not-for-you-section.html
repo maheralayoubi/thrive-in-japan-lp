@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not For You? - Reality Check</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+        }
+
+        /* Reality Check Section */
+        .reality-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            overflow: hidden;
+            padding: 80px 20px;
+        }
+
+        /* Animated Mask Background */
+        .reality-mask-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.05;
+        }
+
+        .floating-mask {
+            position: absolute;
+            font-size: 200px;
+            color: rgba(177, 45, 61, 0.1);
+            animation: maskFloat 20s ease-in-out infinite;
+            user-select: none;
+        }
+
+        .floating-mask:nth-child(1) { top: 10%; left: -100px; animation-delay: 0s; }
+        .floating-mask:nth-child(2) { top: 50%; right: -100px; animation-delay: 5s; }
+        .floating-mask:nth-child(3) { bottom: 10%; left: 50%; animation-delay: 10s; }
+
+        @keyframes maskFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-50px) rotate(180deg) scale(1.2); }
+        }
+
+        /* Shattered Glass Effect */
+        .glass-shards {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .shard {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            animation: shardFall 8s linear infinite;
+        }
+
+        @keyframes shardFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Container */
+        .reality-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .reality-header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        .reality-header.animate-in {
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .reality-title {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .reality-title::after {
+            content: '?';
+            position: absolute;
+            right: -40px;
+            top: 0;
+            color: #b12d3d;
+            animation: questionPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes questionPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        /* Success Cards */
+        .success-grid {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .success-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 35px;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .success-card.animate-in {
+            animation: slideInLeft 0.8s ease forwards;
+            animation-delay: var(--delay);
+        }
+
+        .success-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(177, 45, 61, 0.3);
+            transform: translateX(10px);
+        }
+
+        .success-card:nth-child(1) { --delay: 0.2s; }
+        .success-card:nth-child(2) { --delay: 0.4s; }
+        .success-card:nth-child(3) { --delay: 0.6s; }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Card Icons */
+        .card-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            opacity: 0.1;
+            animation: iconRotate 10s linear infinite;
+        }
+
+        @keyframes iconRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .card-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #b12d3d;
+        }
+
+        /* Card Content */
+        .success-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        .success-text strong {
+            color: #b12d3d;
+            font-weight: 600;
+        }
+
+        /* Reality Check Container */
+        .reality-check {
+            text-align: center;
+            margin: 80px 0;
+            padding: 60px 40px;
+            background: rgba(177, 45, 61, 0.05);
+            border: 2px solid rgba(177, 45, 61, 0.2);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .reality-check.animate-in {
+            animation: scaleIn 1s ease forwards;
+        }
+
+        @keyframes scaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Glitch Effect for "Are you sure?" */
+        .reality-question {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 800;
+            color: #b12d3d;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            animation: glitchAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes glitchAnimation {
+            0%, 100% { transform: skew(0deg); }
+            20% { transform: skew(2deg); }
+            40% { transform: skew(-2deg); }
+            60% { transform: skew(1deg); }
+            80% { transform: skew(-1deg); }
+        }
+
+        .reality-question::before,
+        .reality-question::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .reality-question::before {
+            animation: glitch1 2s infinite;
+            color: #ff0066;
+            z-index: -1;
+        }
+
+        .reality-question::after {
+            animation: glitch2 2s infinite;
+            color: #00ffff;
+            z-index: -1;
+        }
+
+        @keyframes glitch1 {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            20% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
+            60% { clip-path: inset(80% 0 10% 0); transform: translate(-2px, 0); }
+            80% { clip-path: inset(10% 0 80% 0); transform: translate(2px, 0); }
+        }
+
+        @keyframes glitch2 {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            20% { clip-path: inset(80% 0 10% 0); transform: translate(2px, -2px); }
+            40% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 2px); }
+            60% { clip-path: inset(30% 0 50% 0); transform: translate(2px, 0); }
+            80% { clip-path: inset(60% 0 30% 0); transform: translate(-2px, 0); }
+        }
+
+        /* Truth Reveals */
+        .truth-grid {
+            display: grid;
+            gap: 25px;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .truth-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #b12d3d;
+            padding: 25px 30px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .truth-item.animate-in {
+            animation: truthReveal 0.8s ease forwards;
+            animation-delay: var(--truth-delay);
+        }
+
+        .truth-item:nth-child(1) { --truth-delay: 0.2s; }
+        .truth-item:nth-child(2) { --truth-delay: 0.4s; }
+        .truth-item:nth-child(3) { --truth-delay: 0.6s; }
+
+        @keyframes truthReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .truth-item::before {
+            content: '⚠';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            opacity: 0.1;
+            color: #b12d3d;
+        }
+
+        .truth-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+
+        .truth-text em {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        /* Quote Section */
+        .reality-quote {
+            background: rgba(177, 45, 61, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .reality-quote.animate-in {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .quote-content {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-author {
+            text-align: right;
+            color: #b12d3d;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* CTA Button */
+        .reality-cta {
+            text-align: center;
+            margin-top: 60px;
+            opacity: 0;
+        }
+
+        .reality-cta.animate-in {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: #b12d3d;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(177, 45, 61, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(177, 45, 61, 0.4);
+            background: #ff6b6b;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .reality-section {
+                padding: 60px 15px;
+            }
+
+            .success-card {
+                padding: 30px 25px;
+            }
+
+            .reality-check {
+                padding: 40px 20px;
+            }
+
+            .truth-item {
+                padding: 20px;
+            }
+
+            .reality-quote {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Reality Check Section -->
+    <section class="reality-section">
+        <!-- Animated Mask Background -->
+        <div class="reality-mask-bg">
+            <div class="floating-mask">🎭</div>
+            <div class="floating-mask">🎭</div>
+            <div class="floating-mask">🎭</div>
+        </div>
+        
+        <!-- Glass Shards Effect -->
+        <div class="glass-shards" id="shardsContainer"></div>
+        
+        <!-- Container -->
+        <div class="reality-container">
+            <!-- Header -->
+            <div class="reality-header">
+                <h2 class="reality-title">Not for you</h2>
+            </div>
+            
+            <!-- Success Cards -->
+            <div class="success-grid">
+                <!-- Card 1: Integration -->
+                <div class="success-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <p class="success-text">
+                        If you've <strong>seamlessly integrated</strong> into Japan, mastering both language and culture, and have built strong bonds with locals, then this program isn't for you.
+                    </p>
+                </div>
+                
+                <!-- Card 2: Career -->
+                <div class="success-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"/>
+                        </svg>
+                    </div>
+                    <p class="success-text">
+                        If your <strong>career is thriving</strong>, and you effortlessly navigate workplace dynamics with the respect and admiration of your Japanese colleagues and superiors, then this isn't for you.
+                    </p>
+                </div>
+                
+                <!-- Card 3: Relationships -->
+                <div class="success-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <p class="success-text">
+                        If your relationships with your Japanese partner, family, children and friends are <strong>filled with love and depth</strong>, leaving you feeling fulfilled, then this program isn't for you.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Reality Check Container -->
+            <div class="reality-check">
+                <h3 class="reality-question" data-text="(Are you *sure?*)">(Are you *sure?*)</h3>
+                
+                <div class="truth-grid">
+                    <div class="truth-item">
+                        <p class="truth-text">
+                            <em>"Seamlessly integrated"?</em> The honeymoon phase ends. Fail to learn Japan's rules and the Japanese Language, and it's just a matter of time before those polite smiles vanish.
+                        </p>
+                    </div>
+                    
+                    <div class="truth-item">
+                        <p class="truth-text">
+                            Your career <em>"success"</em> might be a mirage. Those compliments? Often just politeness masking frustration with your cultural blind spots.
+                        </p>
+                    </div>
+                    
+                    <div class="truth-item">
+                        <p class="truth-text">
+                            Your <em>"peaceful"</em> relationship? It might just be your partner settling for convenience after giving up on real connection and romance.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Quote -->
+                <div class="reality-quote">
+                    <p class="quote-content">
+                        Now that I know, it can be painful to watch. Honestly, most of us foreigners are clueless. Most foreigners think everyone loves them when in reality they are the only ones in the room enjoying themselves.
+                    </p>
+                    <p class="quote-author">-Thrive in Japan Graduate 2025</p>
+                </div>
+                
+                <!-- CTA -->
+                <div class="reality-cta">
+                    <a href="https://thriveinjapan.com/program-details/" class="cta-button">Show Me More!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Wrap everything in an IIFE to avoid global scope pollution
+        (function() {
+            // Create glass shards effect
+            const shardsContainer = document.getElementById('shardsContainer');
+            
+            for (let i = 0; i < 20; i++) {
+                const shard = document.createElement('div');
+                shard.className = 'shard';
+                shard.style.left = `${Math.random() * 100}%`;
+                shard.style.animationDelay = `${Math.random() * 8}s`;
+                shard.style.animationDuration = `${8 + Math.random() * 4}s`;
+                shardsContainer.appendChild(shard);
+            }
+            
+            // Add hover effect to success cards
+            const cards = document.querySelectorAll('.success-card');
+            
+            cards.forEach((card, index) => {
+                card.addEventListener('mouseenter', function() {
+                    // Create crack effect
+                    const crack = document.createElement('div');
+                    crack.style.cssText = `
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 L45,50 L55,90 M45,50 L20,45 L10,70 M55,50 L80,55 L90,30" stroke="rgba(177,45,61,0.3)" stroke-width="0.5" fill="none"/></svg>') no-repeat center;
+                        background-size: cover;
+                        opacity: 0;
+                        animation: crackAppear 0.3s ease forwards;
+                        pointer-events: none;
+                    `;
+                    card.appendChild(crack);
+                    
+                    setTimeout(() => crack.remove(), 2000);
+                });
+            });
+            
+            // Add crack animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes crackAppear {
+                    to { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Parallax effect for masks
+            document.addEventListener('mousemove', (e) => {
+                const masks = document.querySelectorAll('.floating-mask');
+                const x = (e.clientX / window.innerWidth - 0.5) * 2;
+                const y = (e.clientY / window.innerHeight - 0.5) * 2;
+                
+                masks.forEach((mask, index) => {
+                    const speed = (index + 1) * 0.5;
+                    mask.style.transform = `translateX(${x * speed * 20}px) translateY(${y * speed * 20}px)`;
+                });
+            });
+            
+            // Improved Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -10% 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the animate-in class when element comes into view
+                        entry.target.classList.add('animate-in');
+                        // Optional: stop observing after animation triggers
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all animated elements
+            const animatedElements = document.querySelectorAll('.reality-header, .success-card, .reality-check, .truth-item, .reality-quote, .reality-cta');
+            
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        })();
+    </script>
+</body>
+</html>
