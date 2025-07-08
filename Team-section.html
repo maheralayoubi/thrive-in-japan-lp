@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The A-Team - Thrive in Japan</title>
+    <style>
+        /* A-Team Section Specific Styles */
+        .ateam-section {
+            position: relative;
+            min-height: 100vh;
+            background: #0a0a0a;
+            overflow: hidden;
+            padding: 100px 20px;
+        }
+
+        /* Dynamic Background */
+        .ateam-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(177, 45, 61, 0.1) 35px, rgba(177, 45, 61, 0.1) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(15, 52, 96, 0.1) 35px, rgba(15, 52, 96, 0.1) 70px);
+            animation: bgPatternMove 30s linear infinite;
+        }
+
+        @keyframes bgPatternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(70px, 70px); }
+        }
+
+        /* Floating Kanji Background */
+        .ateam-kanji-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .floating-kanji {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(177, 45, 61, 0.05);
+            font-family: 'Yu Mincho', serif;
+            animation: kanjiFloat 20s ease-in-out infinite;
+            user-select: none;
+        }
+
+        .floating-kanji:nth-child(1) { content: '魂'; top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-kanji:nth-child(2) { content: '道'; top: 60%; right: 15%; animation-delay: 5s; }
+        .floating-kanji:nth-child(3) { content: '心'; bottom: 20%; left: 50%; animation-delay: 10s; }
+        .floating-kanji:nth-child(4) { content: '和'; top: 30%; right: 40%; animation-delay: 15s; }
+
+        @keyframes kanjiFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.05; }
+            50% { transform: translateY(-30px) rotate(180deg) scale(1.1); opacity: 0.08; }
+        }
+
+        /* Container */
+        .ateam-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .ateam-header {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        .ateam-header.reveal-active {
+            animation: ateamFadeInDown 1s ease forwards;
+        }
+
+        @keyframes ateamFadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ateam-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #b12d3d;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .ateam-label::before,
+        .ateam-label::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #b12d3d);
+        }
+
+        .ateam-label::before {
+            right: calc(100% + 20px);
+            background: linear-gradient(270deg, transparent, #b12d3d);
+        }
+
+        .ateam-label::after {
+            left: calc(100% + 20px);
+        }
+
+        .ateam-title {
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            position: relative;
+        }
+
+        .ateam-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .ateam-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #b12d3d, transparent);
+        }
+
+        /* Introduction Box */
+        .ateam-intro {
+            background: linear-gradient(135deg, rgba(177, 45, 61, 0.1) 0%, rgba(15, 52, 96, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px;
+            margin-bottom: 100px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .ateam-intro.reveal-active {
+            animation: ateamScaleIn 1s ease forwards;
+        }
+
+        @keyframes ateamScaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .ateam-intro::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(177, 45, 61, 0.1) 0%, transparent 70%);
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .ateam-intro-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ateam-intro-text strong {
+            color: #b12d3d;
+            font-weight: 700;
+        }
+
+        /* Team Grid */
+        .ateam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* Member Card */
+        .ateam-member {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px) rotateX(-10deg);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ateam-member.reveal-active {
+            animation: memberReveal 0.8s ease forwards;
+            animation-delay: var(--member-delay);
+        }
+
+        .ateam-member:nth-child(1) { --member-delay: 0.2s; }
+        .ateam-member:nth-child(2) { --member-delay: 0.4s; }
+        .ateam-member:nth-child(3) { --member-delay: 0.6s; }
+
+        @keyframes memberReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        .ateam-member:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(177, 45, 61, 0.5);
+            box-shadow: 0 20px 40px rgba(177, 45, 61, 0.2);
+        }
+
+        /* Image Container */
+        .ateam-image-container {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .ateam-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            filter: grayscale(20%);
+        }
+
+        .ateam-member:hover .ateam-image {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        /* Image Overlay Effect */
+        .ateam-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(10, 10, 10, 0.9) 100%);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .ateam-member:hover .ateam-image-overlay {
+            opacity: 0.4;
+        }
+
+        /* Member Info */
+        .ateam-info {
+            padding: 30px;
+            position: relative;
+        }
+
+        .ateam-name {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .ateam-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #b12d3d;
+            transition: width 0.3s ease;
+        }
+
+        .ateam-member:hover .ateam-name::after {
+            width: 100%;
+        }
+
+        .ateam-role {
+            font-size: 16px;
+            color: #b12d3d;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .ateam-title-role {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .ateam-bio {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            min-height: 100px;
+        }
+
+        /* Social Links */
+        .ateam-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .ateam-social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ateam-social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #b12d3d;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .ateam-social-link:hover {
+            border-color: #b12d3d;
+            transform: translateY(-3px);
+        }
+
+        .ateam-social-link:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ateam-social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 2;
+            transition: fill 0.3s ease;
+        }
+
+        .ateam-social-link:hover svg {
+            fill: #fff;
+        }
+
+        /* Bottom Message */
+        .ateam-message {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(177, 45, 61, 0.05);
+            border: 2px solid rgba(177, 45, 61, 0.2);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .ateam-message.reveal-active {
+            animation: ateamFadeInUp 1s ease forwards;
+        }
+
+        @keyframes ateamFadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ateam-message-text {
+            font-size: 20px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ateam-message-text em {
+            color: #b12d3d;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* Particles Effect */
+        .ateam-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #b12d3d;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 10s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .ateam-section {
+                padding: 80px 15px;
+            }
+
+            .ateam-intro {
+                padding: 30px 20px;
+            }
+
+            .ateam-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .ateam-image-container {
+                height: 300px;
+            }
+
+            .ateam-info {
+                padding: 25px 20px;
+            }
+
+            .ateam-message {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- A-Team Section -->
+    <section class="ateam-section">
+        <!-- Dynamic Background Pattern -->
+        <div class="ateam-bg-pattern"></div>
+        
+        <!-- Floating Kanji Background -->
+        <div class="ateam-kanji-bg">
+            <div class="floating-kanji">魂</div>
+            <div class="floating-kanji">道</div>
+            <div class="floating-kanji">心</div>
+            <div class="floating-kanji">和</div>
+        </div>
+        
+        <!-- Particles -->
+        <div class="ateam-particles" id="ateamParticles"></div>
+        
+        <!-- Container -->
+        <div class="ateam-container">
+            <!-- Header -->
+            <div class="ateam-header">
+                <div class="ateam-label">The A-Team</div>
+                <h2 class="ateam-title">Meet the Creators of Thrive in Japan</h2>
+                <p class="ateam-subtitle">The Insiders Who Cracked Japan's Code</p>
+            </div>
+            
+            <!-- Introduction -->
+            <div class="ateam-intro">
+                <p class="ateam-intro-text">
+                    Together, they built the ultimate guide to mastering Japan's silent language—With Thrive in Japan 
+                    <strong>Learn Japanese</strong>, <strong>Truly belong</strong>, <strong>Live your purpose</strong>.
+                </p>
+            </div>
+            
+            <!-- Team Grid -->
+            <div class="ateam-grid">
+                <!-- Shige -->
+                <div class="ateam-member">
+                    <div class="ateam-image-container">
+                        <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/04/prof-at-nihonbashi.jpg?resize=768%2C1024&ssl=1" 
+                             alt="Shige" class="ateam-image">
+                        <div class="ateam-image-overlay"></div>
+                    </div>
+                    <div class="ateam-info">
+                        <h3 class="ateam-name">Shige</h3>
+                        <div class="ateam-role">Japanese Cultural Expert</div>
+                        <div class="ateam-title-role">Instructor</div>
+                        <p class="ateam-bio">
+                            Professional Thriver in Japan. A US expat who came to Japan in 2006. After a 25+ year journey to become a world-class traditional Japanese artist and musician, he cracked the code to be accepted, respected and connected in even the most traditional circles in Japan.
+                        </p>
+                        <div class="ateam-social">
+                            <a href="#" class="ateam-social-link" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="ateam-social-link" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="ateam-social-link" aria-label="X (Twitter)">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hiro -->
+                <div class="ateam-member">
+                    <div class="ateam-image-container">
+                        <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/04/iOS-%E3%81%AE%E7%94%BB%E5%83%8F-768x1024.jpg?resize=768%2C1024&ssl=1" 
+                             alt="Hiro" class="ateam-image">
+                        <div class="ateam-image-overlay"></div>
+                    </div>
+                    <div class="ateam-info">
+                        <h3 class="ateam-name">Hiro</h3>
+                        <div class="ateam-role">Japanese/International Business Expert</div>
+                        <div class="ateam-title-role">Co-Instructor</div>
+                        <p class="ateam-bio">
+                            A global business leader who started with a prestigious position at Sumitomo Corporation. As "kikokushijyo" he spent his childhood in New Jersey and is solidly bi-lingual and bi-cultural. He has vast experience leading elite international teams from Japan to Saudi Arabia.
+                        </p>
+                        <div class="ateam-social">
+                            <a href="#" class="ateam-social-link" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="ateam-social-link" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="ateam-social-link" aria-label="X (Twitter)">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Naoka -->
+                <div class="ateam-member">
+                    <div class="ateam-image-container">
+                        <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/04/IMG_8536-scaled.jpg?resize=768%2C1024&ssl=1" 
+                             alt="Naoka" class="ateam-image">
+                        <div class="ateam-image-overlay"></div>
+                    </div>
+                    <div class="ateam-info">
+                        <h3 class="ateam-name">Naoka</h3>
+                        <div class="ateam-role">Japanese Service Professional</div>
+                        <div class="ateam-title-role">Co-Instructor</div>
+                        <p class="ateam-bio">
+                            A self-made entrepreneur and certified award-winning Japanese Hospitality Expert consulted by Michelin restaurants throughout Japan and as far as Paris. All contents meet her rigorous standard and guarantee that this isn't just opinion. This is how Japan works.
+                        </p>
+                        <div class="ateam-social">
+                            <a href="#" class="ateam-social-link" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="ateam-social-link" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="ateam-social-link" aria-label="X (Twitter)">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Message -->
+            <div class="ateam-message">
+                <p class="ateam-message-text">
+                    If you take these lessons to heart, you could become an <em>award winning Japanese Hospitality expert</em> as well!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function() {
+            // Create particle effect
+            const particlesContainer = document.getElementById('ateamParticles');
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => particle.remove(), 20000);
+            }
+            
+            // Create particles periodically
+            setInterval(createParticle, 500);
+            
+            // Initial particles
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createParticle, i * 200);
+            }
+            
+            // Parallax effect for floating elements
+            let ticking = false;
+            function updateParallax() {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        const scrolled = window.pageYOffset;
+                        const kanjis = document.querySelectorAll('.floating-kanji');
+                        
+                        kanjis.forEach((kanji, index) => {
+                            const speed = 0.5 + (index * 0.1);
+                            kanji.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
+                        });
+                        
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+            
+            window.addEventListener('scroll', updateParallax);
+            
+            // Intersection Observer for reveal animations
+            const revealElements = document.querySelectorAll('.ateam-header, .ateam-intro, .ateam-member, .ateam-message');
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-active');
+                        
+                        // Add stagger effect for team members
+                        if (entry.target.classList.contains('ateam-member')) {
+                            const members = document.querySelectorAll('.ateam-member');
+                            members.forEach((member, index) => {
+                                if (member === entry.target) {
+                                    member.style.animationDelay = `${index * 0.2}s`;
+                                }
+                            });
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+            
+            // Mouse move effect on member cards
+            const memberCards = document.querySelectorAll('.ateam-member');
+            
+            memberCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / centerY * -10;
+                    const rotateY = (x - centerX) / centerX * 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                });
+            });
+            
+            // Add glitch effect on hover for member names
+            const memberNames = document.querySelectorAll('.ateam-name');
+            
+            memberNames.forEach(name => {
+                name.addEventListener('mouseenter', function() {
+                    this.style.animation = 'glitchText 0.3s ease';
+                    setTimeout(() => {
+                        this.style.animation = '';
+                    }, 300);
+                });
+            });
+            
+            // Add glitch text animation
+            const glitchStyle = document.createElement('style');
+            glitchStyle.textContent = `
+                @keyframes glitchText {
+                    0%, 100% { transform: translate(0); }
+                    20% { transform: translate(-2px, 2px); }
+                    40% { transform: translate(-2px, -2px); }
+                    60% { transform: translate(2px, 2px); }
+                    80% { transform: translate(2px, -2px); }
+                }
+            `;
+            document.head.appendChild(glitchStyle);
+        })();
+    </script>
+</body>
+</html>
