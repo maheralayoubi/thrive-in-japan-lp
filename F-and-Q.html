@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrive in Japan FAQ</title>
+    <style>
+        /* Reset and base styles for FAQ section */
+        .tij-faq-wrapper * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .tij-faq-wrapper {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(180deg, #f0f4ff 0%, #e8f4f8 100%);
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        .tij-faq-bg-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            opacity: 0.05;
+        }
+
+        .tij-faq-bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            animation: tijFaqFloat 20s infinite ease-in-out;
+        }
+
+        .tij-faq-bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: #ff6b6b;
+            top: -150px;
+            right: -150px;
+            animation-delay: 0s;
+        }
+
+        .tij-faq-bg-circle:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: #4ecdc4;
+            bottom: -200px;
+            left: -200px;
+            animation-delay: 5s;
+        }
+
+        .tij-faq-bg-circle:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background: #45b7d1;
+            top: 50%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes tijFaqFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        /* Container */
+        .tij-faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .tij-faq-header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: tijFaqFadeUp 1s ease forwards;
+        }
+
+        .tij-faq-title {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tij-faq-title::before {
+            content: '?';
+            position: absolute;
+            font-size: 120px;
+            color: rgba(78, 205, 196, 0.1);
+            top: -40px;
+            left: -60px;
+            font-weight: 900;
+            animation: tijQuestionRotate 10s linear infinite;
+        }
+
+        @keyframes tijQuestionRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .tij-faq-subtitle {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* FAQ Items Container */
+        .tij-faq-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* FAQ Item */
+        .tij-faq-item {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: tijFaqSlideIn 0.6s ease forwards;
+            animation-delay: calc(var(--item-index) * 0.1s);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .tij-faq-item:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .tij-faq-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(180deg, var(--accent-gradient));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tij-faq-item.tij-active::before {
+            opacity: 1;
+        }
+
+        /* Gradient variations */
+        .tij-faq-item:nth-child(1) { --accent-gradient: #ff6b6b 0%, #ff8787 100%; }
+        .tij-faq-item:nth-child(2) { --accent-gradient: #4ecdc4 0%, #44a39f 100%; }
+        .tij-faq-item:nth-child(3) { --accent-gradient: #45b7d1 0%, #5eb8d0 100%; }
+        .tij-faq-item:nth-child(4) { --accent-gradient: #ff6b6b 0%, #4ecdc4 100%; }
+        .tij-faq-item:nth-child(5) { --accent-gradient: #4ecdc4 0%, #45b7d1 100%; }
+
+        @keyframes tijFaqSlideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Question */
+        .tij-faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tij-faq-question::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tij-faq-item.tij-active .tij-faq-question::after {
+            left: 100%;
+        }
+
+        .tij-faq-question-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a2e;
+            flex: 1;
+            padding-right: 20px;
+            line-height: 1.4;
+        }
+
+        /* Icon */
+        .tij-faq-icon-wrapper {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+        }
+
+        .tij-faq-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f4f8 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tij-faq-item.tij-active .tij-faq-icon {
+            background: linear-gradient(135deg, var(--accent-gradient));
+            transform: rotate(180deg);
+        }
+
+        .tij-faq-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #666;
+            transition: all 0.3s ease;
+        }
+
+        .tij-faq-item.tij-active .tij-faq-icon svg {
+            fill: white;
+        }
+
+        /* Plus/Minus Animation */
+        .tij-faq-plus {
+            position: relative;
+            width: 24px;
+            height: 24px;
+        }
+
+        .tij-faq-plus::before,
+        .tij-faq-plus::after {
+            content: '';
+            position: absolute;
+            background: #666;
+            transition: all 0.3s ease;
+        }
+
+        .tij-faq-plus::before {
+            width: 16px;
+            height: 2px;
+            top: 11px;
+            left: 4px;
+        }
+
+        .tij-faq-plus::after {
+            width: 2px;
+            height: 16px;
+            top: 4px;
+            left: 11px;
+        }
+
+        .tij-faq-item.tij-active .tij-faq-plus::before,
+        .tij-faq-item.tij-active .tij-faq-plus::after {
+            background: white;
+        }
+
+        .tij-faq-item.tij-active .tij-faq-plus::after {
+            transform: rotate(90deg);
+            opacity: 0;
+        }
+
+        /* Answer */
+        .tij-faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tij-faq-answer-content {
+            padding: 0 30px 25px 30px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease 0.1s;
+        }
+
+        .tij-faq-item.tij-active .tij-faq-answer {
+            max-height: 500px;
+        }
+
+        .tij-faq-item.tij-active .tij-faq-answer-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Highlight Box in Answer */
+        .tij-faq-highlight {
+            background: linear-gradient(135deg, #fff5f5 0%, #f0fffe 100%);
+            border-left: 3px solid var(--accent-gradient);
+            padding: 15px 20px;
+            margin-top: 15px;
+            border-radius: 10px;
+            font-style: italic;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Elements */
+        .tij-faq-decoration {
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.03;
+            color: #4ecdc4;
+            user-select: none;
+            z-index: 0;
+        }
+
+        .tij-faq-decoration-1 {
+            top: 10%;
+            right: 5%;
+            transform: rotate(-15deg);
+            animation: tijFaqDrift 15s ease-in-out infinite;
+        }
+
+        .tij-faq-decoration-2 {
+            bottom: 10%;
+            left: 5%;
+            transform: rotate(25deg);
+            animation: tijFaqDrift 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes tijFaqDrift {
+            0%, 100% { transform: translateX(0) rotate(-15deg); }
+            50% { transform: translateX(30px) rotate(-5deg); }
+        }
+
+        /* Animations */
+        @keyframes tijFaqFadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tij-faq-wrapper {
+                padding: 60px 15px;
+            }
+
+            .tij-faq-question {
+                padding: 20px;
+            }
+
+            .tij-faq-question-text {
+                font-size: 16px;
+            }
+
+            .tij-faq-icon-wrapper {
+                width: 40px;
+                height: 40px;
+            }
+
+            .tij-faq-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .tij-faq-answer-content {
+                padding: 0 20px 20px 20px;
+                font-size: 15px;
+            }
+
+            .tij-faq-decoration {
+                font-size: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tij-faq-wrapper">
+        <!-- Background Decoration -->
+        <div class="tij-faq-bg-decoration">
+            <div class="tij-faq-bg-circle"></div>
+            <div class="tij-faq-bg-circle"></div>
+            <div class="tij-faq-bg-circle"></div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="tij-faq-decoration tij-faq-decoration-1">学</div>
+        <div class="tij-faq-decoration tij-faq-decoration-2">問</div>
+
+        <div class="tij-faq-container">
+            <!-- Header -->
+            <div class="tij-faq-header">
+                <h2 class="tij-faq-title">Frequently Asked Questions</h2>
+                <p class="tij-faq-subtitle">Everything you need to know about thriving in Japan</p>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="tij-faq-items">
+                <!-- FAQ Item 1 -->
+                <div class="tij-faq-item" style="--item-index: 0;">
+                    <div class="tij-faq-question">
+                        <h3 class="tij-faq-question-text">What is the Thrive in Japan program?</h3>
+                        <div class="tij-faq-icon-wrapper">
+                            <div class="tij-faq-icon">
+                                <div class="tij-faq-plus"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tij-faq-answer">
+                        <div class="tij-faq-answer-content">
+                            <strong>The Thrive in Japan program is made up of TWO curriculums designed to enhance students' high-context communication skills, crucial for navigating Japan's unique cultural landscape.</strong> It prepares participants for both personal and professional success in Japan. While addressing all requirements for JLPT certification it doesn't get caught up in them.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="tij-faq-item" style="--item-index: 1;">
+                    <div class="tij-faq-question">
+                        <h3 class="tij-faq-question-text">What if I already have JLPT but I still want to learn to Thrive?</h3>
+                        <div class="tij-faq-icon-wrapper">
+                            <div class="tij-faq-icon">
+                                <div class="tij-faq-plus"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tij-faq-answer">
+                        <div class="tij-faq-answer-content">
+                            <strong>"Japan in Context" can be studied as part of the monthly subscription,</strong> and it will include pre-recorded videos, reflections, and some of the group work will be integrated into the Speaking Sessions, however if you are really struggling and desperate to change your life the only way to get our full guarantee is by taking the "Japan in Context" program with our Professional ICF Certified Coaching.
+                            <div class="tij-faq-highlight">
+                                If you are serious about finding your purpose and living true to yourself while living in Japan (at this point you might feel stuck here), then this is the magic bullet you've been looking for.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="tij-faq-item" style="--item-index: 2;">
+                    <div class="tij-faq-question">
+                        <h3 class="tij-faq-question-text">Who can benefit from the Thrive in Japan program?</h3>
+                        <div class="tij-faq-icon-wrapper">
+                            <div class="tij-faq-icon">
+                                <div class="tij-faq-plus"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tij-faq-answer">
+                        <div class="tij-faq-answer-content">
+                            <strong>The program is ideal for anyone who is pursuing higher education or a career in Japan, or are planning on spending time in Japan in the near future</strong> and need to get the most out of their time. Not all experiences are created equal, and the only way to max out your experience in Japan is to understand the context. Students that have experienced Japan before and felt the language and cultural barriers for themselves first hand will benefit all the more from the program but even if you haven't been to Japan yet, this program will shave years off of your learning curve.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="tij-faq-item" style="--item-index: 3;">
+                    <div class="tij-faq-question">
+                        <h3 class="tij-faq-question-text">What if I speak advanced Japanese? What if I'm a beginner?</h3>
+                        <div class="tij-faq-icon-wrapper">
+                            <div class="tij-faq-icon">
+                                <div class="tij-faq-plus"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tij-faq-answer">
+                        <div class="tij-faq-answer-content">
+                            <strong>High-Context Communication in Japanese is mostly unspoken.</strong> Whether you decide to take our "JLPT in Context" Course to learn Japan is up to you. The high-context communication skills that we teach in our "Japan in Context" program applies to everyone, and it doesn't matter the level of your Japanese skills to benefit from these lessons.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="tij-faq-item" style="--item-index: 4;">
+                    <div class="tij-faq-question">
+                        <h3 class="tij-faq-question-text">Do you actually teach Japanese Language?</h3>
+                        <div class="tij-faq-icon-wrapper">
+                            <div class="tij-faq-icon">
+                                <div class="tij-faq-plus"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tij-faq-answer">
+                        <div class="tij-faq-answer-content">
+                            <strong>Yes, we do, "JLPT in Context" is a ground-breaking curriculum that (in our opinion) leaves other programs in the dust.</strong> BUT before we start teaching you the language (no matter how fluent you already are) we encourage that ALL of our students go through the "Japan in Context" course.
+                            
+                            <div class="tij-faq-highlight">
+                                Japanese is at least 60% unspoken communication skills, tools and strategies. The remaining 40% is made up of words and grammar structures.
+                            </div>
+                            
+                            Learning Japanese with us is a decision to redefine your terms. What is the Japanese Language? Is it only vocabulary words and grammar? As far as we are concerned, "no" - Our students learn Japanese as a holistic communication SYSTEM. This system cannot be ignored, and Japanese cannot be treated and taught in the same way that other languages are traditionally taught in academic settings. To Thrive in Japan you will need to take a more balanced approach to learning than a simple JLPT course can provide.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.tij-faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.tij-faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Check if this item is currently active
+                    const isActive = item.classList.contains('tij-active');
+                    
+                    // Close all items
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('tij-active');
+                    });
+                    
+                    // If it wasn't active, open it
+                    if (!isActive) {
+                        item.classList.add('tij-active');
+                        
+                        // Add ripple effect
+                        createRipple(question, event);
+                    }
+                });
+            });
+            
+            // Ripple effect function
+            function createRipple(element, event) {
+                const ripple = document.createElement('span');
+                const rect = element.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = event.clientX - rect.left - size / 2;
+                const y = event.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.5);
+                    top: ${y}px;
+                    left: ${x}px;
+                    pointer-events: none;
+                    transform: scale(0);
+                    animation: tijRippleExpand 0.6s ease-out;
+                `;
+                
+                element.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            }
+            
+            // Add CSS for ripple animation dynamically
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes tijRippleExpand {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Add hover tilt effect
+            faqItems.forEach(item => {
+                item.addEventListener('mousemove', function(e) {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+                    
+                    item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                });
+            });
+            
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+            
+            faqItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
