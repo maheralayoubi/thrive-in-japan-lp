@@ -34,7 +34,11 @@
         .tij-faq-bg-circle {
             position: absolute;
             border-radius: 50%;
-            animation: tijFaqFloat 20s infinite ease-in-out;
+            animation: tijFaqFloat 20s infinite ease-in-out paused;
+        }
+
+        .tij-faq-wrapper.in-view .tij-faq-bg-circle {
+            animation-play-state: running;
         }
 
         .tij-faq-bg-circle:nth-child(1) {
@@ -90,6 +94,9 @@
             margin-bottom: 60px;
             opacity: 0;
             transform: translateY(30px);
+        }
+
+        .tij-faq-wrapper.in-view .tij-faq-header {
             animation: tijFaqFadeUp 1s ease forwards;
         }
 
@@ -110,7 +117,11 @@
             top: -40px;
             left: -60px;
             font-weight: 900;
-            animation: tijQuestionRotate 10s linear infinite;
+            animation: tijQuestionRotate 10s linear infinite paused;
+        }
+
+        .tij-faq-wrapper.in-view .tij-faq-title::before {
+            animation-play-state: running;
         }
 
         @keyframes tijQuestionRotate {
@@ -142,10 +153,13 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             opacity: 0;
             transform: translateX(-30px);
-            animation: tijFaqSlideIn 0.6s ease forwards;
-            animation-delay: calc(var(--item-index) * 0.1s);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+        }
+
+        .tij-faq-wrapper.in-view .tij-faq-item {
+            animation: tijFaqSlideIn 0.6s ease forwards;
+            animation-delay: calc(var(--item-index) * 0.1s);
         }
 
         .tij-faq-item:hover {
@@ -347,14 +361,19 @@
             top: 10%;
             right: 5%;
             transform: rotate(-15deg);
-            animation: tijFaqDrift 15s ease-in-out infinite;
+            animation: tijFaqDrift 15s ease-in-out infinite paused;
         }
 
         .tij-faq-decoration-2 {
             bottom: 10%;
             left: 5%;
             transform: rotate(25deg);
-            animation: tijFaqDrift 15s ease-in-out infinite reverse;
+            animation: tijFaqDrift 15s ease-in-out infinite reverse paused;
+        }
+
+        .tij-faq-wrapper.in-view .tij-faq-decoration-1,
+        .tij-faq-wrapper.in-view .tij-faq-decoration-2 {
+            animation-play-state: running;
         }
 
         @keyframes tijFaqDrift {
@@ -527,8 +546,24 @@
     <script>
         // FAQ Toggle Functionality
         document.addEventListener('DOMContentLoaded', function() {
+            const faqWrapper = document.querySelector('.tij-faq-wrapper');
             const faqItems = document.querySelectorAll('.tij-faq-item');
             
+            // Intersection Observer for main section animation
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            sectionObserver.observe(faqWrapper);
+            
+            // FAQ item click functionality
             faqItems.forEach(item => {
                 const question = item.querySelector('.tij-faq-question');
                 
@@ -606,24 +641,6 @@
                 item.addEventListener('mouseleave', function() {
                     item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
                 });
-            });
-            
-            // Intersection Observer for scroll animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = 'running';
-                    }
-                });
-            }, observerOptions);
-            
-            faqItems.forEach(item => {
-                observer.observe(item);
             });
         });
     </script>
