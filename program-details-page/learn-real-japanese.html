@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Real Japanese - Thrive in Japan</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Main Launch Section */
+        .tj-launch-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a0f0f 50%, #0a0a0a 100%);
+        }
+
+        /* Animated Background Pattern */
+        .tj-pattern-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(220, 38, 38, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        /* Moving Grid Overlay */
+        .tj-grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridShift 25s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes gridShift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Container */
+        .tj-launch-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Launch Section */
+        .tj-launch-hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        /* Left Content Area */
+        .tj-launch-content {
+            opacity: 0;
+            animation: slideInLeft 1.2s ease forwards;
+        }
+
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-60px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        .tj-launch-badge {
+            display: inline-block;
+            padding: 10px 24px;
+            background: rgba(220, 38, 38, 0.08);
+            border: 1px solid rgba(220, 38, 38, 0.25);
+            border-radius: 40px;
+            color: #dc2626;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tj-launch-badge::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #dc2626, transparent);
+            animation: badgeSweep 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeSweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .tj-launch-title {
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #fff 0%, #dc2626 50%, #fff 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGradient 4s ease-in-out infinite;
+        }
+
+        @keyframes titleGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .tj-launch-quote {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            line-height: 1.8;
+            padding-left: 30px;
+            border-left: 3px solid rgba(220, 38, 38, 0.5);
+            font-style: italic;
+            position: relative;
+        }
+
+        .tj-launch-quote::before {
+            content: '"';
+            position: absolute;
+            left: -10px;
+            top: -20px;
+            font-size: 80px;
+            color: rgba(220, 38, 38, 0.2);
+            font-family: Georgia, serif;
+        }
+
+        .tj-launch-quote strong {
+            color: #dc2626;
+            font-weight: 800;
+            font-style: normal;
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+            position: relative;
+            display: inline-block;
+            animation: strongGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes strongGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .tj-launch-description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .tj-launch-description strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .tj-launch-announcement {
+            font-size: 20px;
+            color: #dc2626;
+            font-weight: 700;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            animation: announcePulse 1s ease 0.5s forwards;
+        }
+
+        @keyframes announcePulse {
+            0% { 
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tj-launch-announcement::before {
+            content: '🎌';
+            font-size: 30px;
+            animation: iconRotate 3s ease-in-out infinite;
+        }
+
+        @keyframes iconRotate {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        /* CTA Button */
+        .tj-launch-cta {
+            display: inline-block;
+            padding: 24px 60px;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 60px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.4);
+            cursor: pointer;
+        }
+
+        .tj-launch-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .tj-launch-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.6);
+        }
+
+        .tj-launch-cta:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        /* Right Visual Area */
+        .tj-launch-visual {
+            position: relative;
+            height: 700px;
+            opacity: 0;
+            animation: slideInRight 1.2s ease 0.3s forwards;
+        }
+
+        @keyframes slideInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(60px) scale(0.9);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        /* Animated Kanji Background */
+        .tj-kanji-bg {
+            position: absolute;
+            top: 10%;
+            right: -20%;
+            font-size: 400px;
+            color: rgba(220, 38, 38, 0.05);
+            font-weight: 900;
+            writing-mode: vertical-rl;
+            animation: kanjiPulse 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes kanjiPulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.05;
+            }
+            50% { 
+                transform: scale(1.1) rotate(5deg);
+                opacity: 0.1;
+            }
+        }
+
+        /* Floating Card Stack */
+        .tj-card-stack {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tj-float-card {
+            position: absolute;
+            width: 320px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .tj-float-card:nth-child(1) {
+            transform: translateY(-80px) rotate(-5deg);
+            z-index: 3;
+            animation: floatCard1 6s ease-in-out infinite;
+        }
+
+        .tj-float-card:nth-child(2) {
+            transform: translateY(0) rotate(3deg);
+            z-index: 2;
+            animation: floatCard2 6s ease-in-out infinite;
+        }
+
+        .tj-float-card:nth-child(3) {
+            transform: translateY(80px) rotate(-3deg);
+            z-index: 1;
+            animation: floatCard3 6s ease-in-out infinite;
+        }
+
+        @keyframes floatCard1 {
+            0%, 100% { transform: translateY(-80px) rotate(-5deg) scale(1); }
+            50% { transform: translateY(-100px) rotate(-8deg) scale(1.05); }
+        }
+
+        @keyframes floatCard2 {
+            0%, 100% { transform: translateY(0) rotate(3deg) scale(1); }
+            50% { transform: translateY(-20px) rotate(5deg) scale(1.05); }
+        }
+
+        @keyframes floatCard3 {
+            0%, 100% { transform: translateY(80px) rotate(-3deg) scale(1); }
+            50% { transform: translateY(60px) rotate(-5deg) scale(1.05); }
+        }
+
+        .tj-float-card:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            z-index: 10;
+            box-shadow: 0 30px 60px rgba(220, 38, 38, 0.3);
+        }
+
+        .tj-card-level {
+            font-size: 48px;
+            color: #dc2626;
+            margin-right: 20px;
+        }
+
+        /* Glowing Orbs */
+        .tj-orb {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.3) 0%, transparent 70%);
+            filter: blur(40px);
+            opacity: 0.6;
+            animation: orbFloat 10s ease-in-out infinite;
+        }
+
+        .tj-orb:nth-child(1) {
+            top: 20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .tj-orb:nth-child(2) {
+            bottom: 20%;
+            right: -10%;
+            animation-delay: 5s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.2); }
+        }
+
+        /* Particles Effect */
+        .tj-particles-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .tj-glow-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #dc2626;
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(220, 38, 38, 0.8);
+            animation: particleDrift 20s linear infinite;
+        }
+
+        @keyframes particleDrift {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(150px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tj-launch-hero {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .tj-launch-visual {
+                height: 500px;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .tj-kanji-bg {
+                font-size: 300px;
+                right: -10%;
+            }
+
+            .tj-float-card {
+                width: 280px;
+                height: 160px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tj-launch-title {
+                font-size: 36px;
+            }
+
+            .tj-launch-quote {
+                font-size: 18px;
+                padding-left: 20px;
+            }
+
+            .tj-launch-cta {
+                padding: 20px 40px;
+                font-size: 16px;
+            }
+
+            .tj-float-card {
+                width: 240px;
+                height: 140px;
+                font-size: 18px;
+            }
+
+            .tj-card-level {
+                font-size: 36px;
+            }
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Pattern -->
+    <div class="tj-pattern-bg"></div>
+    <div class="tj-grid-overlay"></div>
+    
+    <!-- Particles Container -->
+    <div class="tj-particles-container" id="particlesBox"></div>
+    
+    <!-- Main Launch Section -->
+    <section class="tj-launch-section">
+        <!-- Floating Orbs -->
+        <div class="tj-orb"></div>
+        <div class="tj-orb"></div>
+        
+        <div class="tj-launch-container">
+            <div class="tj-launch-hero">
+                <!-- Content Area -->
+                <div class="tj-launch-content">
+                    <span class="tj-launch-badge">Beyond Traditional Learning</span>
+                    
+                    <h1 class="tj-launch-title">Learn more than just words and grammar</h1>
+                    
+                    <p class="tj-launch-quote">
+                        "If competency were a competition, I'd <strong>bet everything</strong> on one of our <strong>N3 students over a N1 graduate from another program—any day, no hesitation.</strong>"
+                    </p>
+                    
+                    <p class="tj-launch-description">
+                        Why? Because <strong>Thrive in Japan</strong> isn't just about passing a test—it's about mastering <strong>real Japanese</strong>, and where other programs fall short, Thrive in Japan will teach you how to flourish!
+                    </p>
+                    
+                    <p class="tj-launch-announcement">
+                        Starting August 1st, 2025 we are bringing our private program to the general public on a brand new Platform!
+                    </p>
+                    
+                    <a href="#pricing" class="tj-launch-cta">I'm ready to Thrive! Sign me up!</a>
+                </div>
+                
+                <!-- Visual Area -->
+                <div class="tj-launch-visual">
+                    <div class="tj-kanji-bg">実力</div>
+                    
+                    <div class="tj-card-stack">
+                        <div class="tj-float-card">
+                            <span class="tj-card-level">N3</span>
+                            <span>Real Fluency</span>
+                        </div>
+                        <div class="tj-float-card">
+                            <span class="tj-card-level">文脈</span>
+                            <span>Context</span>
+                        </div>
+                        <div class="tj-float-card">
+                            <span class="tj-card-level">成功</span>
+                            <span>Success</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create glowing particles
+        const particlesBox = document.getElementById('particlesBox');
+        const particleAmount = 25;
+
+        for (let i = 0; i < particleAmount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'tj-glow-particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 20}s`;
+            particle.style.animationDuration = `${20 + Math.random() * 10}s`;
+            particlesBox.appendChild(particle);
+        }
+
+        // Parallax effect on mouse movement
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            // Move kanji background
+            const kanjiBg = document.querySelector('.tj-kanji-bg');
+            if (kanjiBg) {
+                kanjiBg.style.transform = `scale(1) rotate(${x * 5}deg) translateX(${x * 20}px)`;
+            }
+            
+            // Move orbs
+            const orbs = document.querySelectorAll('.tj-orb');
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 10;
+                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // Card hover effect enhancement
+        const cards = document.querySelectorAll('.tj-float-card');
+        cards.forEach((card, index) => {
+            card.addEventListener('mouseenter', () => {
+                cards.forEach((c, i) => {
+                    if (i !== index) {
+                        c.style.opacity = '0.6';
+                        c.style.filter = 'blur(2px)';
+                    }
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                cards.forEach(c => {
+                    c.style.opacity = '1';
+                    c.style.filter = 'none';
+                });
+            });
+        });
+
+        // Smooth scroll for CTA button
+        document.querySelector('.tj-launch-cta').addEventListener('click', (e) => {
+            e.preventDefault();
+            const pricingSection = document.querySelector('#pricing');
+            if (pricingSection) {
+                pricingSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Add glow effect on scroll
+        let scrolling = false;
+        window.addEventListener('scroll', () => {
+            if (!scrolling) {
+                scrolling = true;
+                requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const badge = document.querySelector('.tj-launch-badge');
+                    if (badge) {
+                        badge.style.boxShadow = `0 0 ${20 + scrolled * 0.05}px rgba(220, 38, 38, 0.3)`;
+                    }
+                    scrolling = false;
+                });
+            }
+        });
+
+        // Text emphasis animation on load
+        window.addEventListener('load', () => {
+            const strongElements = document.querySelectorAll('.tj-launch-quote strong, .tj-launch-description strong');
+            strongElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.animation = 'strongGlow 2s ease-in-out infinite';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
