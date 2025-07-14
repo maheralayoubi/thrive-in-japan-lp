@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Our Program is Effective - Thrive in Japan</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        /* Main Section */
+        .tij-effective {
+            position: relative;
+            padding: 120px 20px 100px;
+            background: linear-gradient(180deg, #f8f9fa 0%, #fff 25%, #f0f4ff 75%, #e8f4f8 100%);
+            min-height: 100vh;
+        }
+
+        /* Background Elements */
+        .tij-bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Animated Grid Pattern */
+        .tij-grid-pattern {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(177, 45, 61, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(177, 45, 61, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridSlide 40s linear infinite;
+        }
+
+        @keyframes gridSlide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Sakura Petals */
+        .tij-sakura {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 182, 193, 0.7);
+            border-radius: 0 100% 0 100%;
+            animation: sakuraFall 15s linear infinite;
+        }
+
+        .tij-sakura:nth-child(odd) {
+            animation-duration: 20s;
+            width: 12px;
+            height: 12px;
+        }
+
+        @keyframes sakuraFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Generate multiple sakura petals */
+        .tij-sakura:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .tij-sakura:nth-child(2) { left: 30%; animation-delay: 3s; }
+        .tij-sakura:nth-child(3) { left: 50%; animation-delay: 6s; }
+        .tij-sakura:nth-child(4) { left: 70%; animation-delay: 9s; }
+        .tij-sakura:nth-child(5) { left: 90%; animation-delay: 12s; }
+
+        /* Section Header */
+        .tij-section-header {
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tij-section-title {
+            font-size: clamp(32px, 4.5vw, 48px);
+            color: #1a1a2e;
+            font-weight: 700;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tij-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #b12d3d, transparent);
+            animation: expandLine 1.2s ease 0.5s forwards;
+        }
+
+        @keyframes expandLine {
+            to { width: 120%; }
+        }
+
+        .tij-section-subtitle {
+            font-size: 20px;
+            color: #666;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .tij-highlight-text {
+            color: #b12d3d;
+            font-weight: 600;
+            position: relative;
+        }
+
+        /* Content Blocks Container */
+        .tij-content-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Individual Content Block */
+        .tij-content-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 150px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tij-content-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reverse layout for alternating blocks */
+        .tij-content-block:nth-child(even) {
+            direction: rtl;
+        }
+
+        .tij-content-block:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        /* Image Container */
+        .tij-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tij-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(177, 45, 61, 0.1), transparent);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .tij-image-container:hover::before {
+            opacity: 1;
+        }
+
+        .tij-image-container:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image Styling */
+        .tij-content-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tij-image-container:hover .tij-content-image {
+            transform: scale(1.1);
+        }
+
+        /* Decorative Frame */
+        .tij-image-frame {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 2px solid rgba(177, 45, 61, 0.2);
+            border-radius: 25px;
+            transform: rotate(-2deg);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .tij-image-container:hover .tij-image-frame {
+            transform: rotate(2deg) scale(1.05);
+            border-color: rgba(177, 45, 61, 0.4);
+        }
+
+        /* Content Text Container */
+        .tij-text-content {
+            padding: 40px;
+            position: relative;
+        }
+
+        .tij-content-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 25px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .tij-content-block:hover .tij-content-title {
+            color: #b12d3d;
+        }
+
+        /* Japanese Accent */
+        .tij-japanese-accent {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            font-size: 60px;
+            color: rgba(177, 45, 61, 0.08);
+            font-weight: bold;
+            user-select: none;
+            transition: all 0.5s ease;
+        }
+
+        .tij-content-block:hover .tij-japanese-accent {
+            transform: scale(1.2) rotate(10deg);
+            color: rgba(177, 45, 61, 0.15);
+        }
+
+        .tij-content-text {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #4a4a4a;
+            position: relative;
+        }
+
+        .tij-content-text strong {
+            color: #b12d3d;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .tij-content-text strong:hover {
+            text-shadow: 0 0 20px rgba(177, 45, 61, 0.3);
+        }
+
+        /* Number Indicators */
+        .tij-block-number {
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #b12d3d, #e53e3e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(177, 45, 61, 0.3);
+            z-index: 2;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .tij-content-block:hover .tij-block-number {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        /* Floating Elements */
+        .tij-float-element {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+            animation: floatElement 20s ease-in-out infinite;
+        }
+
+        @keyframes floatElement {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(10px) rotate(-5deg); }
+            75% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        /* Pulse Animation for CTAs */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(177, 45, 61, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(177, 45, 61, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(177, 45, 61, 0); }
+        }
+
+        /* Scroll Indicator */
+        .tij-scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid #b12d3d;
+            border-radius: 20px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .tij-scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 10px;
+            background: #b12d3d;
+            border-radius: 3px;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(10px); }
+            60% { transform: translateX(-50%) translateY(5px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .tij-content-block {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 100px;
+            }
+
+            .tij-content-block:nth-child(even) {
+                direction: ltr;
+            }
+
+            .tij-text-content {
+                padding: 30px;
+            }
+
+            .tij-content-title {
+                font-size: 26px;
+            }
+
+            .tij-block-number {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+                top: -35px;
+                left: -35px;
+            }
+
+            .tij-japanese-accent {
+                font-size: 40px;
+                top: -10px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .tij-effective {
+                padding: 80px 15px 60px;
+            }
+
+            .tij-section-header {
+                margin-bottom: 60px;
+            }
+
+            .tij-text-content {
+                padding: 20px;
+            }
+
+            .tij-content-text {
+                font-size: 15px;
+            }
+        }
+
+        /* Animation Classes */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Parallax Effect Helper */
+        .tij-parallax {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Japanese Characters for decoration */
+        .tij-kanji-bg {
+            position: absolute;
+            font-size: 200px;
+            color: rgba(177, 45, 61, 0.02);
+            font-weight: bold;
+            user-select: none;
+            z-index: 0;
+        }
+
+        .tij-kanji-1 { top: 10%; right: 5%; }
+        .tij-kanji-2 { bottom: 20%; left: 10%; }
+        .tij-kanji-3 { top: 50%; right: 50%; }
+        .tij-kanji-4 { bottom: 10%; right: 20%; }
+    </style>
+</head>
+<body>
+    <section class="tij-effective">
+        <!-- Background Elements -->
+        <div class="tij-bg-elements">
+            <div class="tij-grid-pattern"></div>
+            <div class="tij-sakura"></div>
+            <div class="tij-sakura"></div>
+            <div class="tij-sakura"></div>
+            <div class="tij-sakura"></div>
+            <div class="tij-sakura"></div>
+            <div class="tij-kanji-bg tij-kanji-1">学</div>
+            <div class="tij-kanji-bg tij-kanji-2">和</div>
+            <div class="tij-kanji-bg tij-kanji-3">心</div>
+            <div class="tij-kanji-bg tij-kanji-4">道</div>
+        </div>
+
+        <!-- Section Header -->
+        <div class="tij-section-header">
+            <h2 class="tij-section-title">Why Our Program is So Effective</h2>
+            <p class="tij-section-subtitle">
+                <span class="tij-highlight-text">Read below</span> to see why our program is so effective!
+            </p>
+        </div>
+
+        <!-- Content Container -->
+        <div class="tij-content-container">
+            <!-- Block 1: Live Group Calls -->
+            <div class="tij-content-block">
+                <div class="tij-image-container">
+                    <div class="tij-image-frame"></div>
+                    <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/06/cohort-very-blurred.jpg?resize=768%2C492&ssl=1" 
+                         alt="Live Group Calls" 
+                         class="tij-content-image">
+                    <div class="tij-block-number">1</div>
+                </div>
+                <div class="tij-text-content">
+                    <div class="tij-japanese-accent">会</div>
+                    <h3 class="tij-content-title">Live Group Calls</h3>
+                    <p class="tij-content-text">
+                        Japanese is more than just vocabulary and grammar—it's a <strong>high-context language</strong> that relies on <strong>group dynamics and cultural awareness</strong>. Thrive in Japan's methodology, built on the latest <strong>linguistic research and language acquisition studies</strong>, ensures learners develop <strong>true fluency</strong> through interaction and immersion.
+                    </p>
+                    <p class="tij-content-text">
+                        We use a <strong>Task-Based Learning model</strong>, leveraging <strong>small groups and breakout rooms</strong> to maximize speaking time, engagement, and real-world communication skills. Role-playing, group discussions, and hands-on practice are <strong>essential</strong>—without them, mastering high-context communication would be impossible.
+                    </p>
+                    <p class="tij-content-text">
+                        To fit busy schedules, <strong>Group Calls are offered at convenient times throughout the week</strong>, allowing learners to choose regular lesson slots that work for them.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Block 2: Master Japanese on your own schedule -->
+            <div class="tij-content-block">
+                <div class="tij-image-container">
+                    <div class="tij-image-frame"></div>
+                    <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/06/Untitled-design-scaled.jpg?resize=723%2C1024&ssl=1" 
+                         alt="Master Japanese on your own schedule" 
+                         class="tij-content-image">
+                    <div class="tij-block-number">2</div>
+                </div>
+                <div class="tij-text-content">
+                    <div class="tij-japanese-accent">時</div>
+                    <h3 class="tij-content-title">Master Japanese on your own schedule</h3>
+                    <p class="tij-content-text">
+                        Life moves fast, making structured learning challenging, which is why <strong>flexibility is key</strong>. Our recorded lessons, exercises, quizzes, and resources are available <strong>24/7</strong>, allowing you to study whenever and wherever suits you. Thrive in Japan's core programs, <strong>"Japan in Context"</strong> and <strong>"JLPT in Context,"</strong> are built for independent learners with clear goals.
+                    </p>
+                    <p class="tij-content-text">
+                        Lessons go beyond vocabulary and grammar, immersing students in deep <strong>cultural insights</strong> that enrich their understanding of Japan's language and traditions. Our videos are varied and <strong>on location</strong>, so you won't be stuck in repetitive classroom settings.
+                    </p>
+                    <p class="tij-content-text">
+                        By the end, students won't just <strong>speak Japanese</strong>—they'll be <strong>cultured, articulate, and sophisticated</strong>, understanding the language as native speakers do. You can progress at your own pace while gaining a <strong>true-to-life, meaningful grasp</strong> of Japanese.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Block 3: JLPT support in context -->
+            <div class="tij-content-block">
+                <div class="tij-image-container">
+                    <div class="tij-image-frame"></div>
+                    <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/06/ceiling-lights.jpg?resize=768%2C516&ssl=1" 
+                         alt="JLPT support in context" 
+                         class="tij-content-image">
+                    <div class="tij-block-number">3</div>
+                </div>
+                <div class="tij-text-content">
+                    <div class="tij-japanese-accent">試</div>
+                    <h3 class="tij-content-title">JLPT support in context!</h3>
+                    <p class="tij-content-text">
+                        JLPT is necessary and useful, but it isn't enough. Our course satisfies <strong>JLPT requirements—and more!</strong> JLPT arbitrarily classifies Japanese grammar and words from "easy" to "difficult," but real-life language needs don't follow that pattern. You'll need some "difficult" words within days of arriving in Japan. JLPT also ignores the <strong>unspoken</strong> half of the language.
+                    </p>
+                    <p class="tij-content-text">
+                        Our <strong>"JLPT in Context" program</strong> avoids the pitfalls of random, disjointed lessons. Instead, our curriculum unfolds as a <strong>continuous story</strong>—true to life, following the journey of moving to Japan. It starts in <strong>English and Japanese</strong>, mimicking real-world exposure to new terms, then gradually transitions to <strong>100% Japanese</strong>. (You'll feel amazing when you reach your first lesson only in Japanese!)
+                    </p>
+                </div>
+            </div>
+
+            <!-- Block 4: Connect to REAL Japan -->
+            <div class="tij-content-block">
+                <div class="tij-image-container">
+                    <div class="tij-image-frame"></div>
+                    <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/05/mystery-tori.jpg?resize=768%2C768&ssl=1" 
+                         alt="Connect to REAL Japan" 
+                         class="tij-content-image">
+                    <div class="tij-block-number">4</div>
+                </div>
+                <div class="tij-text-content">
+                    <div class="tij-japanese-accent">繋</div>
+                    <h3 class="tij-content-title">Connect to REAL Japan</h3>
+                    <p class="tij-content-text">
+                        Everything in our curriculum is based on <strong>real locations and events</strong> in Japan. The places you learn about aren't just theoretical—they're places you can <strong>actually visit</strong>, and the experiences we introduce are ones you can <strong>truly have</strong> when you're in Japan.
+                    </p>
+                    <p class="tij-content-text">
+                        Our parent company, <strong>Uzumibi Co.</strong>, is dedicated to bringing the best of Japan to the world. As a member of the <strong>Thrive in Japan</strong> community, you'll gain exclusive access to the <strong>Uzumibi Community</strong>—including <strong>regular meet-ups</strong>, <strong>immersive cultural experiences</strong>, <strong>direct connections to Japanese businesses</strong>, and special <strong>discounts on hidden gems across Japan</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="tij-scroll-indicator"></div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Add staggered animation to text elements
+                    const textElements = entry.target.querySelectorAll('p');
+                    textElements.forEach((p, index) => {
+                        p.style.opacity = '0';
+                        p.style.transform = 'translateY(20px)';
+                        p.style.transition = 'all 0.6s ease';
+                        p.style.transitionDelay = `${index * 0.1 + 0.3}s`;
+                        
+                        setTimeout(() => {
+                            p.style.opacity = '1';
+                            p.style.transform = 'translateY(0)';
+                        }, 50);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content blocks
+        const contentBlocks = document.querySelectorAll('.tij-content-block');
+        contentBlocks.forEach(block => observer.observe(block));
+
+        // Parallax effect on scroll
+        let ticking = false;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            
+            // Parallax for background elements
+            const grid = document.querySelector('.tij-grid-pattern');
+            if (grid) {
+                grid.style.transform = `translate(${scrolled * 0.1}px, ${scrolled * 0.1}px)`;
+            }
+            
+            // Parallax for kanji backgrounds
+            const kanjis = document.querySelectorAll('.tij-kanji-bg');
+            kanjis.forEach((kanji, index) => {
+                const speed = 0.05 * (index + 1);
+                kanji.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+            
+            // Hide scroll indicator when scrolled
+            const scrollIndicator = document.querySelector('.tij-scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.style.opacity = scrolled > 100 ? '0' : '0.6';
+            }
+            
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+
+        // Mouse move effect for floating elements
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            // Move image frames slightly
+            const frames = document.querySelectorAll('.tij-image-frame');
+            frames.forEach((frame, index) => {
+                const speed = 10 * (index % 2 === 0 ? 1 : -1);
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                frame.style.transform = `translate(${x}px, ${y}px) rotate(${index % 2 === 0 ? -2 : 2}deg)`;
+            });
+            
+            // Move Japanese accents
+            const accents = document.querySelectorAll('.tij-japanese-accent');
+            accents.forEach((accent, index) => {
+                const speed = 15;
+                const x = (mouseX - 0.5) * speed * (index % 2 === 0 ? 1 : -1);
+                const y = (mouseY - 0.5) * speed * (index % 2 === 0 ? -1 : 1);
+                accent.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Add hover ripple effect to images
+        const imageContainers = document.querySelectorAll('.tij-image-container');
+        imageContainers.forEach(container => {
+            container.addEventListener('mouseenter', function(e) {
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    background: radial-gradient(circle, rgba(177, 45, 61, 0.3) 0%, transparent 70%);
+                    border-radius: 50%;
+                    width: 100px;
+                    height: 100px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(0);
+                    pointer-events: none;
+                    z-index: 2;
+                    animation: imageRipple 1s ease-out forwards;
+                `;
+                
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 1000);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes imageRipple {
+                to {
+                    transform: translate(-50%, -50%) scale(6);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
