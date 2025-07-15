@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrive in Japan - Program Overview</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Program Overview Section */
+        .tj-program-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a0f0f 50%, #0a0a0a 100%);
+            padding: 100px 0;
+        }
+
+        /* Animated Background Pattern */
+        .tj-program-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 70% 60%, rgba(220, 38, 38, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(220, 38, 38, 0.04) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        /* Animated Grid Lines */
+        .tj-program-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,.015) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255,255,255,.015) 2px, transparent 2px);
+            background-size: 80px 80px;
+            animation: gridFlow 30s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes gridFlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(80px, 80px); }
+        }
+
+        /* Container */
+        .tj-program-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Mission Statement */
+        .tj-mission-statement {
+            text-align: center;
+            margin-bottom: 100px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tj-mission-text {
+            font-size: clamp(24px, 3.5vw, 36px);
+            font-weight: 800;
+            line-height: 1.4;
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(90deg, #fff 0%, #dc2626 50%, #fff 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: missionGradient 5s ease-in-out infinite;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        @keyframes missionGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Featured Image Container */
+        .tj-featured-visual {
+            text-align: center;
+            margin-bottom: 100px;
+            opacity: 0;
+            animation: scaleIn 1.2s ease 0.3s forwards;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tj-featured-wrapper {
+            display: inline-block;
+            position: relative;
+            max-width: 640px;
+            width: 100%;
+        }
+
+        .tj-featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(220, 38, 38, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .tj-featured-wrapper:hover .tj-featured-image {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(220, 38, 38, 0.3);
+            border-color: rgba(220, 38, 38, 0.5);
+        }
+
+        /* Floating Accent Elements */
+        .tj-accent-kanji {
+            position: absolute;
+            font-size: 120px;
+            color: rgba(220, 38, 38, 0.1);
+            font-weight: 900;
+            z-index: -1;
+            animation: floatKanji 8s ease-in-out infinite;
+        }
+
+        .tj-accent-kanji:nth-child(1) {
+            top: -60px;
+            left: -80px;
+            animation-delay: 0s;
+        }
+
+        .tj-accent-kanji:nth-child(2) {
+            bottom: -60px;
+            right: -80px;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatKanji {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Program Details Grid */
+        .tj-program-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-bottom: 100px;
+        }
+
+        /* Lesson Details Card */
+        .tj-lesson-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: 24px;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: slideInLeft 1.2s ease 0.5s forwards;
+        }
+
+        .tj-lesson-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #dc2626, transparent);
+            animation: topGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes topGlow {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .tj-lesson-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #dc2626;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tj-lesson-title::before {
+            content: '📚';
+            font-size: 36px;
+        }
+
+        .tj-lesson-features {
+            list-style: none;
+        }
+
+        .tj-lesson-feature {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .tj-lesson-feature::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #dc2626;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .tj-lesson-feature strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Benefits List */
+        .tj-benefits-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: 24px;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: slideInRight 1.2s ease 0.7s forwards;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .tj-benefits-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tj-benefits-title::before {
+            content: '🎯';
+            font-size: 36px;
+        }
+
+        .tj-benefits-list {
+            list-style: none;
+        }
+
+        .tj-benefit-item {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 18px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.7;
+            transition: all 0.3s ease;
+        }
+
+        .tj-benefit-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #dc2626;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .tj-benefit-item:hover {
+            transform: translateX(10px);
+            color: #fff;
+        }
+
+        /* Community Section */
+        .tj-community-section {
+            text-align: center;
+            margin-top: 100px;
+            opacity: 0;
+            animation: fadeIn 1.2s ease 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tj-community-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tj-community-card {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .tj-community-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+            border-color: rgba(220, 38, 38, 0.5);
+        }
+
+        .tj-community-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .tj-community-card:hover::after {
+            opacity: 1;
+        }
+
+        .tj-community-subtitle {
+            font-size: 22px;
+            font-weight: 800;
+            color: #dc2626;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tj-community-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Glowing Particles */
+        .tj-program-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .tj-program-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #dc2626;
+            border-radius: 50%;
+            opacity: 0;
+            animation: programParticle 15s linear infinite;
+        }
+
+        @keyframes programParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .tj-program-grid-layout {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .tj-community-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tj-lesson-card,
+            .tj-benefits-card {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tj-mission-text {
+                font-size: 24px;
+            }
+
+            .tj-lesson-card,
+            .tj-benefits-card {
+                padding: 30px;
+            }
+
+            .tj-lesson-title,
+            .tj-benefits-title {
+                font-size: 24px;
+            }
+
+            .tj-lesson-feature,
+            .tj-benefit-item {
+                font-size: 16px;
+            }
+
+            .tj-community-card {
+                padding: 30px;
+            }
+
+            .tj-accent-kanji {
+                font-size: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Program Overview Section -->
+    <section class="tj-program-section">
+        <!-- Background Effects -->
+        <div class="tj-program-pattern"></div>
+        <div class="tj-program-grid"></div>
+        
+        <!-- Particles -->
+        <div class="tj-program-particles" id="programParticles"></div>
+        
+        <div class="tj-program-container">
+            <!-- Mission Statement -->
+            <div class="tj-mission-statement">
+                <p class="tj-mission-text">
+                    If other programs were successfully teaching Japanese we wouldn't still consider Japanese to be the most difficult language in the world. It's time to change that!
+                </p>
+            </div>
+            
+            <!-- Featured Visual -->
+            <div class="tj-featured-visual">
+                <div class="tj-featured-wrapper">
+                    <div class="tj-accent-kanji">文</div>
+                    <div class="tj-accent-kanji">化</div>
+                    <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/06/LIVE-clip-kotowaza.jpg?w=640&ssl=1" 
+                         alt="Thrive in Japan Live Lesson" 
+                         class="tj-featured-image">
+                </div>
+            </div>
+            
+            <!-- Program Details Grid -->
+            <div class="tj-program-grid-layout">
+                <!-- Lesson Details -->
+                <div class="tj-lesson-card">
+                    <h3 class="tj-lesson-title">What does one lesson of "JLPT in Context" include?</h3>
+                    <ul class="tj-lesson-features">
+                        <li class="tj-lesson-feature">
+                            <strong>A main text with grammar, vocab and video explanations</strong>
+                        </li>
+                        <li class="tj-lesson-feature">
+                            <strong>A cultural deep dive, with an immersive video lesson</strong>
+                        </li>
+                        <li class="tj-lesson-feature">
+                            <strong>Practice sheets and Quizzes with each lesson</strong>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Benefits List -->
+                <div class="tj-benefits-card">
+                    <h3 class="tj-benefits-title">What do you get when you sign up?</h3>
+                    <ul class="tj-benefits-list">
+                        <li class="tj-benefit-item">Access to the Thrive in Japan Platform</li>
+                        <li class="tj-benefit-item">Access to one LIVE Weekly Online Group Session at your preferred time</li>
+                        <li class="tj-benefit-item">"Japan in Context" – A module teaching high context communication skills in Japan</li>
+                        <li class="tj-benefit-item">"JLPT in Context" – An original course that meets all JLPT criteria and beyond!</li>
+                        <li class="tj-benefit-item">"Japan in Context Advanced" – High Context Communication skills taught fully in the Japanese language</li>
+                        <li class="tj-benefit-item">Access to offline cultural events/meet ups</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Community Section -->
+            <div class="tj-community-section">
+                <div class="tj-community-grid">
+                    <div class="tj-community-card">
+                        <h4 class="tj-community-subtitle">Supportive Community</h4>
+                        <p class="tj-community-text">
+                            Our community is active and growing! Connect with Japan and learn together as part of a supportive international team.
+                        </p>
+                    </div>
+                    <div class="tj-community-card">
+                        <h4 class="tj-community-subtitle">Supportive Teachers</h4>
+                        <p class="tj-community-text">
+                            Ask questions and get feedback from real human beings. Join weekly Task Based Learning session LIVE and improve your spoken Japanese.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create program particles
+        const programParticles = document.getElementById('programParticles');
+        const programParticleCount = 20;
+
+        for (let i = 0; i < programParticleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'tj-program-particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 15}s`;
+            particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+            programParticles.appendChild(particle);
+        }
+
+        // Parallax effect for accent kanji
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            const accentKanjis = document.querySelectorAll('.tj-accent-kanji');
+            accentKanjis.forEach((kanji, index) => {
+                const speed = (index + 1) * 15;
+                kanji.style.transform = `translateY(${y * speed}px) translateX(${x * speed}px) rotate(${x * 10}deg)`;
+            });
+        });
+
+        // Card hover depth effect
+        const cards = document.querySelectorAll('.tj-lesson-card, .tj-benefits-card, .tj-community-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all benefit items
+        document.querySelectorAll('.tj-benefit-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(item);
+        });
+
+        // Image hover glow effect
+        const featuredImage = document.querySelector('.tj-featured-image');
+        if (featuredImage) {
+            featuredImage.addEventListener('mouseenter', () => {
+                featuredImage.style.filter = 'brightness(1.1) contrast(1.1)';
+            });
+            
+            featuredImage.addEventListener('mouseleave', () => {
+                featuredImage.style.filter = 'brightness(1) contrast(1)';
+            });
+        }
+
+        // Add shimmer effect to community cards
+        const communityCards = document.querySelectorAll('.tj-community-card');
+        communityCards.forEach((card, index) => {
+            card.addEventListener('mouseenter', () => {
+                card.style.background = `linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.08) 100%)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.background = `linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%)`;
+            });
+        });
+    </script>
+</body>
+</html>
