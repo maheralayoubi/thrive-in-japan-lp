@@ -325,16 +325,26 @@
             font-weight: bold;
         }
 
-        .tj-card-premium .tj-feature-item::before {
+        .tj-feature-item.unavailable::before {
+            content: '✗';  /* or use '✕' or '×' for different X styles */
             color: #dc2626;
         }
 
+        .tj-feature-item.unavailable::before {
+            content: '✗';
+            color: #dc2626 !important; /* gray color, or use #dc2626 for red */
+        }
+
+        .tj-card-premium .tj-feature-item::before {
+            color: #26dc99;
+        }
+
         .tj-card-monthly .tj-feature-item::before {
-            color: #9333ea;
+            color: #26dc99;;
         }
 
         .tj-card-yearly .tj-feature-item::before {
-            color: #ec4899;
+            color: #26dc99;;
         }
 
         /* Price Section */
@@ -650,14 +660,14 @@
                         <h3 class="tj-card-title">Japan in Context<br>Premiere</h3>
                     </div>
                     
-                    <ul class="tj-features-list">
-                        <li class="tj-feature-item">Thrive in Japan Platform</li>
-                        <li class="tj-feature-item">Speaking Sessions</li>
-                        <li class="tj-feature-item">"Japan in Context" Curriculum</li>
-                        <li class="tj-feature-item">"JLPT in Context" Curriculum</li>
-                        <li class="tj-feature-item">Access to Exclusive Events and Meet ups</li>
-                        <li class="tj-feature-item">1-on-1 ICF Certified Personal Coaching</li>
-                    </ul>
+                        <ul class="tj-features-list">
+                            <li class="tj-feature-item">Thrive in Japan Platform</li>
+                            <li class="tj-feature-item unavailable">Speaking Sessions</li>
+                            <li class="tj-feature-item">"Japan in Context" Curriculum</li>
+                            <li class="tj-feature-item unavailable">"JLPT in Context" Curriculum</li>
+                            <li class="tj-feature-item">Access to Exclusive Events and Meet ups</li>
+                            <li class="tj-feature-item">1-on-1 ICF Certified Personal Coaching</li>
+                        </ul>
                     
                     <div class="tj-price-section">
                         <div class="tj-discount-badge">30% OFF</div>
