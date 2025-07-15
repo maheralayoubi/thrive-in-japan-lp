@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Speaking Sessions - Thrive in Japan</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        /* Speaking Sessions Section */
+        .tij-speaking-sessions {
+            position: relative;
+            padding: 120px 20px 100px;
+            background: linear-gradient(180deg, #e8f4f8 0%, #f0f4ff 25%, #fff 75%, #f8f9fa 100%);
+            min-height: 100vh;
+        }
+
+        /* Background Elements */
+        .tij-ss-bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Animated Grid Pattern */
+        .tij-ss-grid-pattern {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(177, 45, 61, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(177, 45, 61, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridSlide 40s linear infinite;
+        }
+
+        @keyframes gridSlide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Sakura Petals */
+        .tij-ss-sakura {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 182, 193, 0.7);
+            border-radius: 0 100% 0 100%;
+            animation: sakuraFall 15s linear infinite;
+        }
+
+        .tij-ss-sakura:nth-child(odd) {
+            animation-duration: 20s;
+            width: 12px;
+            height: 12px;
+        }
+
+        @keyframes sakuraFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Generate multiple sakura petals */
+        .tij-ss-sakura:nth-child(1) { left: 15%; animation-delay: 0s; }
+        .tij-ss-sakura:nth-child(2) { left: 35%; animation-delay: 3s; }
+        .tij-ss-sakura:nth-child(3) { left: 55%; animation-delay: 6s; }
+        .tij-ss-sakura:nth-child(4) { left: 75%; animation-delay: 9s; }
+        .tij-ss-sakura:nth-child(5) { left: 95%; animation-delay: 12s; }
+
+        /* Section Header */
+        .tij-ss-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tij-ss-title {
+            font-size: clamp(32px, 4.5vw, 48px);
+            color: #1a1a2e;
+            font-weight: 700;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tij-ss-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #b12d3d, transparent);
+            animation: expandLine 1.2s ease 0.5s forwards;
+        }
+
+        @keyframes expandLine {
+            to { width: 120%; }
+        }
+
+        /* Content Container */
+        .tij-ss-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Key Features Section */
+        .tij-ss-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .tij-ss-feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tij-ss-feature-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #b12d3d, #e53e3e, #b12d3d);
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .tij-ss-feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .tij-ss-feature-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .tij-ss-feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #b12d3d, #e53e3e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: #fff;
+            box-shadow: 0 5px 20px rgba(177, 45, 61, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tij-ss-feature-card:hover .tij-ss-feature-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .tij-ss-feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+
+        .tij-ss-feature-text {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Schedule Grid */
+        .tij-ss-schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .tij-ss-day-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px) rotateX(-10deg);
+            animation: dayCardReveal 0.8s ease forwards;
+            animation-delay: var(--delay);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes dayCardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        .tij-ss-day-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .tij-ss-day-header {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .tij-ss-day-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #b12d3d;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tij-ss-day-japanese {
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 60px;
+            color: rgba(177, 45, 61, 0.08);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .tij-ss-day-card:hover .tij-ss-day-japanese {
+            transform: scale(1.2) rotate(10deg);
+            color: rgba(177, 45, 61, 0.15);
+        }
+
+        .tij-ss-time-slot {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #4a4a4a;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tij-ss-time-slot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(177, 45, 61, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tij-ss-time-slot:hover {
+            border-color: #b12d3d;
+            transform: translateX(5px);
+            background: #fff;
+        }
+
+        .tij-ss-time-slot:hover::before {
+            left: 100%;
+        }
+
+        .tij-ss-time-slot strong {
+            color: #1a1a2e;
+            font-weight: 600;
+        }
+
+        /* Additional Info Section */
+        .tij-ss-info-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+
+        .tij-ss-info-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .tij-ss-info-title::before {
+            content: '📌';
+            position: absolute;
+            left: -35px;
+            top: 0;
+            font-size: 20px;
+        }
+
+        .tij-ss-info-list {
+            list-style: none;
+        }
+
+        .tij-ss-info-item {
+            font-size: 16px;
+            color: #4a4a4a;
+            line-height: 1.8;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .tij-ss-info-item::before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            color: #b12d3d;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Japanese Background Characters */
+        .tij-ss-kanji-bg {
+            position: absolute;
+            font-size: 200px;
+            color: rgba(177, 45, 61, 0.02);
+            font-weight: bold;
+            user-select: none;
+            z-index: 0;
+        }
+
+        .tij-ss-kanji-1 { top: 5%; left: 5%; }
+        .tij-ss-kanji-2 { bottom: 15%; right: 10%; }
+        .tij-ss-kanji-3 { top: 40%; right: 45%; }
+        .tij-ss-kanji-4 { bottom: 5%; left: 20%; }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .tij-ss-features {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+
+            .tij-ss-schedule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tij-ss-info-section {
+                padding: 35px 25px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .tij-speaking-sessions {
+                padding: 80px 15px 60px;
+            }
+
+            .tij-ss-header {
+                margin-bottom: 50px;
+            }
+
+            .tij-ss-day-card {
+                padding: 30px 20px;
+            }
+
+            .tij-ss-feature-card {
+                padding: 20px;
+            }
+
+            .tij-ss-feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        /* Animation helper classes */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pulse Animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(177, 45, 61, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(177, 45, 61, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(177, 45, 61, 0); }
+        }
+
+        .tij-ss-highlight {
+            color: #b12d3d;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <section class="tij-speaking-sessions">
+        <!-- Background Elements -->
+        <div class="tij-ss-bg-elements">
+            <div class="tij-ss-grid-pattern"></div>
+            <div class="tij-ss-sakura"></div>
+            <div class="tij-ss-sakura"></div>
+            <div class="tij-ss-sakura"></div>
+            <div class="tij-ss-sakura"></div>
+            <div class="tij-ss-sakura"></div>
+            <div class="tij-ss-kanji-bg tij-ss-kanji-1">話</div>
+            <div class="tij-ss-kanji-bg tij-ss-kanji-2">語</div>
+            <div class="tij-ss-kanji-bg tij-ss-kanji-3">学</div>
+            <div class="tij-ss-kanji-bg tij-ss-kanji-4">会</div>
+        </div>
+
+        <!-- Section Header -->
+        <div class="tij-ss-header">
+            <h2 class="tij-ss-title">Weekly Speaking Session Schedule</h2>
+        </div>
+
+        <!-- Content Container -->
+        <div class="tij-ss-container">
+            <!-- Key Features -->
+            <div class="tij-ss-features">
+                <div class="tij-ss-feature-card">
+                    <div class="tij-ss-feature-icon">⏰</div>
+                    <h3 class="tij-ss-feature-title">Convenient Times</h3>
+                    <p class="tij-ss-feature-text">Morning and evening slots to fit your schedule</p>
+                </div>
+                <div class="tij-ss-feature-card">
+                    <div class="tij-ss-feature-icon">60</div>
+                    <h3 class="tij-ss-feature-title">60 Minute Sessions</h3>
+                    <p class="tij-ss-feature-text">Full hour of immersive practice</p>
+                </div>
+                <div class="tij-ss-feature-card">
+                    <div class="tij-ss-feature-icon">8</div>
+                    <h3 class="tij-ss-feature-title">Small Groups</h3>
+                    <p class="tij-ss-feature-text">Maximum 8 students per session</p>
+                </div>
+                <div class="tij-ss-feature-card">
+                    <div class="tij-ss-feature-icon">2+</div>
+                    <h3 class="tij-ss-feature-title">Flexible Booking</h3>
+                    <p class="tij-ss-feature-text">Book 2 sessions at a time, unlimited total</p>
+                </div>
+            </div>
+
+            <!-- Schedule Grid -->
+            <div class="tij-ss-schedule-grid">
+                <div class="tij-ss-day-card" style="--delay: 0.4s">
+                    <div class="tij-ss-day-header">
+                        <div class="tij-ss-day-japanese">月</div>
+                        <h3 class="tij-ss-day-name">Monday</h3>
+                    </div>
+                    <div class="tij-ss-time-slot">
+                        <strong>7:00AM–8:00AM</strong> JST
+                    </div>
+                    <div class="tij-ss-time-slot">
+                        <strong>8:00PM–9:00PM</strong> JST
+                    </div>
+                </div>
+
+                <div class="tij-ss-day-card" style="--delay: 0.5s">
+                    <div class="tij-ss-day-header">
+                        <div class="tij-ss-day-japanese">水</div>
+                        <h3 class="tij-ss-day-name">Wednesday</h3>
+                    </div>
+                    <div class="tij-ss-time-slot">
+                        <strong>7:00AM–8:00AM</strong> JST
+                    </div>
+                    <div class="tij-ss-time-slot">
+                        <strong>8:00PM–9:00PM</strong> JST
+                    </div>
+                </div>
+
+                <div class="tij-ss-day-card" style="--delay: 0.6s">
+                    <div class="tij-ss-day-header">
+                        <div class="tij-ss-day-japanese">金</div>
+                        <h3 class="tij-ss-day-name">Friday</h3>
+                    </div>
+                    <div class="tij-ss-time-slot">
+                        <strong>7:00AM–8:00AM</strong> JST
+                    </div>
+                    <div class="tij-ss-time-slot">
+                        <strong>8:00PM–9:00PM</strong> JST
+                    </div>
+                </div>
+
+                <div class="tij-ss-day-card" style="--delay: 0.7s">
+                    <div class="tij-ss-day-header">
+                        <div class="tij-ss-day-japanese">土</div>
+                        <h3 class="tij-ss-day-name">Saturday</h3>
+                    </div>
+                    <div class="tij-ss-time-slot">
+                        <strong>8:00AM–9:00AM</strong> JST
+                    </div>
+                    <div class="tij-ss-time-slot">
+                        <strong>8:00PM–9:00PM</strong> JST
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="tij-ss-info-section">
+                <h3 class="tij-ss-info-title">Important Information</h3>
+                <ul class="tij-ss-info-list">
+                    <li class="tij-ss-info-item">New time slots will be opened as the program grows</li>
+                    <li class="tij-ss-info-item">Requests for new time slots can be made by students of the program <span class="tij-ss-highlight">AFTER</span> they have signed up</li>
+                    <li class="tij-ss-info-item">New slots will be opened based upon demand and availability of a teacher</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        const elementsToObserve = document.querySelectorAll('.tij-ss-features, .tij-ss-day-card, .tij-ss-info-section');
+        elementsToObserve.forEach(el => observer.observe(el));
+
+        // Parallax effect on scroll
+        let ticking = false;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            
+            // Parallax for background elements
+            const grid = document.querySelector('.tij-ss-grid-pattern');
+            if (grid) {
+                grid.style.transform = `translate(${scrolled * 0.1}px, ${scrolled * 0.1}px)`;
+            }
+            
+            // Parallax for kanji backgrounds
+            const kanjis = document.querySelectorAll('.tij-ss-kanji-bg');
+            kanjis.forEach((kanji, index) => {
+                const speed = 0.05 * (index + 1);
+                kanji.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+            
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+
+        // Mouse move effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            // Move Japanese accents
+            const accents = document.querySelectorAll('.tij-ss-day-japanese');
+            accents.forEach((accent, index) => {
+                const speed = 10;
+                const x = (mouseX - 0.5) * speed * (index % 2 === 0 ? 1 : -1);
+                const y = (mouseY - 0.5) * speed * (index % 2 === 0 ? -1 : 1);
+                accent.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Add hover ripple effect to day cards
+        const dayCards = document.querySelectorAll('.tij-ss-day-card');
+        dayCards.forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    background: radial-gradient(circle, rgba(177, 45, 61, 0.2) 0%, transparent 70%);
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    top: ${y}px;
+                    left: ${x}px;
+                    transform: translate(-50%, -50%) scale(0);
+                    pointer-events: none;
+                    z-index: 0;
+                    animation: cardRipple 0.8s ease-out forwards;
+                `;
+                
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 800);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes cardRipple {
+                to {
+                    transform: translate(-50%, -50%) scale(8);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Animate feature cards on hover
+        const featureCards = document.querySelectorAll('.tij-ss-feature-card');
+        featureCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
