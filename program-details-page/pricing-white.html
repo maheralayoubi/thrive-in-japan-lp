@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrive in Japan - Pricing Plans</title>
+    <style>
+        /* Pricing Section Styles */
+        .tj-pricing-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 50%, #fafafa 100%);
+            padding: 100px 20px;
+            overflow: hidden;
+        }
+
+        /* Animated Background Elements */
+        .tj-pricing-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(147, 51, 234, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 90% 40%, rgba(236, 72, 153, 0.03) 0%, transparent 40%);
+            z-index: 1;
+        }
+
+        .tj-pricing-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0,0,0,.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: gridMove 30s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(80px, 80px); }
+        }
+
+        /* Container */
+        .tj-pricing-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .tj-pricing-header {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tj-pricing-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 50%, #1a1a1a 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShine 4s ease-in-out infinite;
+        }
+
+        @keyframes titleShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .tj-pricing-subtitle {
+            font-size: 22px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .tj-pricing-subtitle strong {
+            color: #dc2626;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
+        }
+
+        .tj-launch-date {
+            font-size: 20px;
+            color: #dc2626;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: rgba(220, 38, 38, 0.08);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: 50px;
+        }
+
+        .tj-launch-date::before {
+            content: '🚀';
+            font-size: 24px;
+            animation: rocketBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes rocketBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .tj-pricing-warning {
+            font-size: 16px;
+            color: #666666;
+            font-style: italic;
+        }
+
+        /* Cards Grid */
+        .tj-pricing-grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Pricing Card Base */
+        .tj-price-card {
+            position: relative;
+            background: #ffffff;
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            opacity: 0;
+            animation: cardSlideIn 0.8s ease forwards;
+        }
+
+        .tj-price-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .tj-price-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .tj-price-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes cardSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Premium Card - Red Theme */
+        .tj-card-premium {
+            border-color: rgba(220, 38, 38, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+        }
+
+        .tj-card-premium::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #dc2626, #991b1b, #dc2626);
+            border-radius: 30px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .tj-card-premium:hover::before {
+            opacity: 0.1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        /* Monthly Card - Purple Theme */
+        .tj-card-monthly {
+            border-color: rgba(147, 51, 234, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, #f9f5ff 100%);
+        }
+
+        .tj-card-monthly::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #9333ea, #7c3aed, #9333ea);
+            border-radius: 30px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .tj-card-monthly:hover::before {
+            opacity: 0.1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        /* Yearly Card - Pink Theme */
+        .tj-card-yearly {
+            border-color: rgba(236, 72, 153, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, #fef5f9 100%);
+        }
+
+        .tj-card-yearly::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ec4899, #db2777, #ec4899);
+            border-radius: 30px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .tj-card-yearly:hover::before {
+            opacity: 0.1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Card Hover Effects */
+        .tj-price-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Card Header */
+        .tj-card-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .tj-card-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tj-card-premium .tj-card-title {
+            color: #dc2626;
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.2);
+        }
+
+        .tj-card-monthly .tj-card-title {
+            color: #9333ea;
+            text-shadow: 0 0 20px rgba(147, 51, 234, 0.2);
+        }
+
+        .tj-card-yearly .tj-card-title {
+            color: #ec4899;
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.2);
+        }
+
+        /* Features List */
+        .tj-features-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .tj-feature-item {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            color: #333333;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tj-feature-item:hover {
+            color: #000000;
+            transform: translateX(5px);
+        }
+
+        .tj-feature-item::before {
+            content: '✓';
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .tj-feature-item.unavailable::before {
+            content: '✗';  /* or use '✕' or '×' for different X styles */
+            color: #dc2626;
+        }
+
+        .tj-feature-item.unavailable::before {
+            content: '✗';
+            color: #dc2626 !important; /* gray color, or use #dc2626 for red */
+        }
+
+        .tj-card-premium .tj-feature-item::before {
+            color: #26dc99;
+        }
+
+        .tj-card-monthly .tj-feature-item::before {
+            color: #26dc99;;
+        }
+
+        .tj-card-yearly .tj-feature-item::before {
+            color: #26dc99;;
+        }
+
+        /* Price Section */
+        .tj-price-section {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .tj-original-price {
+            font-size: 24px;
+            color: #999999;
+            text-decoration: line-through;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .tj-discount-badge {
+            position: absolute;
+            top: -30px;
+            right: 50%;
+            transform: translateX(50%) rotate(-15deg);
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+            animation: discountPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes discountPulse {
+            0%, 100% { transform: translateX(50%) rotate(-15deg) scale(1); }
+            50% { transform: translateX(50%) rotate(-15deg) scale(1.1); }
+        }
+
+        .tj-current-price {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .tj-card-premium .tj-current-price {
+            color: #dc2626;
+        }
+
+        .tj-card-monthly .tj-current-price {
+            color: #9333ea;
+        }
+
+        .tj-card-yearly .tj-current-price {
+            color: #ec4899;
+        }
+
+        .tj-price-period {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        /* Limited Offer Text */
+        .tj-offer-text {
+            font-size: 14px;
+            color: #555555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .tj-offer-text strong {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        /* CTA Button */
+        .tj-enroll-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .tj-card-premium .tj-enroll-btn {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.3);
+        }
+
+        .tj-card-monthly .tj-enroll-btn {
+            background: linear-gradient(135deg, #9333ea, #7c3aed);
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.3);
+        }
+
+        .tj-card-yearly .tj-enroll-btn {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.3);
+        }
+
+        .tj-enroll-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .tj-enroll-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .tj-enroll-btn:hover::before {
+            width: 500px;
+            height: 500px;
+        }
+
+        .tj-card-premium .tj-enroll-btn:hover {
+            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.4);
+        }
+
+        .tj-card-monthly .tj-enroll-btn:hover {
+            box-shadow: 0 20px 50px rgba(147, 51, 234, 0.4);
+        }
+
+        .tj-card-yearly .tj-enroll-btn:hover {
+            box-shadow: 0 20px 50px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Countdown Timer */
+        .tj-countdown-container {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: #ffffff;
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(220, 38, 38, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+        }
+
+        .tj-countdown-title {
+            font-size: 24px;
+            color: #dc2626;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tj-countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tj-countdown-item {
+            text-align: center;
+        }
+
+        .tj-countdown-number {
+            display: block;
+            font-size: 48px;
+            font-weight: 900;
+            color: #1a1a1a;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
+        }
+
+        .tj-countdown-label {
+            font-size: 14px;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Floating Elements */
+        .tj-float-element {
+            position: absolute;
+            font-size: 100px;
+            color: rgba(0, 0, 0, 0.03);
+            font-weight: 900;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .tj-float-element:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation: floatSlow 20s ease-in-out infinite;
+        }
+
+        .tj-float-element:nth-child(2) {
+            top: 60%;
+            right: 5%;
+            animation: floatSlow 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .tj-pricing-grid-layout {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tj-pricing-section {
+                padding: 60px 20px;
+            }
+
+            .tj-pricing-title {
+                font-size: 32px;
+            }
+
+            .tj-pricing-subtitle {
+                font-size: 18px;
+            }
+
+            .tj-price-card {
+                padding: 40px 30px;
+            }
+
+            .tj-card-title {
+                font-size: 24px;
+            }
+
+            .tj-current-price {
+                font-size: 36px;
+            }
+
+            .tj-countdown {
+                gap: 20px;
+            }
+
+            .tj-countdown-number {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tj-pricing-grid-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .tj-price-card {
+                padding: 30px 20px;
+            }
+
+            .tj-enroll-btn {
+                padding: 16px 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pricing Section -->
+    <section id="pricing" class="tj-pricing-section">
+        <!-- Background Elements -->
+        <div class="tj-pricing-pattern"></div>
+        <div class="tj-pricing-grid"></div>
+        
+        <!-- Floating Elements -->
+        <div class="tj-float-element">限定</div>
+        <div class="tj-float-element">特価</div>
+        
+        <div class="tj-pricing-container">
+            <!-- Header -->
+            <div class="tj-pricing-header">
+                <h2 class="tj-pricing-title">3 different options to match your learning goals!</h2>
+                <div class="tj-launch-date">Thrive in Japan goes LIVE on August 1st, 2025</div>
+                <p class="tj-pricing-subtitle">
+                    Don't miss your chance to join at a <strong>special discounted price!</strong>
+                </p>
+                <p class="tj-pricing-warning">
+                    ***After October 31st, this will be the regular price for the program***
+                </p>
+            </div>
+            
+            <!-- Pricing Cards -->
+            <div class="tj-pricing-grid-layout">
+                <!-- Premium Card -->
+                <div class="tj-price-card tj-card-premium">
+                    <div class="tj-card-header">
+                        <h3 class="tj-card-title">Japan in Context<br>Premiere</h3>
+                    </div>
+                    
+                        <ul class="tj-features-list">
+                            <li class="tj-feature-item">Thrive in Japan Platform</li>
+                            <li class="tj-feature-item unavailable">Speaking Sessions</li>
+                            <li class="tj-feature-item">"Japan in Context" Curriculum</li>
+                            <li class="tj-feature-item unavailable">"JLPT in Context" Curriculum</li>
+                            <li class="tj-feature-item">Access to Exclusive Events and Meet ups</li>
+                            <li class="tj-feature-item">1-on-1 ICF Certified Personal Coaching</li>
+                        </ul>
+                    
+                    <div class="tj-price-section">
+                        <div class="tj-discount-badge">30% OFF</div>
+                        <div class="tj-original-price">¥220,000</div>
+                        <div class="tj-current-price">¥154,000</div>
+                        <div class="tj-price-period">One-time payment</div>
+                    </div>
+                    
+                    <div class="tj-offer-text">
+                        <strong>From August 1st until October 31st, 2025</strong><br>
+                        Receive a <strong>Massive Discount</strong> for our Limited Launch Offer!
+                    </div>
+                    
+                    <a href="#" class="tj-enroll-btn">Enroll Now</a>
+                </div>
+                
+                <!-- Monthly Card -->
+                <div class="tj-price-card tj-card-monthly">
+                    <div class="tj-card-header">
+                        <h3 class="tj-card-title">Monthly<br>Subscription</h3>
+                    </div>
+                    
+                    <ul class="tj-features-list">
+                        <li class="tj-feature-item">Thrive in Japan Platform</li>
+                        <li class="tj-feature-item">Unlimited Speaking Sessions</li>
+                        <li class="tj-feature-item">"Japan in Context" Curriculum</li>
+                        <li class="tj-feature-item">"JLPT in Context" Curriculum</li>
+                        <li class="tj-feature-item">Access to Exclusive Events and Meet Ups</li>
+                    </ul>
+                    
+                    <div class="tj-price-section">
+                        <div class="tj-discount-badge">30% OFF</div>
+                        <div class="tj-original-price">¥19,980</div>
+                        <div class="tj-current-price">¥13,980</div>
+                        <div class="tj-price-period">per month</div>
+                    </div>
+                    
+                    <div class="tj-offer-text">
+                        <strong>From August 1st until October 31st, 2025</strong><br>
+                        Receive a <strong>Massive Discount</strong> for our Limited Launch Offer!
+                    </div>
+                    
+                    <a href="#" class="tj-enroll-btn">Enroll Now</a>
+                </div>
+                
+                <!-- Yearly Card -->
+                <div class="tj-price-card tj-card-yearly">
+                    <div class="tj-card-header">
+                        <h3 class="tj-card-title">Yearly<br>Subscription</h3>
+                    </div>
+                    
+                    <ul class="tj-features-list">
+                        <li class="tj-feature-item">Thrive in Japan Platform</li>
+                        <li class="tj-feature-item">Unlimited Speaking Sessions</li>
+                        <li class="tj-feature-item">"Japan in Context" Curriculum</li>
+                        <li class="tj-feature-item">"JLPT in Context" Curriculum</li>
+                        <li class="tj-feature-item">Access to Exclusive Events and Meet Ups</li>
+                    </ul>
+                    
+                    <div class="tj-price-section">
+                        <div class="tj-discount-badge">30% OFF</div>
+                        <div class="tj-original-price">¥199,000</div>
+                        <div class="tj-current-price">¥139,000</div>
+                        <div class="tj-price-period">per year</div>
+                    </div>
+                    
+                    <div class="tj-offer-text">
+                        <strong>From August 1st until October 31st, 2025</strong><br>
+                        Receive a <strong>Massive Discount</strong> for our Limited Launch Offer!
+                    </div>
+                    
+                    <a href="#" class="tj-enroll-btn">Enroll Now</a>
+                </div>
+            </div>
+            
+            <!-- Countdown Timer -->
+            <div class="tj-countdown-container">
+                <h3 class="tj-countdown-title">Limited Launch Offer Ends In:</h3>
+                <div class="tj-countdown" id="countdownTimer">
+                    <div class="tj-countdown-item">
+                        <span class="tj-countdown-number" id="days">00</span>
+                        <span class="tj-countdown-label">Days</span>
+                    </div>
+                    <div class="tj-countdown-item">
+                        <span class="tj-countdown-number" id="hours">00</span>
+                        <span class="tj-countdown-label">Hours</span>
+                    </div>
+                    <div class="tj-countdown-item">
+                        <span class="tj-countdown-number" id="minutes">00</span>
+                        <span class="tj-countdown-label">Minutes</span>
+                    </div>
+                    <div class="tj-countdown-item">
+                        <span class="tj-countdown-number" id="seconds">00</span>
+                        <span class="tj-countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const endDate = new Date('October 31, 2025 23:59:59').getTime();
+            const now = new Date().getTime();
+            const distance = endDate - now;
+            
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById('countdownTimer').innerHTML = '<p style="font-size: 24px; color: #dc2626;">Offer Expired!</p>';
+            }
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Parallax effect for floating elements
+        document.addEventListener('mousemove', (e) => {
+            const floatElements = document.querySelectorAll('.tj-float-element');
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            floatElements.forEach((el, index) => {
+                const speed = (index + 1) * 15;
+                el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+        
+        // Add hover ripple effect to cards
+        const cards = document.querySelectorAll('.tj-price-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.animation = 'rippleExpand 1s ease-out forwards';
+                
+                const rect = card.getBoundingClientRect();
+                ripple.style.left = (e.clientX - rect.left) + 'px';
+                ripple.style.top = (e.clientY - rect.top) + 'px';
+                
+                card.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 1000);
+            });
+        });
+        
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rippleExpand {
+                0% {
+                    width: 20px;
+                    height: 20px;
+                    opacity: 0.3;
+                }
+                100% {
+                    width: 400px;
+                    height: 400px;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Smooth scroll behavior for enroll buttons
+        document.querySelectorAll('.tj-enroll-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Add enrollment logic here
+                console.log('Enrollment clicked for:', btn.closest('.tj-price-card').querySelector('.tj-card-title').textContent);
+            });
+        });
+        
+        // Add price animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const prices = entry.target.querySelectorAll('.tj-current-price');
+                    prices.forEach(price => {
+                        price.style.animation = 'priceFlip 0.6s ease-out';
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.tj-price-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Add priceFlip animation
+        const priceFlipStyle = document.createElement('style');
+        priceFlipStyle.textContent = `
+            @keyframes priceFlip {
+                0% {
+                    transform: rotateX(90deg);
+                    opacity: 0;
+                }
+                100% {
+                    transform: rotateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(priceFlipStyle);
+    </script>
+</body>
+</html>
