@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrive in Japan - Features Showcase</title>
+    <style>
+        /* Features Section Styles */
+        .tj-features-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 50%, #fafafa 100%);
+            padding: 100px 20px;
+            overflow: hidden;
+        }
+
+        /* Animated Background Elements */
+        .tj-features-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.03) 0%, transparent 40%);
+            z-index: 1;
+            animation: patternShift 20s ease-in-out infinite;
+        }
+
+        @keyframes patternShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .tj-features-grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0,0,0,.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: gridMove 30s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(80px, 80px); }
+        }
+
+        /* Container */
+        .tj-features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .tj-features-header {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .tj-features-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #dc2626 0%, #9333ea 50%, #ec4899 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGradientFlow 4s ease-in-out infinite;
+        }
+
+        @keyframes titleGradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .tj-features-subtitle {
+            font-size: 24px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .tj-features-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(147, 51, 234, 0.1));
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: 50px;
+            font-size: 18px;
+            color: #dc2626;
+            font-weight: 700;
+            margin-bottom: 40px;
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 5px 20px rgba(220, 38, 38, 0.2); }
+            50% { transform: scale(1.05); box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3); }
+        }
+
+        /* Features Showcase Container */
+        .tj-features-showcase {
+            position: relative;
+            background: #ffffff;
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 60px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            opacity: 0;
+            animation: showcaseReveal 1s ease 0.5s forwards;
+        }
+
+        @keyframes showcaseReveal {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .tj-showcase-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.05) 0%, transparent 70%);
+            animation: glowRotate 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glowRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Features Grid */
+        .tj-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Feature Item */
+        .tj-feature-card {
+            position: relative;
+            padding: 30px;
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            opacity: 0;
+            animation: featureSlideIn 0.8s ease forwards;
+        }
+
+        .tj-feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .tj-feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .tj-feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .tj-feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .tj-feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .tj-feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes featureSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px) rotate(-5deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotate(0deg);
+            }
+        }
+
+        .tj-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(220, 38, 38, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .tj-feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: rgba(220, 38, 38, 0.2);
+        }
+
+        .tj-feature-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Feature Icon */
+        .tj-feature-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            background: linear-gradient(135deg, #dc2626, #ec4899);
+            color: #fff;
+            border-radius: 20px;
+            position: relative;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .tj-feature-card:nth-child(even) .tj-feature-icon {
+            background: linear-gradient(135deg, #9333ea, #7c3aed);
+            animation-delay: 1.5s;
+        }
+
+        .tj-feature-card:nth-child(3n) .tj-feature-icon {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            animation-delay: 3s;
+        }
+
+        /* Feature Content */
+        .tj-feature-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .tj-feature-card:hover .tj-feature-title {
+            color: #dc2626;
+        }
+
+        .tj-feature-description {
+            font-size: 16px;
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .tj-cta-section {
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .tj-cta-text {
+            font-size: 28px;
+            color: #1a1a1a;
+            font-weight: 700;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.2s forwards;
+        }
+
+        /* Register Button */
+        .tj-register-btn {
+            display: inline-block;
+            padding: 25px 60px;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #dc2626 0%, #9333ea 50%, #ec4899 100%);
+            background-size: 200% 200%;
+            border-radius: 60px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.3);
+            opacity: 0;
+            animation: btnBounceIn 1s ease 1.4s forwards;
+        }
+
+        @keyframes btnBounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tj-register-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .tj-register-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(220, 38, 38, 0.4);
+            animation: btnGradientMove 3s ease-in-out infinite;
+        }
+
+        @keyframes btnGradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .tj-register-btn:hover::before {
+            width: 600px;
+            height: 600px;
+        }
+
+        /* Floating Elements */
+        .tj-float-feature {
+            position: absolute;
+            font-size: 120px;
+            color: rgba(0, 0, 0, 0.03);
+            font-weight: 900;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .tj-float-feature:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation: floatSlow 20s ease-in-out infinite;
+        }
+
+        .tj-float-feature:nth-child(2) {
+            bottom: 15%;
+            right: 10%;
+            animation: floatSlow 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* Sparkle Effects */
+        .tj-sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #dc2626;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .tj-features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tj-features-section {
+                padding: 60px 20px;
+            }
+
+            .tj-features-showcase {
+                padding: 40px 30px;
+            }
+
+            .tj-features-title {
+                font-size: 32px;
+            }
+
+            .tj-features-subtitle {
+                font-size: 18px;
+            }
+
+            .tj-feature-card {
+                padding: 25px;
+            }
+
+            .tj-cta-text {
+                font-size: 24px;
+            }
+
+            .tj-register-btn {
+                padding: 20px 40px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tj-features-showcase {
+                padding: 30px 20px;
+            }
+
+            .tj-features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tj-register-btn {
+                padding: 18px 35px;
+                font-size: 16px;
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Features Section -->
+    <section id="features" class="tj-features-section">
+        <!-- Background Elements -->
+        <div class="tj-features-pattern"></div>
+        <div class="tj-features-grid-bg"></div>
+        
+        <!-- Floating Elements -->
+        <div class="tj-float-feature">学習</div>
+        <div class="tj-float-feature">成長</div>
+        
+        <div class="tj-features-container">
+            <!-- Header -->
+            <div class="tj-features-header">
+                <h2 class="tj-features-title">Everything You Need to Thrive in Japan</h2>
+                <p class="tj-features-subtitle">
+                    Join thousands of learners mastering Japanese language and culture
+                </p>
+                <div class="tj-features-badge">
+                    ✨ All Features Included • No Hidden Costs
+                </div>
+            </div>
+            
+            <!-- Features Showcase -->
+            <div class="tj-features-showcase">
+                <div class="tj-showcase-glow"></div>
+                
+                <div class="tj-features-grid">
+                    <!-- Feature 1 -->
+                    <div class="tj-feature-card">
+                        <div class="tj-feature-icon">🎯</div>
+                        <h3 class="tj-feature-title">Thrive in Japan Platform</h3>
+                        <p class="tj-feature-description">
+                            Access our comprehensive learning platform with interactive lessons, progress tracking, and personalized study plans tailored to your goals.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="tj-feature-card">
+                        <div class="tj-feature-icon">💬</div>
+                        <h3 class="tj-feature-title">Unlimited Speaking Sessions</h3>
+                        <p class="tj-feature-description">
+                            Practice speaking with native Japanese speakers in unlimited one-on-one sessions. Build confidence and fluency at your own pace.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="tj-feature-card">
+                        <div class="tj-feature-icon">📚</div>
+                        <h3 class="tj-feature-title">"Japan in Context" Curriculum</h3>
+                        <p class="tj-feature-description">
+                            Learn Japanese through real-world contexts and cultural insights. Master practical language skills you'll actually use in daily life.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="tj-feature-card">
+                        <div class="tj-feature-icon">🎓</div>
+                        <h3 class="tj-feature-title">"JLPT in Context" Curriculum</h3>
+                        <p class="tj-feature-description">
+                            Prepare for JLPT certification with our specialized curriculum that combines test strategies with practical application skills.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 5 -->
+                    <div class="tj-feature-card">
+                        <div class="tj-feature-icon">🌟</div>
+                        <h3 class="tj-feature-title">Exclusive Events & Meetups</h3>
+                        <p class="tj-feature-description">
+                            Join our vibrant community at exclusive cultural events, language exchange meetups, and networking opportunities across Japan.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 6 -->
+                    <div class="tj-feature-card">
+                        <div class="tj-feature-icon">🏆</div>
+                        <h3 class="tj-feature-title">Personal Coaching Available</h3>
+                        <p class="tj-feature-description">
+                            Get personalized guidance from ICF certified coaches to accelerate your learning journey and achieve your Japan-related goals.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- CTA Section -->
+                <div class="tj-cta-section">
+                    <p class="tj-cta-text">Start Your Journey to Japanese Fluency Today!</p>
+                    <a href="#" class="tj-register-btn">Register for Free</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Parallax effect for floating elements
+        document.addEventListener('mousemove', (e) => {
+            const floatElements = document.querySelectorAll('.tj-float-feature');
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            floatElements.forEach((el, index) => {
+                const speed = (index + 1) * 20;
+                el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+        
+        // Create sparkle effects on hover
+        const featureCards = document.querySelectorAll('.tj-feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                createSparkles(e, this);
+            });
+        });
+        
+        function createSparkles(e, element) {
+            const colors = ['#dc2626', '#9333ea', '#ec4899'];
+            const sparkleCount = 8;
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'tj-sparkle';
+                
+                const rect = element.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (360 / sparkleCount) * i;
+                const distance = 50 + Math.random() * 50;
+                
+                sparkle.style.setProperty('--tx', Math.cos(angle * Math.PI / 180) * distance + 'px');
+                sparkle.style.setProperty('--ty', Math.sin(angle * Math.PI / 180) * distance + 'px');
+                
+                sparkle.style.animation = `sparkle 1s ease-out forwards`;
+                element.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }
+        
+        // Update sparkle animation to use CSS variables
+        const sparkleStyle = document.createElement('style');
+        sparkleStyle.textContent = `
+            @keyframes sparkle {
+                0% {
+                    opacity: 0;
+                    transform: translate(0, 0) scale(0) rotate(0deg);
+                }
+                50% {
+                    opacity: 1;
+                    transform: translate(var(--tx), var(--ty)) scale(1) rotate(180deg);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translate(var(--tx), var(--ty)) scale(0) rotate(360deg);
+                }
+            }
+        `;
+        document.head.appendChild(sparkleStyle);
+        
+        // Register button ripple effect
+        const registerBtn = document.querySelector('.tj-register-btn');
+        registerBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+            ripple.style.pointerEvents = 'none';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            
+            const rect = this.getBoundingClientRect();
+            ripple.style.left = (e.clientX - rect.left) + 'px';
+            ripple.style.top = (e.clientY - rect.top) + 'px';
+            
+            ripple.style.animation = 'rippleExpand 0.8s ease-out forwards';
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 800);
+            
+            // Add registration logic here
+            console.log('Registration initiated!');
+        });
+        
+        // Add ripple expansion animation
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes rippleExpand {
+                0% {
+                    width: 20px;
+                    height: 20px;
+                    opacity: 0.6;
+                }
+                100% {
+                    width: 400px;
+                    height: 400px;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+        
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = entry.target.style.animation.replace('paused', 'running');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.tj-feature-card, .tj-features-header, .tj-cta-section').forEach(el => {
+            scrollObserver.observe(el);
+        });
+        
+        // Add hover tilt effect to feature cards
+        featureCards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>
