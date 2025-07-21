@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformation Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .transformation-section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #888;
+            font-weight: 300;
+        }
+
+        .transformation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            position: relative;
+        }
+
+        .transformation-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-height: 450px;
+        }
+
+        .transformation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Card specific colors */
+        .card-before {
+            border-color: rgba(255, 100, 100, 0.2);
+        }
+
+        .card-before:hover {
+            border-color: rgba(255, 100, 100, 0.5);
+            box-shadow: 0 20px 40px rgba(255, 100, 100, 0.2);
+        }
+
+        .card-during {
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+
+        .card-during:hover {
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .card-after {
+            border-color: rgba(6, 255, 165, 0.2);
+        }
+
+        .card-after:hover {
+            border-color: rgba(6, 255, 165, 0.5);
+            box-shadow: 0 20px 40px rgba(6, 255, 165, 0.2);
+        }
+
+        .emoji-header {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .card-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+        }
+
+        /* Creative Illustrations */
+        .illustration-container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            margin-top: 20px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* Before Card Illustration - Broken Website */
+        .broken-site {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .broken-window {
+            width: 80%;
+            height: 70%;
+            background: #1a1a1a;
+            border: 2px solid #ff6464;
+            border-radius: 8px;
+            position: relative;
+            transform: skew(-2deg) rotate(-1deg);
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: skew(-2deg) rotate(-1deg); }
+            20% { transform: skew(1deg) rotate(1deg) translateX(2px); }
+            40% { transform: skew(-1deg) rotate(-2deg) translateY(-2px); }
+            60% { transform: skew(2deg) rotate(0deg); }
+            80% { transform: skew(0deg) rotate(-1deg) translateX(-2px); }
+        }
+
+        .error-404 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6464;
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .broken-pieces {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6464;
+            opacity: 0.6;
+            animation: fall 3s infinite;
+        }
+
+        .piece-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .piece-2 { top: 30%; right: 15%; animation-delay: 0.5s; }
+        .piece-3 { top: 40%; left: 20%; animation-delay: 1s; }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            100% { transform: translateY(100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* During Card Illustration - Building Process */
+        .building-process {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .code-blocks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 80%;
+            height: 70%;
+        }
+
+        .code-block {
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            border: 1px solid #667eea;
+            border-radius: 8px;
+            padding: 10px;
+            animation: slideIn 1s ease-out forwards;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(102, 126, 234, 0.3), transparent);
+            animation: scan 2s infinite;
+        }
+
+        @keyframes scan {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        .code-block:nth-child(1) { animation-delay: 0.2s; }
+        .code-block:nth-child(2) { animation-delay: 0.4s; }
+        .code-block:nth-child(3) { animation-delay: 0.6s; }
+        .code-block:nth-child(4) { animation-delay: 0.8s; }
+        .code-block:nth-child(5) { animation-delay: 1s; }
+        .code-block:nth-child(6) { animation-delay: 1.2s; }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .code-line {
+            height: 3px;
+            background: #667eea;
+            margin: 5px 0;
+            border-radius: 2px;
+            width: 80%;
+            opacity: 0.6;
+        }
+
+        .code-line:nth-child(2) { width: 60%; }
+        .code-line:nth-child(3) { width: 90%; }
+
+        /* After Card Illustration - Success Metrics */
+        .success-metrics {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metric-chart {
+            width: 80%;
+            height: 70%;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .metric-bar {
+            width: 30px;
+            background: linear-gradient(180deg, #06ffa5, #00e4ff);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            animation: grow 2s ease-out forwards;
+            transform-origin: bottom;
+            transform: scaleY(0);
+        }
+
+        .metric-bar:nth-child(1) { height: 30%; animation-delay: 0.2s; }
+        .metric-bar:nth-child(2) { height: 50%; animation-delay: 0.4s; }
+        .metric-bar:nth-child(3) { height: 70%; animation-delay: 0.6s; }
+        .metric-bar:nth-child(4) { height: 90%; animation-delay: 0.8s; }
+        .metric-bar:nth-child(5) { height: 95%; animation-delay: 1s; }
+
+        @keyframes grow {
+            to { transform: scaleY(1); }
+        }
+
+        .rocket {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            animation: fly 3s ease-out infinite;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(-45deg); }
+            50% { transform: translateY(-20px) rotate(-45deg); }
+            100% { transform: translateY(0) rotate(-45deg); }
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #06ffa5;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+
+        .sparkle-1 { top: 30%; left: 20%; animation-delay: 0s; }
+        .sparkle-2 { top: 50%; right: 30%; animation-delay: 0.5s; }
+        .sparkle-3 { bottom: 30%; left: 40%; animation-delay: 1s; }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .transformation-section {
+                padding: 60px 20px;
+            }
+
+            .transformation-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .transformation-card {
+                padding: 35px 25px;
+                min-height: 400px;
+            }
+
+            .illustration-container {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="transformation-section">
+        <div class="section-header">
+            <h2>変革の軌跡</h2>
+            <p class="subtitle">お客様のウェブサイトが辿った、驚きの成長ストーリー</p>
+        </div>
+
+        <div class="transformation-grid">
+            <!-- Before Card -->
+            <div class="transformation-card card-before">
+                <h3 class="card-title">変革前の課題</h3>
+                <p class="card-description">古いデザイン・使いにくいUI・低いパフォーマンス</p>
+                
+                <div class="illustration-container">
+                    <div class="broken-site">
+                        <div class="broken-window">
+                            <div class="error-404">404</div>
+                        </div>
+                        <div class="broken-pieces piece-1"></div>
+                        <div class="broken-pieces piece-2"></div>
+                        <div class="broken-pieces piece-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- During Card -->
+            <div class="transformation-card card-during">
+                <h3 class="card-title">実施した改善</h3>
+                <p class="card-description">Next.jsによる再構築・UI/UXの完全リデザイン・SEO最適化</p>
+                
+                <div class="illustration-container">
+                    <div class="building-process">
+                        <div class="code-blocks">
+                            <div class="code-block">
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- After Card -->
+            <div class="transformation-card card-after">
+                <h3 class="card-title">変革後の成果</h3>
+                <p class="card-description">モダンで使いやすいプロフェッショナルUI・49倍のトラフィック増加</p>
+                
+                <div class="illustration-container">
+                    <div class="success-metrics">
+                        <div class="metric-chart">
+                            <div class="metric-bar"></div>
+                            <div class="metric-bar"></div>
+                            <div class="metric-bar"></div>
+                            <div class="metric-bar"></div>
+                            <div class="metric-bar"></div>
+                        </div>
+                        <div class="sparkles sparkle-1"></div>
+                        <div class="sparkles sparkle-2"></div>
+                        <div class="sparkles sparkle-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.transformation-card');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            cards.forEach((card, index) => {
+                const depth = (index + 1) * 0.5;
+                const moveX = (x - 0.5) * depth * 20;
+                const moveY = (y - 0.5) * depth * 20;
+                
+                card.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
+            });
+        });
+
+        // Reset position on mouse leave
+        document.addEventListener('mouseleave', () => {
+            const cards = document.querySelectorAll('.transformation-card');
+            cards.forEach(card => {
+                card.style.transform = 'translateX(0) translateY(0)';
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.transformation-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.8s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
