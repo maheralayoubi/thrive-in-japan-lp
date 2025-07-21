@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Problems & Services Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Problems Section Styles */
+        .problems-section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #888;
+            font-weight: 300;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            position: relative;
+        }
+
+        .problem-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .problem-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Services Section Styles */
+        .services-section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+        }
+
+        .services-section .section-header h2 {
+            background: linear-gradient(135deg, #06ffa5 0%, #00e4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(6, 255, 165, 0.05) 0%, rgba(0, 228, 255, 0.02) 100%);
+            border: 1px solid rgba(6, 255, 165, 0.1);
+            border-radius: 24px;
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(6, 255, 165, 0.5);
+            box-shadow: 0 20px 40px rgba(6, 255, 165, 0.15);
+            background: linear-gradient(135deg, rgba(6, 255, 165, 0.08) 0%, rgba(0, 228, 255, 0.04) 100%);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(6, 255, 165, 0.1) 0%, transparent 70%);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(0.8);
+            }
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .icon-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border-radius: 20px;
+            transform: rotate(45deg);
+            transition: all 0.4s ease;
+        }
+
+        .service-card .icon-bg {
+            background: linear-gradient(135deg, rgba(6, 255, 165, 0.2) 0%, rgba(0, 228, 255, 0.2) 100%);
+        }
+
+        .problem-card:hover .icon-bg,
+        .service-card:hover .icon-bg {
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .service-card:hover .icon-bg {
+            background: linear-gradient(135deg, rgba(6, 255, 165, 0.3) 0%, rgba(0, 228, 255, 0.3) 100%);
+        }
+
+        .icon-svg {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .card-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #a0a0a0;
+        }
+
+        .service-card .card-description {
+            color: #b0b0b0;
+        }
+
+        /* Service number indicator */
+        .service-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            font-weight: 700;
+            opacity: 0.05;
+            background: linear-gradient(135deg, #06ffa5 0%, #00e4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animated background elements */
+        .bg-shape {
+            position: absolute;
+            opacity: 0.03;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-shape-1 {
+            top: 10%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #667eea 0%, transparent 70%);
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .bg-shape-2 {
+            top: 50%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #764ba2 0%, transparent 70%);
+            border-radius: 50%;
+            animation-delay: 7s;
+        }
+
+        .bg-shape-3 {
+            bottom: 10%;
+            left: 30%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #667eea 0%, transparent 70%);
+            border-radius: 50%;
+            animation-delay: 14s;
+        }
+
+        .bg-shape-4 {
+            top: 20%;
+            right: 15%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #06ffa5 0%, transparent 70%);
+            border-radius: 50%;
+            animation-delay: 3s;
+        }
+
+        .bg-shape-5 {
+            bottom: 20%;
+            left: 10%;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, #00e4ff 0%, transparent 70%);
+            border-radius: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .problems-section,
+            .services-section {
+                padding: 60px 20px;
+            }
+
+            .section-header {
+                margin-bottom: 50px;
+            }
+
+            .problems-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .problem-card,
+            .service-card {
+                padding: 35px 25px;
+            }
+
+            .icon-wrapper {
+                width: 60px;
+                height: 60px;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .service-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Services Section -->
+    <section class="services-section">
+        <!-- Animated background shapes -->
+        <div class="bg-shape bg-shape-4"></div>
+        <div class="bg-shape bg-shape-5"></div>
+
+        <div class="section-header">
+            <h2>提供サービス</h2>
+            <p class="subtitle">最先端の技術で、あなたのビジネスを次のレベルへ</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Service 1: Next.js Development -->
+            <div class="service-card">
+                <span class="service-number">01</span>
+                <div class="icon-wrapper">
+                    <div class="icon-bg"></div>
+                    <svg class="icon-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 20L60 20L60 60L20 60L20 20Z" stroke="#06ffa5" stroke-width="2"/>
+                        <path d="M30 35L50 35M30 45L40 45" stroke="#06ffa5" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M45 40L50 35L45 30" stroke="#00e4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="25" cy="25" r="2" fill="#06ffa5"/>
+                        <circle cx="30" cy="25" r="2" fill="#00e4ff"/>
+                        <circle cx="35" cy="25" r="2" fill="#06ffa5"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Next.js開発</h3>
+                <p class="card-description">
+                    最新のReactフレームワークを使用し、高速で保守性の高いWebサイトを構築します。
+                </p>
+            </div>
+
+            <!-- Service 2: SEO Optimization -->
+            <div class="service-card">
+                <span class="service-number">02</span>
+                <div class="icon-wrapper">
+                    <div class="icon-bg"></div>
+                    <svg class="icon-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="35" cy="35" r="15" stroke="#06ffa5" stroke-width="2" fill="none"/>
+                        <path d="M45 45L55 55" stroke="#06ffa5" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M30 30L35 35L40 30" stroke="#00e4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M35 25V40" stroke="#00e4ff" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="60" cy="20" r="3" fill="#06ffa5" opacity="0.6"/>
+                        <circle cx="20" cy="60" r="3" fill="#00e4ff" opacity="0.6"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">SEO最適化</h3>
+                <p class="card-description">
+                    検索エンジンでの上位表示を実現し、オーガニックトラフィックを大幅に向上させます。
+                </p>
+            </div>
+
+            <!-- Service 3: Blog Management -->
+            <div class="service-card">
+                <span class="service-number">03</span>
+                <div class="icon-wrapper">
+                    <div class="icon-bg"></div>
+                    <svg class="icon-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="15" width="40" height="50" rx="3" stroke="#06ffa5" stroke-width="2"/>
+                        <line x1="30" y1="25" x2="50" y2="25" stroke="#06ffa5" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="30" y1="35" x2="50" y2="35" stroke="#00e4ff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                        <line x1="30" y1="45" x2="45" y2="45" stroke="#00e4ff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                        <line x1="30" y1="55" x2="40" y2="55" stroke="#00e4ff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                        <path d="M15 20L15 60L25 65" stroke="#06ffa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">ブログ運用</h3>
+                <p class="card-description">
+                    月次でプロフェッショナルなブログ記事を作成・公開し、継続的な集客を実現します。
+                </p>
+            </div>
+
+            <!-- Service 4: Google Ads Management -->
+            <div class="service-card">
+                <span class="service-number">04</span>
+                <div class="icon-wrapper">
+                    <div class="icon-bg"></div>
+                    <svg class="icon-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25 50L35 30L45 40L55 20" stroke="#06ffa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="25" cy="50" r="3" fill="#06ffa5"/>
+                        <circle cx="35" cy="30" r="3" fill="#06ffa5"/>
+                        <circle cx="45" cy="40" r="3" fill="#06ffa5"/>
+                        <circle cx="55" cy="20" r="3" fill="#06ffa5"/>
+                        <rect x="50" y="50" width="15" height="10" rx="2" stroke="#00e4ff" stroke-width="2"/>
+                        <path d="M55 55L60 55" stroke="#00e4ff" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M15 60L65 60" stroke="#06ffa5" stroke-width="1" opacity="0.3"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Google広告運用</h3>
+                <p class="card-description">
+                    効果的な広告キャンペーンを設計・運用し、即効性のある集客を実現します。
+                </p>
+            </div>
+
+            <!-- Service 5: UI/UX Design -->
+            <div class="service-card">
+                <span class="service-number">05</span>
+                <div class="icon-wrapper">
+                    <div class="icon-bg"></div>
+                    <svg class="icon-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="25" width="25" height="30" rx="3" stroke="#06ffa5" stroke-width="2"/>
+                        <rect x="50" y="25" width="10" height="10" rx="2" fill="#00e4ff"/>
+                        <rect x="50" y="40" width="10" height="15" rx="2" fill="#06ffa5" opacity="0.7"/>
+                        <circle cx="32.5" cy="40" r="7" stroke="#00e4ff" stroke-width="2"/>
+                        <path d="M15 60L65 60" stroke="#06ffa5" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="40" cy="15" r="3" fill="#00e4ff" opacity="0.6"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">UI/UXデザイン</h3>
+                <p class="card-description">
+                    ユーザー体験を重視した美しく使いやすいデザインで、訪問者を顧客に変えます。
+                </p>
+            </div>
+
+            <!-- Service 6: Maintenance & Improvement -->
+            <div class="service-card">
+                <span class="service-number">06</span>
+                <div class="icon-wrapper">
+                    <div class="icon-bg"></div>
+                    <svg class="icon-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40 20C29 20 20 29 20 40C20 51 29 60 40 60C51 60 60 51 60 40" stroke="#06ffa5" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M55 25L60 20L65 25" stroke="#00e4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M60 20V30" stroke="#00e4ff" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="40" cy="40" r="8" stroke="#06ffa5" stroke-width="2"/>
+                        <path d="M40 32V40L45 45" stroke="#06ffa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="25" cy="40" r="2" fill="#00e4ff" opacity="0.6"/>
+                        <circle cx="55" cy="40" r="2" fill="#00e4ff" opacity="0.6"/>
+                        <circle cx="40" cy="25" r="2" fill="#00e4ff" opacity="0.6"/>
+                        <circle cx="40" cy="55" r="2" fill="#00e4ff" opacity="0.6"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">保守・改善</h3>
+                <p class="card-description">
+                    納品後も継続的なサポートで、新機能追加や改善要望に迅速に対応します。
+                </p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
