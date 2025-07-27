@@ -24,7 +24,7 @@
             padding: 100px 20px;
             min-height: 70vh;
             overflow: hidden;
-            background: linear-gradient(180deg, #0f1419 0%, #1a1f2e 100%);
+            background: linear-gradient(180deg, #283618 0%, #483C32 100%);
         }
 
         /* Parallax Background Layers */
@@ -37,8 +37,8 @@
         }
 
         .tj-parallax-1 {
-            background: radial-gradient(circle at 20% 50%, rgba(177, 45, 61, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 30%, rgba(177, 45, 61, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(212, 188, 140, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 30%, rgba(76, 99, 58, 0.05) 0%, transparent 50%);
             transform: translateY(0);
             animation: parallaxDrift 20s ease-in-out infinite;
         }
@@ -52,7 +52,7 @@
 
         .tj-parallax-2 {
             background-image: 
-                repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255,255,255,.02) 100px, rgba(255,255,255,.02) 200px);
+                repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(212, 188, 140, 0.02) 100px, rgba(212, 188, 140, 0.02) 200px);
             transform: translateY(0);
             animation: gridSlide 30s linear infinite;
         }
@@ -67,7 +67,7 @@
             position: absolute;
             opacity: 0;
             font-size: 120px;
-            color: #b12d3d;
+            color: #A6531C;
             font-weight: bold;
             animation: floatSlow 20s ease-in-out infinite, fadeInFloat 2s ease forwards;
         }
@@ -122,10 +122,10 @@
         .tj-truth-label {
             display: inline-block;
             padding: 8px 20px;
-            background: rgba(177, 45, 61, 0.2);
-            border: 1px solid rgba(177, 45, 61, 0.3);
+            background: rgba(212, 188, 140, 0.2);
+            border: 1px solid rgba(212, 188, 140, 0.3);
             border-radius: 30px;
-            color: #b12d3d;
+            color: #D4BC8C;
             font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
@@ -148,7 +148,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(177, 45, 61, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(212, 188, 140, 0.3), transparent);
             animation: labelShine 3s ease-in-out infinite;
         }
 
@@ -181,7 +181,7 @@
         }
 
         .tj-truth-highlight {
-            color: #b12d3d;
+            color: #D4BC8C;
             position: relative;
             display: inline-block;
             font-style: italic;
@@ -189,8 +189,8 @@
         }
 
         @keyframes highlightGlow {
-            0%, 100% { text-shadow: 0 0 10px rgba(177, 45, 61, 0.5); }
-            50% { text-shadow: 0 0 20px rgba(177, 45, 61, 0.8), 0 0 30px rgba(177, 45, 61, 0.5); }
+            0%, 100% { text-shadow: 0 0 10px rgba(212, 188, 140, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(212, 188, 140, 0.8), 0 0 30px rgba(212, 188, 140, 0.5); }
         }
 
         .tj-truth-highlight::after {
@@ -200,7 +200,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: #b12d3d;
+            background: #D4BC8C;
             transform: scaleX(0);
             transform-origin: left;
             animation: underlineReveal 1s ease 0.5s forwards;
@@ -221,7 +221,7 @@
         .tj-pain-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 188, 140, 0.1);
             border-radius: 20px;
             padding: 40px 30px;
             position: relative;
@@ -246,9 +246,9 @@
 
         .tj-pain-card:hover {
             transform: translateY(-10px) scale(1.02);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(177, 45, 61, 0.4);
-            box-shadow: 0 20px 40px rgba(177, 45, 61, 0.2);
+            background: rgba(212, 188, 140, 0.06);
+            border-color: rgba(212, 188, 140, 0.4);
+            box-shadow: 0 20px 40px rgba(166, 83, 28, 0.2);
         }
 
         /* Card Glow Effect */
@@ -259,7 +259,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(177, 45, 61, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212, 188, 140, 0.15) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.3s ease;
             animation: cardPulse 3s ease-in-out infinite;
@@ -292,7 +292,7 @@
         .tj-icon-bg {
             position: absolute;
             inset: 0;
-            background: rgba(177, 45, 61, 0.1);
+            background: rgba(76, 99, 58, 0.1);
             border-radius: 16px;
             transform: rotate(45deg);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -305,7 +305,7 @@
         }
 
         .tj-pain-card:hover .tj-icon-bg {
-            background: rgba(177, 45, 61, 0.25);
+            background: rgba(76, 99, 58, 0.25);
             transform: rotate(225deg) scale(1.1);
             animation-play-state: paused;
         }
@@ -318,7 +318,7 @@
             align-items: center;
             justify-content: center;
             font-size: 28px;
-            color: #b12d3d;
+            color: #D4BC8C;
             animation: symbolPulse 2s ease-in-out infinite;
         }
 
@@ -361,9 +361,9 @@
             text-align: center;
             margin-bottom: 50px;
             padding: 40px;
-            background: rgba(177, 45, 61, 0.05);
+            background: rgba(76, 99, 58, 0.05);
             border-radius: 20px;
-            border: 1px solid rgba(177, 45, 61, 0.2);
+            border: 1px solid rgba(212, 188, 140, 0.2);
             position: relative;
             overflow: hidden;
             opacity: 0;
@@ -385,7 +385,7 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #b12d3d, transparent, #b12d3d);
+            background: linear-gradient(45deg, #D4BC8C, transparent, #D4BC8C);
             border-radius: 20px;
             opacity: 0;
             z-index: -1;
@@ -424,7 +424,7 @@
         }
 
         .tj-statement-highlight {
-            color: #b12d3d;
+            color: #D4BC8C;
             font-weight: 700;
             position: relative;
             animation: highlightPop 0.6s ease 1.5s both;
@@ -440,7 +440,7 @@
         .tj-quote-mark {
             position: absolute;
             font-size: 80px;
-            color: rgba(177, 45, 61, 0.1);
+            color: rgba(212, 188, 140, 0.1);
             font-family: Georgia, serif;
             pointer-events: none;
             opacity: 0;
@@ -485,10 +485,14 @@
             animation: fadeInUp 1s ease 1.1s forwards;
         }
 
-        .tj-cta-button {
+        .tj-bg-grid {
+            z-index: 0 !important;
+        }
+
+        .tj-cta-button, .tj-cta-button-hard {
             display: inline-block;
             padding: 20px 50px;
-            background: #b12d3d;
+            background: #4C633A !important;
             color: #fff;
             text-decoration: none;
             font-size: 16px;
@@ -499,18 +503,19 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(177, 45, 61, 0.3);
+            box-shadow: 0 10px 30px rgba(76, 99, 58, 0.3);
             animation: buttonPulse 2s ease-in-out infinite;
+            z-index: 100;
         }
 
         @keyframes buttonPulse {
             0%, 100% { 
                 transform: scale(1);
-                box-shadow: 0 10px 30px rgba(177, 45, 61, 0.3);
+                box-shadow: 0 10px 30px rgba(76, 99, 58, 0.3);
             }
             50% { 
                 transform: scale(1.02);
-                box-shadow: 0 15px 40px rgba(177, 45, 61, 0.4);
+                box-shadow: 0 15px 40px rgba(76, 99, 58, 0.4);
             }
         }
 
@@ -521,7 +526,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(212, 188, 140, 0.3), transparent);
             transition: left 0.5s ease;
         }
 
@@ -533,14 +538,14 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(212, 188, 140, 0.1);
             transform: translate(-50%, -50%);
             transition: width 0.6s ease, height 0.6s ease;
         }
 
         .tj-cta-button:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(177, 45, 61, 0.5);
+            box-shadow: 0 20px 50px rgba(76, 99, 58, 0.5);
             animation-play-state: paused;
         }
 
@@ -556,23 +561,23 @@
         /* Glitch Effect on Hover */
         @keyframes glitch {
             0%, 100% { 
-                text-shadow: 2px 2px 0 rgba(177, 45, 61, 0.5);
+                text-shadow: 2px 2px 0 rgba(212, 188, 140, 0.5);
                 transform: translate(0);
             }
             20% { 
-                text-shadow: -2px -2px 0 rgba(177, 45, 61, 0.5);
+                text-shadow: -2px -2px 0 rgba(212, 188, 140, 0.5);
                 transform: translate(2px, -2px);
             }
             40% { 
-                text-shadow: 2px -2px 0 rgba(177, 45, 61, 0.5);
+                text-shadow: 2px -2px 0 rgba(212, 188, 140, 0.5);
                 transform: translate(-2px, 2px);
             }
             60% { 
-                text-shadow: -2px 2px 0 rgba(177, 45, 61, 0.5);
+                text-shadow: -2px 2px 0 rgba(212, 188, 140, 0.5);
                 transform: translate(2px, 2px);
             }
             80% {
-                text-shadow: 2px 2px 0 rgba(177, 45, 61, 0.5);
+                text-shadow: 2px 2px 0 rgba(212, 188, 140, 0.5);
                 transform: translate(-2px, -2px);
             }
         }
@@ -635,7 +640,7 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(212, 188, 140, 0.3);
             border-radius: 50%;
             animation: particleFall 15s linear infinite;
             opacity: 0;
@@ -709,11 +714,20 @@
                 <div class="tj-pain-card">
                     <div class="tj-pain-icon">
                         <div class="tj-icon-bg"></div>
-                        <div class="tj-icon-symbol">💔</div>
+                        <div class="tj-icon-symbol">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 3.33334C11.7157 3.33334 5 10.049 5 18.3333C5 26.6177 11.7157 33.3333 20 33.3333C28.2843 33.3333 35 26.6177 35 18.3333C35 10.049 28.2843 3.33334 20 3.33334Z" stroke="#D4BC8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8.33334 8.33334L31.6667 31.6667" stroke="#A6531C" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M15 23.3333C15 23.3333 16.6667 21.6667 20 21.6667C23.3333 21.6667 25 23.3333 25 23.3333" stroke="#D4BC8C" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="14" cy="15" r="1.5" fill="#D4BC8C"/>
+                                <circle cx="26" cy="15" r="1.5" fill="#D4BC8C"/>
+                                <path d="M12 28L28 12" stroke="#A6531C" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                            </svg>
+                        </div>
                     </div>
                     <h3 class="tj-pain-title">Struggling Relationships</h3>
                     <p class="tj-pain-text">
-                        Struggling in your relationships with Japanese colleagues, friends, or romantic partners despite speaking the language?
+                        Struggling in your relationships with Japanese colleagues, friends, or romantic partners?
                     </p>
                 </div>
                 
@@ -721,7 +735,18 @@
                 <div class="tj-pain-card">
                     <div class="tj-pain-icon">
                         <div class="tj-icon-bg"></div>
-                        <div class="tj-icon-symbol">🔗</div>
+                        <div class="tj-icon-symbol">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="20" r="5" stroke="#D4BC8C" stroke-width="2" stroke-dasharray="3 3"/>
+                                <circle cx="28" cy="20" r="5" stroke="#D4BC8C" stroke-width="2" stroke-dasharray="3 3"/>
+                                <path d="M17 20H23" stroke="#A6531C" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 2"/>
+                                <path d="M9 15C9 15 8 10 12 8C16 6 19 9 19 9" stroke="#D4BC8C" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M31 15C31 15 32 10 28 8C24 6 21 9 21 9" stroke="#D4BC8C" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M12 25C12 28 14 30 17 30" stroke="#D4BC8C" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M28 25C28 28 26 30 23 30" stroke="#D4BC8C" stroke-width="1.5" stroke-linecap="round"/>
+                                <circle cx="20" cy="35" r="2" fill="#A6531C" opacity="0.5"/>
+                            </svg>
+                        </div>
                     </div>
                     <h3 class="tj-pain-title">Difficult Connections</h3>
                     <p class="tj-pain-text">
@@ -733,11 +758,24 @@
                 <div class="tj-pain-card">
                     <div class="tj-pain-icon">
                         <div class="tj-icon-bg"></div>
-                        <div class="tj-icon-symbol">🚧</div>
+                        <div class="tj-icon-symbol">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="8" y="15" width="24" height="20" rx="2" stroke="#D4BC8C" stroke-width="2"/>
+                                <path d="M12 15V10C12 6.68629 14.6863 4 18 4H22C25.3137 4 28 6.68629 28 10V15" stroke="#D4BC8C" stroke-width="2"/>
+                                <circle cx="20" cy="25" r="3" fill="#A6531C"/>
+                                <path d="M20 28V30" stroke="#A6531C" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M5 20H8" stroke="#A6531C" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+                                <path d="M32 20H35" stroke="#A6531C" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+                                <path d="M5 25H8" stroke="#A6531C" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                                <path d="M32 25H35" stroke="#A6531C" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                                <path d="M5 30H8" stroke="#A6531C" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                                <path d="M32 30H35" stroke="#A6531C" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                            </svg>
+                        </div>
                     </div>
                     <h3 class="tj-pain-title">Feeling Stuck</h3>
                     <p class="tj-pain-text">
-                        Feeling isolated, overlooked and stuck? Missing out on promotions, deep connections and fulfilling relationships?
+                        Feeling isolated, overlooked and stuck? Missing out on promotions, deep connections and because of the language/cultural barrier?
                     </p>
                 </div>
             </div>
@@ -755,7 +793,7 @@
             
             <!-- CTA Section -->
             <div class="tj-truth-cta">
-                <a href="https://thriveinjapan.com/program-details/" class="tj-cta-button">
+                <a href="https://thriveinjapan.com/program-details-new" class="tj-cta-button tj-cta-button-hard">
                     Program Details
                 </a>
             </div>
@@ -932,7 +970,7 @@
             ripple.style.position = 'fixed';
             ripple.style.width = '20px';
             ripple.style.height = '20px';
-            ripple.style.background = 'rgba(177, 45, 61, 0.3)';
+            ripple.style.background = 'rgba(212, 188, 140, 0.3)';
             ripple.style.borderRadius = '50%';
             ripple.style.left = e.clientX - 10 + 'px';
             ripple.style.top = e.clientY - 10 + 'px';

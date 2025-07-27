@@ -23,7 +23,7 @@
         .tj-learn-section {
             position: relative;
             min-height: 100vh;
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a0f0f 50%, #0a0a0a 100%);
+            background: linear-gradient(180deg, #283618 0%, #483C32 50%, #283618 100%);
         }
 
         /* Animated Background Grid */
@@ -34,8 +34,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+                linear-gradient(rgba(212,188,140,.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212,188,140,.03) 1px, transparent 1px);
             background-size: 50px 50px;
             animation: gridMove 20s linear infinite;
             z-index: 1;
@@ -85,10 +85,10 @@
         .tj-section-label {
             display: inline-block;
             padding: 8px 20px;
-            background: rgba(220, 38, 38, 0.1);
-            border: 1px solid rgba(220, 38, 38, 0.3);
+            background: rgba(212, 188, 140, 0.1);
+            border: 1px solid rgba(212, 188, 140, 0.3);
             border-radius: 30px;
-            color: #dc2626;
+            color: #D4BC8C;
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
@@ -98,8 +98,8 @@
         }
 
         @keyframes labelGlow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
-            50% { box-shadow: 0 0 20px 5px rgba(220, 38, 38, 0.3); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 188, 140, 0); }
+            50% { box-shadow: 0 0 20px 5px rgba(212, 188, 140, 0.3); }
         }
 
         .tj-hero-title {
@@ -107,7 +107,7 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 30px;
-            background: linear-gradient(135deg, #fff 0%, #dc2626 100%);
+            background: linear-gradient(135deg, #D4BC8C 0%, #4C633A 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -121,20 +121,20 @@
 
         .tj-hero-text {
             font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(212, 188, 140, 0.9);
             margin-bottom: 20px;
             line-height: 1.8;
         }
 
         .tj-hero-text em {
-            color: #dc2626;
+            color: #A6531C;
             font-style: italic;
             font-weight: 600;
             position: relative;
         }
 
         .tj-hero-text strong {
-            color: #fff;
+            color: #D4BC8C;
             font-weight: 700;
             position: relative;
             display: inline-block;
@@ -194,7 +194,7 @@
             top: 20%;
             left: -50px;
             font-size: 200px;
-            color: rgba(220, 38, 38, 0.1);
+            color: rgba(76, 99, 58, 0.1);
             font-weight: bold;
             animation: kanjiFloat 10s ease-in-out infinite;
             z-index: -1;
@@ -224,6 +224,7 @@
             position: relative;
             display: inline-block;
             width: 100%;
+            color: #D4BC8C;
         }
 
         .tj-goals-title::after {
@@ -234,7 +235,7 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background: linear-gradient(90deg, transparent, #dc2626, transparent);
+            background: linear-gradient(90deg, transparent, #A6531C, transparent);
             animation: lineExpand 2s ease-in-out infinite;
         }
 
@@ -247,7 +248,7 @@
         .tj-context-reveal {
             position: relative;
             padding: 80px 0;
-            background: rgba(220, 38, 38, 0.02);
+            background: rgba(212, 188, 140, 0.02);
             border-radius: 30px;
             margin-bottom: 100px;
             overflow: hidden;
@@ -263,7 +264,7 @@
         .tj-percentage {
             font-size: 120px;
             font-weight: 900;
-            background: linear-gradient(45deg, #dc2626, #7f1d1d);
+            background: linear-gradient(45deg, #D4BC8C, #A6531C);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -289,7 +290,7 @@
 
         .tj-context-text {
             font-size: 24px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(212, 188, 140, 0.9);
             margin-bottom: 40px;
             opacity: 0;
             animation: fadeInUp 1s ease 0.3s forwards;
@@ -310,7 +311,7 @@
         .tj-hidden-msg {
             position: absolute;
             font-size: 14px;
-            color: rgba(220, 38, 38, 0.2);
+            color: rgba(166, 83, 28, 0.3);
             font-style: italic;
             opacity: 0;
             animation: msgAppear 5s ease-in-out infinite;
@@ -378,7 +379,7 @@
         .tj-gallery-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+            background: linear-gradient(to top, rgba(40,54,24,0.8) 0%, transparent 50%);
             display: flex;
             align-items: flex-end;
             padding: 30px;
@@ -395,6 +396,7 @@
             font-weight: 600;
             transform: translateY(20px);
             transition: transform 0.3s ease;
+            color: #D4BC8C;
         }
 
         .tj-gallery-item:hover .tj-gallery-text {
@@ -408,16 +410,18 @@
 
         .tj-truth-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: 1fr;
             gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .tj-truth-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(212, 188, 140, 0.02);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(220, 38, 38, 0.2);
+            border: 1px solid rgba(212, 188, 140, 0.2);
             border-radius: 20px;
-            padding: 40px;
+            padding: 60px;
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
@@ -445,7 +449,7 @@
             left: -100%;
             width: 300%;
             height: 300%;
-            background: radial-gradient(circle, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212, 188, 140, 0.1) 0%, transparent 70%);
             animation: cardGlow 3s ease-in-out infinite;
         }
 
@@ -456,40 +460,62 @@
 
         .tj-truth-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(220, 38, 38, 0.4);
-            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+            border-color: rgba(212, 188, 140, 0.4);
+            box-shadow: 0 20px 40px rgba(166, 83, 28, 0.2);
         }
 
-        .tj-card-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: iconBounce 2s ease-in-out infinite;
+        .tj-card-illustration {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, rgba(76, 99, 58, 0.1), rgba(212, 188, 140, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes iconBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .tj-card-illustration svg {
+            width: 150px;
+            height: 150px;
+            fill: #D4BC8C;
+            stroke: #4C633A;
+            stroke-width: 1;
+            opacity: 0.8;
         }
 
         .tj-card-title {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 15px;
-            color: #dc2626;
+            margin-bottom: 25px;
+            color: #D4BC8C;
+            text-align: center;
         }
 
         .tj-card-text {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+            font-size: 18px;
+            color: rgba(212, 188, 140, 0.8);
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .tj-card-text strong {
+            color: #D4BC8C;
+            font-weight: 700;
+        }
+
+        .tj-card-text em {
+            color: #A6531C;
+            font-style: italic;
         }
 
         /* Call to Action */
         .tj-cta-section {
             text-align: center;
             padding: 80px 20px;
-            background: radial-gradient(circle at center, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at center, rgba(212, 188, 140, 0.1) 0%, transparent 50%);
             border-radius: 30px;
             opacity: 0;
             animation: fadeInUp 1s ease forwards;
@@ -501,19 +527,20 @@
             font-size: clamp(28px, 4vw, 42px);
             font-weight: 700;
             margin-bottom: 20px;
+            color: #D4BC8C;
         }
 
         .tj-cta-subtitle {
             font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(212, 188, 140, 0.8);
             margin-bottom: 40px;
         }
 
         .tj-cta-button {
             display: inline-block;
             padding: 20px 50px;
-            background: linear-gradient(135deg, #dc2626, #7f1d1d);
-            color: #fff;
+            background: linear-gradient(135deg, #4C633A, #283618);
+            color: #D4BC8C;
             text-decoration: none;
             font-size: 16px;
             font-weight: 700;
@@ -523,7 +550,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 10px 30px rgba(76, 99, 58, 0.3);
         }
 
         .tj-cta-button::before {
@@ -533,13 +560,13 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(212,188,140,0.3), transparent);
             transition: left 0.5s ease;
         }
 
         .tj-cta-button:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5);
+            box-shadow: 0 15px 40px rgba(76, 99, 58, 0.5);
         }
 
         .tj-cta-button:hover::before {
@@ -561,7 +588,7 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(220, 38, 38, 0.6);
+            background: rgba(212, 188, 140, 0.6);
             border-radius: 50%;
             opacity: 0;
             animation: particleFloat 15s linear infinite;
@@ -610,6 +637,20 @@
 
             .tj-percentage {
                 font-size: 80px;
+            }
+
+            .tj-truth-card {
+                padding: 40px 30px;
+            }
+
+            .tj-card-illustration {
+                width: 150px;
+                height: 150px;
+            }
+
+            .tj-card-illustration svg {
+                width: 100px;
+                height: 100px;
             }
         }
 
@@ -700,26 +741,48 @@
                 <div class="tj-truths-section">
                     <div class="tj-truth-cards">
                         <div class="tj-truth-card">
-                            <div class="tj-card-icon">🎭</div>
-                            <h3 class="tj-card-title">The Illusion of Knowledge</h3>
+                            <div class="tj-card-illustration">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Book with pages -->
+                                    <rect x="50" y="60" width="100" height="120" rx="5" fill="#4C633A" opacity="0.3"/>
+                                    <rect x="55" y="65" width="90" height="110" fill="#D4BC8C" opacity="0.2"/>
+                                    <!-- Pages -->
+                                    <path d="M60 70 L140 70 M60 80 L140 80 M60 90 L140 90 M60 100 L140 100 M60 110 L140 110 M60 120 L140 120 M60 130 L140 130" stroke="#D4BC8C" stroke-width="2" opacity="0.5"/>
+                                    <!-- Mountain peak (representing journey) -->
+                                    <path d="M30 40 L100 10 L170 40" fill="none" stroke="#D4BC8C" stroke-width="3" stroke-linecap="round"/>
+                                    <!-- Flag at peak -->
+                                    <line x1="100" y1="10" x2="100" y2="5" stroke="#A6531C" stroke-width="2"/>
+                                    <path d="M100 5 L115 7 L100 9 Z" fill="#A6531C"/>
+                                    <!-- Winding path -->
+                                    <path d="M50 180 Q 70 140 60 100 T 100 60 T 140 100 Q 130 140 150 180" fill="none" stroke="#D4BC8C" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+                                </svg>
+                            </div>
+                            <h3 class="tj-card-title">The Program Designed for the Real Japan</h3>
                             <p class="tj-card-text">
-                                Even if you graduate from language school, earn a degree in Japanese, or pass N1, you might think you know Japanese. But <strong>you don't.</strong> Most of Japanese communication is about <em>what isn't said</em>.
+                                You don't need another app. You don't need another textbook. You definitely don't need another influencer preying on your desire to "easily" learn a language feeding you garbage like "The Natural Method" You need a program that teaches you how Japanese <em>really</em> works—in real life, with real people.
                             </p>
-                        </div>
-                        
-                        <div class="tj-truth-card">
-                            <div class="tj-card-icon">🔍</div>
-                            <h3 class="tj-card-title">The Missing Piece</h3>
-                            <p class="tj-card-text">
-                                While everyone talks about this, has anyone actually taught you how to hear the unspoken? This isn't a Zen riddle—it's a skill. And without step-by-step guidance, examples, and practice, most foreigners fail.
+                            <p class="tj-card-text" style="margin-top: 20px;">
+                                <strong>Thrive in Japan</strong> is a complete language and cultural immersion system built from the ground up to do what other programs can't:
                             </p>
-                        </div>
-                        
-                        <div class="tj-truth-card">
-                            <div class="tj-card-icon">💔</div>
-                            <h3 class="tj-card-title">The Real Cost</h3>
-                            <p class="tj-card-text">
-                                They waste years mastering kanji they'll rarely use while missing basic social cues from coworkers. Many leave Japan disillusioned and disconnected because they never learned the <em>real</em> language of Japan: context.
+                            <p class="tj-card-text" style="margin-top: 15px;">
+                                Make you fluent not just in words, but in nuance.<br>
+                                Prepare you not just for a test, but for life in Japan.<br>
+                                Show you what's <em>actually</em> being said—even when no words are spoken.
+                            </p>
+                            <p class="tj-card-text" style="margin-top: 20px;">
+                                It starts with a rock-solid foundation, then takes you through all five JLPT levels—using one continuous, real-world-inspired story told from multiple characters' perspectives. You don't just learn grammar and vocab. You gain cultural fluency, social awareness, and the ability to navigate real relationships in Japan.
+                            </p>
+                            <p class="tj-card-text" style="margin-top: 20px;">
+                                This isn't theory. It's what top universities <em>wish</em> they could offer—but can't. They know what the research says about how languages should be taught, but decades of bureaucracy and outdated systems make real innovation nearly impossible.
+                            </p>
+                            <p class="tj-card-text" style="margin-top: 20px;">
+                                And language apps? They wish they could deliver what we do—but they lack one thing: expert teachers who can break down complex concepts and explain them in a way that's simple, human, and instantly usable.
+                            </p>
+                            <p class="tj-card-text" style="margin-top: 20px;">
+                                <strong>Thrive in Japan</strong> does what others can't—because we built it from the ground up to solve the problems no one else is addressing.
+                            </p>
+                            <p class="tj-card-text" style="margin-top: 20px;">
+                                You'll see the results in your conversations, your confidence, and your connection to the people and places around you.
                             </p>
                         </div>
                     </div>
