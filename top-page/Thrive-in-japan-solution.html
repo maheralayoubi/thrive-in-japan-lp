@@ -36,9 +36,9 @@
             height: 100%;
             opacity: 0.1;
             background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(78, 205, 196, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 50% 100%, rgba(69, 183, 209, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(212, 188, 140, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(76, 99, 58, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(166, 83, 28, 0.2) 0%, transparent 50%);
             animation: tijBgPulse 8s ease-in-out infinite;
         }
 
@@ -61,7 +61,7 @@
             position: absolute;
             font-size: 120px;
             font-weight: bold;
-            color: rgba(78, 205, 196, 0.08);
+            color: rgba(76, 99, 58, 0.08);
             animation: tijFloatKanji 20s linear infinite;
             user-select: none;
         }
@@ -95,13 +95,13 @@
         .tij-solution-title {
             font-size: clamp(32px, 5vw, 56px);
             font-weight: 800;
-            color: #1a1a2e;
+            color: #283618;
             line-height: 1.2;
             margin-bottom: 20px;
         }
 
         .tij-solution-title .tij-highlight {
-            background: linear-gradient(90deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+            background: linear-gradient(90deg, #D4BC8C 0%, #4C633A 50%, #A6531C 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -147,7 +147,7 @@
             inset: 0;
             border-radius: 30px;
             padding: 2px;
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background: linear-gradient(135deg, #D4BC8C, #4C633A, #A6531C);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
@@ -167,14 +167,14 @@
 
         .tij-curriculum-card:nth-child(1) {
             --tij-delay: 0.2s;
-            --tij-accent-color: #ff6b6b;
-            --tij-glow-color: rgba(255, 107, 107, 0.15);
+            --tij-accent-color: #D4BC8C;
+            --tij-glow-color: rgba(212, 188, 140, 0.15);
         }
 
         .tij-curriculum-card:nth-child(2) {
             --tij-delay: 0.4s;
-            --tij-accent-color: #4ecdc4;
-            --tij-glow-color: rgba(78, 205, 196, 0.15);
+            --tij-accent-color: #4C633A;
+            --tij-glow-color: rgba(76, 99, 58, 0.15);
         }
 
         @keyframes tijCardSlideIn {
@@ -219,11 +219,11 @@
         }
 
         .tij-curriculum-card:nth-child(1) {
-            --tij-accent-color-light: #ff8787;
+            --tij-accent-color-light: #e0cd9f;
         }
 
         .tij-curriculum-card:nth-child(2) {
-            --tij-accent-color-light: #44a39f;
+            --tij-accent-color-light: #6b8857;
         }
 
         @keyframes tijIconFloat {
@@ -241,7 +241,7 @@
         .tij-card-title {
             font-size: 28px;
             font-weight: 700;
-            color: #1a1a2e;
+            color: #283618;
             margin-bottom: 20px;
             position: relative;
         }
@@ -264,7 +264,27 @@
         .tij-card-description {
             font-size: 16px;
             line-height: 1.8;
-            color: #666;
+            color: #483C32;
+        }
+
+        .tij-card-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tij-card-description li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .tij-card-description li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--tij-accent-color);
+            font-weight: bold;
+            font-size: 20px;
         }
 
         /* Highlight Box */
@@ -275,7 +295,7 @@
             padding: 20px;
             margin-top: 20px;
             font-style: italic;
-            color: #444;
+            color: #483C32;
             position: relative;
             overflow: hidden;
         }
@@ -311,7 +331,7 @@
 
         .tij-cta-text {
             font-size: 18px;
-            color: #666;
+            color: #483C32;
             margin-bottom: 30px;
             line-height: 1.6;
             max-width: 800px;
@@ -322,7 +342,7 @@
         .tij-cta-button {
             display: inline-block;
             padding: 20px 50px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            background: linear-gradient(135deg, #D4BC8C 0%, #4C633A 100%);
             color: white;
             text-decoration: none;
             font-size: 18px;
@@ -331,7 +351,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 188, 140, 0.3);
         }
 
         .tij-cta-button::before {
@@ -347,7 +367,7 @@
 
         .tij-cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 15px 40px rgba(212, 188, 140, 0.4);
         }
 
         .tij-cta-button:hover::before {
@@ -367,7 +387,7 @@
 
         .tij-quote-mark {
             font-size: 80px;
-            color: rgba(78, 205, 196, 0.3);
+            color: rgba(76, 99, 58, 0.3);
             line-height: 1;
             margin-bottom: 20px;
             animation: tijQuotePulse 4s ease-in-out infinite;
@@ -381,7 +401,7 @@
         .tij-quote-text {
             font-size: clamp(20px, 3vw, 28px);
             font-style: italic;
-            color: #444;
+            color: #483C32;
             line-height: 1.5;
             margin-bottom: 20px;
             max-width: 800px;
@@ -390,13 +410,13 @@
         }
 
         .tij-quote-text em {
-            color: #ff6b6b;
+            color: #A6531C;
             font-weight: 600;
         }
 
         .tij-quote-author {
             font-size: 18px;
-            color: #4ecdc4;
+            color: #4C633A;
             font-weight: 600;
         }
 
@@ -405,7 +425,7 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(78, 205, 196, 0.6);
+            background: rgba(76, 99, 58, 0.6);
             border-radius: 50%;
             pointer-events: none;
         }
@@ -495,7 +515,7 @@
                 <div class="tij-solution-header">
                     <h2 class="tij-solution-title">
                         Thrive in Japan solves these problems with<br>
-                        <span class="tij-highlight">TWO ground-breaking curriculums!</span>
+                        <span class="tij-highlight">a ground breaking curriculum</span>
                     </h2>
                 </div>
                 
@@ -510,11 +530,14 @@
                             </svg>
                         </div>
                         <h3 class="tij-card-title">Japan in Context</h3>
-                        <p class="tij-card-description">
-                            Teaches all of the Unspoken Rules and Regulations underpinning Japanese Society. This program will open your eyes to a Japan that has been invisible to you!
-                        </p>
-                        <div class="tij-highlight-box">
-                            Don't take our word for it, go back and re-read our customer reviews! Japan veterans of 10+ years are changing their lives with this program!
+                        <div class="tij-card-description">
+                            <ul>
+                                <li><strong>Start with the Foundation Course — Learn how Japanese <em>actually</em> works:</strong> particles, sentence structure, and the logic behind it all—no fluff, just clarity.</li>
+                                <li><strong>One continuous story, five perspectives</strong> — From N5 to N1 level, follow a powerful, interconnected narrative told from multiple characters' viewpoints. Understand culture, context, and communication on a whole new level.</li>
+                                <li><strong>Real-life people, real-life places</strong> — Everything in the story is inspired by true events and real locations. What you learn mirrors what it's like to actually move to and live in Japan.</li>
+                                <li><strong>Social nuance is built in</strong> — Through the story, you'll naturally encounter and master complex social dynamics, hierarchy, and unspoken expectations—essential for real fluency.</li>
+                                <li><strong>Nothing is random. Everything connects.</strong> — Lessons aren't one-off scenarios—they're part of a coherent, human story that makes grammar and vocabulary <em>stick</em></li>
+                            </ul>
                         </div>
                     </div>
                     
@@ -527,11 +550,14 @@
                             </svg>
                         </div>
                         <h3 class="tij-card-title">JLPT in Context</h3>
-                        <p class="tij-card-description">
-                            This curriculum makes sure that you meet JLPT requirements easily HOWEVER, it avoids all of the pitfalls that JLPT based programs present to learners.
-                        </p>
-                        <div class="tij-highlight-box">
-                            Instead of teaching from "simple" to "difficult" you are taught from "most necessary" in the most natural progression by following a single, continuous story based on facts, real places, real culture, real history and based on true stories from the lives of expats living in Japan.
+                        <div class="tij-card-description">
+                            <ul>
+                                <li><strong>Task-based speaking sessions</strong> — Speak with purpose. Our cyclical tasks push you to express yourself at <em>your</em> level while growing your fluency with each round.</li>
+                                <li><strong>Progressive fluency, not random chatting</strong> — Topics evolve with you. As your grammar and vocabulary grow, so does the depth of what you can say and understand.</li>
+                                <li><strong>True immersion, even from abroad</strong> — Designed for learners living <em>outside</em> Japan, the program builds real-life immersion into your routine and mindset.</li>
+                                <li><strong>University-level innovation, without the red tape</strong> — Our curriculum is based on cutting-edge language learning science—what top institutions <em>want</em> to do, but haven't been able to implement.</li>
+                                <li><strong>JLPT-ready, but not JLPT-limited</strong> — Yes, you'll pass the test. But more importantly, you'll thrive in real-life situations far beyond what the JLPT can measure.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -550,7 +576,7 @@
                     <p class="tij-quote-text">
                         Many come to Japan, but very few ever figure out how to actually <em>LIVE</em> here.
                     </p>
-                    <p class="tij-quote-author">-Shige (Thrive Creator)</p>
+                    <p class="tij-quote-author">-Shige (Thrive in Japan creator)</p>
                 </div>
             </div>
         </section>

@@ -22,7 +22,7 @@
         .reality-section {
             position: relative;
             min-height: 100vh;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #283618 0%, #4C633A 50%, #A6531C 100%);
             overflow: hidden;
             padding: 80px 20px;
         }
@@ -41,7 +41,7 @@
         .floating-mask {
             position: absolute;
             font-size: 200px;
-            color: rgba(177, 45, 61, 0.1);
+            color: rgba(212, 188, 140, 0.1);
             animation: maskFloat 20s ease-in-out infinite;
             user-select: none;
         }
@@ -115,7 +115,7 @@
             position: absolute;
             right: -40px;
             top: 0;
-            color: #b12d3d;
+            color: #D4BC8C;
             animation: questionPulse 2s ease-in-out infinite;
         }
 
@@ -151,7 +151,7 @@
 
         .success-card:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(177, 45, 61, 0.3);
+            border-color: rgba(212, 188, 140, 0.3);
             transform: translateX(10px);
         }
 
@@ -185,7 +185,7 @@
         .card-icon svg {
             width: 100%;
             height: 100%;
-            fill: #b12d3d;
+            fill: #D4BC8C;
         }
 
         /* Card Content */
@@ -198,7 +198,7 @@
         }
 
         .success-text strong {
-            color: #b12d3d;
+            color: #D4BC8C;
             font-weight: 600;
         }
 
@@ -207,8 +207,8 @@
             text-align: center;
             margin: 80px 0;
             padding: 60px 40px;
-            background: rgba(177, 45, 61, 0.05);
-            border: 2px solid rgba(177, 45, 61, 0.2);
+            background: rgba(212, 188, 140, 0.05);
+            border: 2px solid rgba(212, 188, 140, 0.2);
             border-radius: 30px;
             position: relative;
             overflow: hidden;
@@ -231,7 +231,7 @@
         .reality-question {
             font-size: clamp(28px, 4vw, 48px);
             font-weight: 800;
-            color: #b12d3d;
+            color: #D4BC8C;
             margin-bottom: 40px;
             position: relative;
             display: inline-block;
@@ -258,13 +258,13 @@
 
         .reality-question::before {
             animation: glitch1 2s infinite;
-            color: #ff0066;
+            color: #A6531C;
             z-index: -1;
         }
 
         .reality-question::after {
             animation: glitch2 2s infinite;
-            color: #00ffff;
+            color: #4C633A;
             z-index: -1;
         }
 
@@ -295,7 +295,7 @@
 
         .truth-item {
             background: rgba(0, 0, 0, 0.3);
-            border-left: 4px solid #b12d3d;
+            border-left: 4px solid #D4BC8C;
             padding: 25px 30px;
             border-radius: 10px;
             position: relative;
@@ -328,7 +328,7 @@
             transform: translateY(-50%);
             font-size: 40px;
             opacity: 0.1;
-            color: #b12d3d;
+            color: #D4BC8C;
         }
 
         .truth-text {
@@ -339,14 +339,14 @@
         }
 
         .truth-text em {
-            color: #ff6b6b;
+            color: #D4BC8C;
             font-weight: 600;
             font-style: normal;
         }
 
         /* Quote Section */
         .reality-quote {
-            background: rgba(177, 45, 61, 0.1);
+            background: rgba(212, 188, 140, 0.1);
             border-radius: 20px;
             padding: 40px;
             margin: 60px 0;
@@ -372,7 +372,7 @@
 
         .quote-author {
             text-align: right;
-            color: #b12d3d;
+            color: #D4BC8C;
             font-weight: 600;
             font-size: 16px;
         }
@@ -391,8 +391,8 @@
         .cta-button {
             display: inline-block;
             padding: 20px 50px;
-            background: #b12d3d;
-            color: white;
+            background: #D4BC8C;
+            color: #283618;
             text-decoration: none;
             font-size: 18px;
             font-weight: 700;
@@ -401,7 +401,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(177, 45, 61, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 188, 140, 0.3);
         }
 
         .cta-button::before {
@@ -417,8 +417,9 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(177, 45, 61, 0.4);
-            background: #ff6b6b;
+            box-shadow: 0 15px 40px rgba(212, 188, 140, 0.4);
+            background: #4C633A;
+            color: #fff;
         }
 
         .cta-button:hover::before {
@@ -591,7 +592,7 @@
                         left: 0;
                         width: 100%;
                         height: 100%;
-                        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 L45,50 L55,90 M45,50 L20,45 L10,70 M55,50 L80,55 L90,30" stroke="rgba(177,45,61,0.3)" stroke-width="0.5" fill="none"/></svg>') no-repeat center;
+                        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 L45,50 L55,90 M45,50 L20,45 L10,70 M55,50 L80,55 L90,30" stroke="rgba(212,188,140,0.3)" stroke-width="0.5" fill="none"/></svg>') no-repeat center;
                         background-size: cover;
                         opacity: 0;
                         animation: crackAppear 0.3s ease forwards;

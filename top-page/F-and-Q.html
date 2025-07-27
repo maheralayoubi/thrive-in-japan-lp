@@ -14,7 +14,7 @@
 
         .tij-faq-wrapper {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(180deg, #f0f4ff 0%, #e8f4f8 100%);
+            background: linear-gradient(180deg, #f5f1e8 0%, #e8e5df 100%);
             padding: 80px 20px;
             position: relative;
             overflow: hidden;
@@ -44,7 +44,7 @@
         .tij-faq-bg-circle:nth-child(1) {
             width: 300px;
             height: 300px;
-            background: #ff6b6b;
+            background: #D4BC8C;
             top: -150px;
             right: -150px;
             animation-delay: 0s;
@@ -53,7 +53,7 @@
         .tij-faq-bg-circle:nth-child(2) {
             width: 400px;
             height: 400px;
-            background: #4ecdc4;
+            background: #4C633A;
             bottom: -200px;
             left: -200px;
             animation-delay: 5s;
@@ -62,7 +62,7 @@
         .tij-faq-bg-circle:nth-child(3) {
             width: 250px;
             height: 250px;
-            background: #45b7d1;
+            background: #A6531C;
             top: 50%;
             left: 50%;
             animation-delay: 10s;
@@ -103,7 +103,7 @@
         .tij-faq-title {
             font-size: clamp(36px, 5vw, 48px);
             font-weight: 800;
-            color: #1a1a2e;
+            color: #283618;
             margin-bottom: 20px;
             position: relative;
             display: inline-block;
@@ -113,7 +113,7 @@
             content: '?';
             position: absolute;
             font-size: 120px;
-            color: rgba(78, 205, 196, 0.1);
+            color: rgba(76, 99, 58, 0.1);
             top: -40px;
             left: -60px;
             font-weight: 900;
@@ -131,7 +131,7 @@
 
         .tij-faq-subtitle {
             font-size: 18px;
-            color: #666;
+            color: #483C32;
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
@@ -184,11 +184,11 @@
         }
 
         /* Gradient variations */
-        .tij-faq-item:nth-child(1) { --accent-gradient: #ff6b6b 0%, #ff8787 100%; }
-        .tij-faq-item:nth-child(2) { --accent-gradient: #4ecdc4 0%, #44a39f 100%; }
-        .tij-faq-item:nth-child(3) { --accent-gradient: #45b7d1 0%, #5eb8d0 100%; }
-        .tij-faq-item:nth-child(4) { --accent-gradient: #ff6b6b 0%, #4ecdc4 100%; }
-        .tij-faq-item:nth-child(5) { --accent-gradient: #4ecdc4 0%, #45b7d1 100%; }
+        .tij-faq-item:nth-child(1) { --accent-gradient: #D4BC8C 0%, #A6531C 100%; }
+        .tij-faq-item:nth-child(2) { --accent-gradient: #4C633A 0%, #283618 100%; }
+        .tij-faq-item:nth-child(3) { --accent-gradient: #A6531C 0%, #483C32 100%; }
+        .tij-faq-item:nth-child(4) { --accent-gradient: #D4BC8C 0%, #4C633A 100%; }
+        .tij-faq-item:nth-child(5) { --accent-gradient: #4C633A 0%, #A6531C 100%; }
 
         @keyframes tijFaqSlideIn {
             to {
@@ -227,7 +227,7 @@
         .tij-faq-question-text {
             font-size: 18px;
             font-weight: 600;
-            color: #1a1a2e;
+            color: #283618;
             flex: 1;
             padding-right: 20px;
             line-height: 1.4;
@@ -244,7 +244,7 @@
         .tij-faq-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #f0f4ff 0%, #e8f4f8 100%);
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8e5df 100%);
             border-radius: 15px;
             display: flex;
             align-items: center;
@@ -262,7 +262,7 @@
         .tij-faq-icon svg {
             width: 24px;
             height: 24px;
-            fill: #666;
+            fill: #483C32;
             transition: all 0.3s ease;
         }
 
@@ -281,7 +281,7 @@
         .tij-faq-plus::after {
             content: '';
             position: absolute;
-            background: #666;
+            background: #483C32;
             transition: all 0.3s ease;
         }
 
@@ -320,7 +320,7 @@
             padding: 0 30px 25px 30px;
             font-size: 16px;
             line-height: 1.8;
-            color: #444;
+            color: #483C32;
             opacity: 0;
             transform: translateY(-10px);
             transition: all 0.3s ease 0.1s;
@@ -337,7 +337,7 @@
 
         /* Highlight Box in Answer */
         .tij-faq-highlight {
-            background: linear-gradient(135deg, #fff5f5 0%, #f0fffe 100%);
+            background: linear-gradient(135deg, rgba(212, 188, 140, 0.1) 0%, rgba(76, 99, 58, 0.1) 100%);
             border-left: 3px solid var(--accent-gradient);
             padding: 15px 20px;
             margin-top: 15px;
@@ -352,7 +352,7 @@
             position: absolute;
             font-size: 200px;
             opacity: 0.03;
-            color: #4ecdc4;
+            color: #4C633A;
             user-select: none;
             z-index: 0;
         }
