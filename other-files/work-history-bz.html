@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Work History</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: rgb(0, 161, 233);
+            --primary-dark: rgb(0, 120, 180);
+            --primary-light: rgba(0, 161, 233, 0.1);
+            --accent: rgb(0, 233, 161);
+            --secondary: rgb(233, 161, 0);
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        .stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Filter Section */
+        .filters {
+            background: white;
+            padding: 30px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideInDown 0.6s ease-out 0.6s both;
+        }
+
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .filter-tag {
+            padding: 8px 20px;
+            border-radius: 25px;
+            border: 2px solid var(--primary-light);
+            background: white;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .filter-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 161, 233, 0.2);
+        }
+
+        .filter-tag.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .search-box {
+            padding: 10px 20px;
+            border: 2px solid var(--primary-light);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        /* Projects Grid */
+        .projects-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            animation: fadeIn 0.8s ease-out 0.8s both;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+            opacity: 0;
+            animation: cardPop 0.6s ease-out forwards;
+        }
+
+        @keyframes cardPop {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .project-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 3rem;
+            font-weight: 800;
+            opacity: 0.1;
+            color: white;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-client {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-body {
+            padding: 25px;
+        }
+
+        .project-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            max-height: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            padding: 5px 12px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 12px;
+        }
+
+        .project-link svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                justify-content: space-around;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+        }
+
+        /* No results */
+        .no-results {
+            text-align: center;
+            padding: 100px 20px;
+            color: var(--text-light);
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        /* Floating elements */
+        .floating-shape {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 10%;
+            left: -150px;
+            animation: float1 20s ease-in-out infinite;
+        }
+
+        .shape2 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            bottom: 10%;
+            right: -100px;
+            animation: float2 15s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(50px, -50px) rotate(180deg); }
+            75% { transform: translate(-50px, 30px) rotate(270deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-50px, -50px) scale(1.1); }
+            50% { transform: translate(-100px, 0) scale(0.9); }
+            75% { transform: translate(-50px, 50px) scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Shapes -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>My Work Portfolio</h1>
+            <p class="hero-subtitle">Innovative solutions crafted with modern technologies</p>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number" id="projectCount">0</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="clientCount">0</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="techCount">0</span>
+                    <span class="stat-label">Technologies Used</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filters">
+        <div class="filter-container">
+            <span class="filter-label">Filter by:</span>
+            <div class="filter-tags" id="filterTags">
+                <button class="filter-tag active" data-filter="all">All Projects</button>
+                <button class="filter-tag" data-filter="React">React</button>
+                <button class="filter-tag" data-filter="PHP Laravel">PHP Laravel</button>
+                <button class="filter-tag" data-filter="WordPress">WordPress</button>
+                <button class="filter-tag" data-filter="Python">Python</button>
+                <button class="filter-tag" data-filter="AWS">AWS</button>
+                <button class="filter-tag" data-filter="Azure">Azure</button>
+            </div>
+            <input type="text" class="search-box" id="searchBox" placeholder="Search projects...">
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-container">
+        <div class="projects-grid" id="projectsGrid">
+            <div class="loading">Loading amazing projects</div>
+        </div>
+    </section>
+
+    <script>
+        // Projects data
+        const projects = [
+            {
+                id: 1,
+                title: "オンライン研修用WEBアプリケーション",
+                client: "東京大学大学院教育学研究科",
+                description: "DEI研修講師が学ぶための研修において利用されるウェブゲームアプリ。コロナ禍前にリアルで行っていたルーレットやカードゲーム、複雑な配点ロジックなどの手法がウェブ上の機能として実装されているシステム。",
+                technologies: ["PHP Laravel", "React", "AWS"],
+                url: ""
+            },
+            {
+                id: 2,
+                title: "会員制施設予約システムソフトウェア",
+                client: "株式会社ダイナックス",
+                description: "法人向け自社商品（SaaS）を開発・運営するソフトウェア開発企業。",
+                technologies: ["PHP Laravel", "React", "AWS"],
+                url: "https://www.dynax.co.jp"
+            },
+            {
+                id: 3,
+                title: "東京電機大学 学生用会員制掲示板型SNS",
+                client: "東京電機大学",
+                description: "理工系大学として「実学尊重」「技術は人なり」「学生主役」の理念を核に、技術で社会に貢献する人材を育成",
+                technologies: ["WordPress", "PHP", "CSS"],
+                url: "https://www.ad.dendai.ac.jp/"
+            },
+            {
+                id: 4,
+                title: "会員制ウェブマッチングシステム",
+                client: "ノウドー株式会社",
+                description: "「人生を、能動的に」を理念に、障害を持つ求職者、就労移行支援事業所と企業をつなぐ、就労プラットフォームを運営する企業。",
+                technologies: ["PHP"],
+                url: "https://company.knowdojobs.com/page/service"
+            },
+            {
+                id: 5,
+                title: "Re:Earth",
+                client: "株式会社Eukarya",
+                description: "Re:Earthは、オープンソースで提供される高機能なWebGIS（地理情報システム）プラットフォーム。ブラウザ上で動作し、プログラミング不要で直感的に地理空間データの可視化や共有が可能。",
+                technologies: ["React", "Python", "Azure"],
+                url: "https://reearth-webpage.netlify.app/"
+            },
+            {
+                id: 6,
+                title: "POLARISSプロジェクト",
+                client: "株式会社OWL-T",
+                description: "IoTデバイスによるバイク盗難防止および追跡監視システム。車両の動き、位置、加速度やバッテリー状態などのさまざまな指標を監視し、異常時にはLineアプリを通じてユーザーにメッセージングを行うアプリの開発",
+                technologies: ["React", "PHP Laravel", "Python", "Azure", "LINE"],
+                url: "https://thingsline.co.jp/index/"
+            },
+            {
+                id: 7,
+                title: "BAR ACCA｜コーポレートウェブサイト",
+                client: "ACCA",
+                description: "野菜を中心とした料理と。ソムリエが厳選したワインで心身ともに寛いだ時間をお過ごしいただけるイタリアンレストラン・ワインバーです。",
+                technologies: ["WordPress", "PHP", "CSS"],
+                url: "http://acca-wine.co.jp/"
+            },
+            {
+                id: 8,
+                title: "SPM｜コーポレートウェブサイト",
+                client: "SPM株式会社",
+                description: "ウェブ制作やマーケティングの支援などを通じて、より多くの方が豊かな生活を手に入れることをサポートしていきます。",
+                technologies: ["React", "PHP Laravel"],
+                url: "https://synergy.place-tech.net/"
+            },
+            {
+                id: 9,
+                title: "SPM｜nichijyo オウンドメディア",
+                client: "SPM株式会社",
+                description: "サブスクリプションサービスのマーケティングを主軸とし、日常を豊かにすることをミッションとする。",
+                technologies: ["React", "PHP Laravel"],
+                url: "https://nichijo.media.s-pm.co.jp/"
+            },
+            {
+                id: 10,
+                title: "NeGGA｜コーポレートウェブサイト",
+                client: "株式会社NeGGA",
+                description: "「Create NEW value」を掲げ、常に新しい価値の創造を追求し、革新的なサービスを提供します。",
+                technologies: ["WordPress", "PHP", "CSS"],
+                url: "https://negga.co.jp/"
+            },
+            {
+                id: 11,
+                title: "自動見積もりWEBシステム",
+                client: "三井化学株式会社",
+                description: "日本を代表する総合化学メーカーとして、多岐にわたる事業を展開。",
+                technologies: ["PHP", "CSS"],
+                url: "https://jp.mitsuichemicals.com/jp/"
+            },
+            {
+                id: 12,
+                title: "Plamoxウェブサイト",
+                client: "株式会社Plamox",
+                description: "「プラントDXで社会を支える」プラント業界の健全な成長を通じ、人々の安心・安全の暮らしに貢献する。",
+                technologies: ["React", "CSS"],
+                url: "https://plamox.co.jp/"
+            },
+            {
+                id: 13,
+                title: "SPM｜保険申し込み管理システム",
+                client: "SPM株式会社",
+                description: "保険申し込みのための顧客管理システム。",
+                technologies: ["PHP Laravel", "AWS"],
+                url: ""
+            }
+        ];
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // Animate stats on load
+        function animateNumber(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Get unique technologies
+        function getUniqueTechnologies() {
+            const techSet = new Set();
+            projects.forEach(project => {
+                project.technologies.forEach(tech => techSet.add(tech));
+            });
+            return techSet.size;
+        }
+
+        // Get unique clients
+        function getUniqueClients() {
+            const clientSet = new Set();
+            projects.forEach(project => clientSet.add(project.client));
+            return clientSet.size;
+        }
+
+        // Render projects
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            const filteredProjects = projects.filter(project => {
+                const matchesFilter = currentFilter === 'all' || 
+                    project.technologies.includes(currentFilter);
+                const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    project.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    project.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredProjects.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <h3>No projects found</h3>
+                        <p>Try adjusting your filters or search query</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filteredProjects.map((project, index) => `
+                <div class="project-card" style="animation-delay: ${index * 0.1}s">
+                    <div class="project-header">
+                        <div class="project-number">${project.id}</div>
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-client">${project.client}</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tech">
+                            ${project.technologies.map(tech => `
+                                <span class="tech-tag">${tech}</span>
+                            `).join('')}
+                        </div>
+                        ${project.url ? `
+                            <a href="${project.url}" target="_blank" class="project-link">
+                                Visit Project
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter functionality
+        document.getElementById('filterTags').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-tag')) {
+                document.querySelectorAll('.filter-tag').forEach(tag => {
+                    tag.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.filter;
+                renderProjects();
+            }
+        });
+
+        // Search functionality
+        let searchTimeout;
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                searchQuery = e.target.value;
+                renderProjects();
+            }, 300);
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            // Animate stats
+            setTimeout(() => {
+                animateNumber('projectCount', projects.length);
+                animateNumber('clientCount', getUniqueClients());
+                animateNumber('techCount', getUniqueTechnologies());
+            }, 500);
+
+            // Render projects
+            setTimeout(() => {
+                renderProjects();
+            }, 1000);
+        });
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
