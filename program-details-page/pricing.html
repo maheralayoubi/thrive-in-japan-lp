@@ -105,7 +105,7 @@
             text-shadow: 0 0 20px rgba(212, 188, 140, 0.5);
         }
 
-        /* Launch Date with Creative Illustration */
+        /* Launch Date with Calendar Illustration */
         .tj-launch-illustration {
             display: inline-block;
             width: 60px;
@@ -117,80 +117,90 @@
 
         @keyframes floatIllustration {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
 
-        /* Mount Fuji with Rising Sun */
+        /* Calendar Base */
         .tj-launch-illustration::before {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-bottom: 30px solid #D4BC8C;
-            filter: drop-shadow(0 0 10px rgba(212, 188, 140, 0.5));
+            width: 50px;
+            height: 45px;
+            background: #D4BC8C;
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(212, 188, 140, 0.5);
         }
 
-        /* Snow cap */
+        /* Calendar Header */
         .tj-launch-illustration::after {
             content: '';
             position: absolute;
-            bottom: 20px;
+            top: 5px;
             left: 50%;
             transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 10px solid #fff;
-            opacity: 0.9;
+            width: 50px;
+            height: 15px;
+            background: #A6531C;
+            border-radius: 5px 5px 0 0;
         }
 
-        /* Rising Sun */
-        .tj-sun {
+        /* Calendar Days */
+        .tj-calendar-days {
             position: absolute;
-            top: 0;
+            bottom: 5px;
             left: 50%;
             transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, #FF6B6B 0%, #FF8E53 100%);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
-            animation: sunRise 3s ease-in-out infinite;
+            width: 40px;
+            height: 25px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+            padding: 2px;
         }
 
-        @keyframes sunRise {
+        .tj-calendar-day {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 1px;
+        }
+
+        .tj-calendar-day.highlight {
+            background: #FF6B6B;
+            animation: dayPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dayPulse {
             0%, 100% { 
-                transform: translateX(-50%) translateY(0);
-                box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+                transform: scale(1);
+                background: #FF6B6B;
             }
             50% { 
-                transform: translateX(-50%) translateY(-5px);
-                box-shadow: 0 0 30px rgba(255, 107, 107, 1);
+                transform: scale(1.2);
+                background: #FF8E53;
             }
         }
 
-        /* Sun rays */
-        .tj-sun::before {
-            content: '';
+        /* Calendar Rings */
+        .tj-calendar-rings {
             position: absolute;
-            top: 50%;
+            top: -8px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, rgba(255, 107, 107, 0.3) 0%, transparent 70%);
-            animation: sunPulse 2s ease-in-out infinite;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 8px;
+            display: flex;
+            justify-content: space-around;
         }
 
-        @keyframes sunPulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.3; }
+        .tj-calendar-ring {
+            width: 6px;
+            height: 6px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            background: #283618;
         }
 
         .tj-launch-date {
@@ -228,299 +238,6 @@
         .tj-pricing-warning::before {
             content: '✨';
             margin-right: 8px;
-        }
-
-        /* Cards Grid */
-        .tj-pricing-grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        /* Pricing Card Base */
-        .tj-price-card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            overflow: hidden;
-            opacity: 0;
-            animation: cardSlideIn 0.8s ease forwards;
-        }
-
-        .tj-price-card:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-
-        .tj-price-card:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-
-        .tj-price-card:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-
-        @keyframes cardSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(60px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Premium Card - Gold Theme */
-        .tj-card-premium {
-            border-color: rgba(212, 188, 140, 0.3);
-            background: linear-gradient(135deg, rgba(212, 188, 140, 0.05) 0%, rgba(212, 188, 140, 0.02) 100%);
-        }
-
-        .tj-card-premium::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #D4BC8C, #A6531C, #D4BC8C);
-            border-radius: 30px;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.4s ease;
-        }
-
-        .tj-card-premium:hover::before {
-            opacity: 0.3;
-            animation: borderRotate 3s linear infinite;
-        }
-
-        /* Monthly Card - Green Theme */
-        .tj-card-monthly {
-            border-color: rgba(76, 99, 58, 0.3);
-            background: linear-gradient(135deg, rgba(76, 99, 58, 0.05) 0%, rgba(76, 99, 58, 0.02) 100%);
-        }
-
-        .tj-card-monthly::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #4C633A, #283618, #4C633A);
-            border-radius: 30px;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.4s ease;
-        }
-
-        .tj-card-monthly:hover::before {
-            opacity: 0.3;
-            animation: borderRotate 3s linear infinite;
-        }
-
-        /* Yearly Card - Orange Theme */
-        .tj-card-yearly {
-            border-color: rgba(166, 83, 28, 0.3);
-            background: linear-gradient(135deg, rgba(166, 83, 28, 0.05) 0%, rgba(166, 83, 28, 0.02) 100%);
-        }
-
-        .tj-card-yearly::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #A6531C, #483C32, #A6531C);
-            border-radius: 30px;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.4s ease;
-        }
-
-        .tj-card-yearly:hover::before {
-            opacity: 0.3;
-            animation: borderRotate 3s linear infinite;
-        }
-
-        @keyframes borderRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Card Hover Effects */
-        .tj-price-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Card Header */
-        .tj-card-header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .tj-card-title {
-            font-size: 32px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tj-card-premium .tj-card-title {
-            color: #D4BC8C;
-            text-shadow: 0 0 30px rgba(212, 188, 140, 0.5);
-        }
-
-        .tj-card-monthly .tj-card-title {
-            color: #4C633A;
-            text-shadow: 0 0 30px rgba(76, 99, 58, 0.5);
-        }
-
-        .tj-card-yearly .tj-card-title {
-            color: #A6531C;
-            text-shadow: 0 0 30px rgba(166, 83, 28, 0.5);
-        }
-
-        /* Features List */
-        .tj-features-list {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .tj-feature-item {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .tj-feature-item:hover {
-            color: #fff;
-            transform: translateX(5px);
-        }
-
-        .tj-feature-item::before {
-            content: '✓';
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .tj-feature-item.unavailable::before {
-            content: '✗';
-            color: #A6531C;
-        }
-
-        .tj-feature-item.unavailable::before {
-            content: '✗';
-            color: #A6531C !important;
-        }
-
-        .tj-card-premium .tj-feature-item::before {
-            color: #4C633A;
-        }
-
-        .tj-card-monthly .tj-feature-item::before {
-            color: #4C633A;
-        }
-
-        .tj-card-yearly .tj-feature-item::before {
-            color: #4C633A;
-        }
-
-        /* Free Badge */
-        .tj-free-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #4C633A, #283618);
-            color: #fff;
-            padding: 10px 30px;
-            border-radius: 30px;
-            font-size: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(76, 99, 58, 0.4);
-            animation: freePulse 2s ease-in-out infinite;
-        }
-
-        @keyframes freePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Offer Text */
-        .tj-offer-text {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
-        .tj-offer-text strong {
-            color: #4C633A;
-            font-weight: 700;
-        }
-
-        /* CTA Button */
-        .tj-enroll-btn {
-            display: inline-block;
-            width: 100%;
-            padding: 20px 40px;
-            font-size: 18px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-decoration: none;
-            color: #fff;
-            border-radius: 50px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            background: linear-gradient(135deg, #4C633A, #283618);
-            box-shadow: 0 15px 40px rgba(76, 99, 58, 0.4);
-        }
-
-        .tj-enroll-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-        }
-
-        .tj-enroll-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(76, 99, 58, 0.6);
-        }
-
-        .tj-enroll-btn:hover::before {
-            width: 500px;
-            height: 500px;
         }
 
         /* Join Community Section */
@@ -611,14 +328,6 @@
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .tj-pricing-grid-layout {
-                grid-template-columns: 1fr;
-                max-width: 600px;
-                margin: 0 auto 60px;
-            }
-        }
-
         @media (max-width: 768px) {
             .tj-pricing-section {
                 padding: 60px 20px;
@@ -630,14 +339,6 @@
 
             .tj-pricing-subtitle {
                 font-size: 18px;
-            }
-
-            .tj-price-card {
-                padding: 40px 30px;
-            }
-
-            .tj-card-title {
-                font-size: 24px;
             }
 
             .tj-community-features {
@@ -655,17 +356,8 @@
         }
 
         @media (max-width: 480px) {
-            .tj-pricing-grid-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .tj-price-card {
-                padding: 30px 20px;
-            }
-
-            .tj-enroll-btn {
-                padding: 16px 30px;
-                font-size: 16px;
+            .tj-community-label {
+                font-size: 14px;
             }
         }
     </style>
@@ -685,90 +377,36 @@
             <!-- Header -->
             <div class="tj-pricing-header">
                 <h2 class="tj-pricing-title">Join us now for a 2 week free trial!</h2>
-<p class="tj-pricing-subtitle">                   
-Plus, unlock 30% off on your monthly/yearly subscription!<br>
-Offer only valid for the first 100 seats</p> 
+                <p class="tj-pricing-subtitle">                   
+                    Plus, unlock 30% off on your monthly/yearly subscription!<br>
+                    Offer only valid for the first 100 seats
+                </p> 
                 <div class="tj-launch-date">
                     <div class="tj-launch-illustration">
-                        <div class="tj-sun"></div>
+                        <div class="tj-calendar-rings">
+                            <span class="tj-calendar-ring"></span>
+                            <span class="tj-calendar-ring"></span>
+                        </div>
+                        <div class="tj-calendar-days">
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day highlight"></span>
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day"></span>
+                            <span class="tj-calendar-day"></span>
+                        </div>
                     </div>
                     <span class="tj-launch-date-text">Thrive in Japan goes LIVE on August 31, 2025</span>
                 </div>
                 <p class="tj-pricing-subtitle">
-                    Don't miss your chance to join at a <strong>with this limited special offer!
-</strong>
+                    Don't miss your chance to join at a <strong>with this limited special offer!</strong>
                 </p>
-                <p class="tj-pricing-warning">All plans are currently FREE during our beta period</p>
-            </div>
-            
-            <!-- Pricing Cards -->
-            <div class="tj-pricing-grid-layout">
-                <!-- Premium Card -->
-                <div class="tj-price-card tj-card-premium">
-                    <div class="tj-card-header">
-                        <h3 class="tj-card-title">Japan in Context<br>Premiere</h3>
-                        <div class="tj-free-badge">FREE ACCESS</div>
-                    </div>
-                    
-                    <ul class="tj-features-list">
-                        <li class="tj-feature-item">Thrive in Japan Platform</li>
-                        <li class="tj-feature-item unavailable">Speaking Sessions</li>
-                        <li class="tj-feature-item">"Japan in Context" Curriculum</li>
-                        <li class="tj-feature-item unavailable">"JLPT in Context" Curriculum</li>
-                        <li class="tj-feature-item">Access to Exclusive Events and Meet ups</li>
-                        <li class="tj-feature-item">1-on-1 ICF Certified Personal Coaching</li>
-                    </ul>
-                    
-                    <div class="tj-offer-text">
-                        <strong>Premium features</strong> designed for serious learners who want personalized guidance
-                    </div>
-                    
-                    <a href="#" class="tj-enroll-btn">Register for Free</a>
-                </div>
-                
-                <!-- Monthly Card -->
-                <div class="tj-price-card tj-card-monthly">
-                    <div class="tj-card-header">
-                        <h3 class="tj-card-title">Complete<br>Access</h3>
-                        <div class="tj-free-badge">FREE ACCESS</div>
-                    </div>
-                    
-                    <ul class="tj-features-list">
-                        <li class="tj-feature-item">Thrive in Japan Platform</li>
-                        <li class="tj-feature-item">Unlimited Speaking Sessions</li>
-                        <li class="tj-feature-item">"Japan in Context" Curriculum</li>
-                        <li class="tj-feature-item">"JLPT in Context" Curriculum</li>
-                        <li class="tj-feature-item">Access to Exclusive Events and Meet Ups</li>
-                    </ul>
-                    
-                    <div class="tj-offer-text">
-                        <strong>Full platform access</strong> with all learning materials and unlimited practice sessions
-                    </div>
-                    
-                    <a href="#" class="tj-enroll-btn">Register for Free</a>
-                </div>
-                
-                <!-- Yearly Card -->
-                <div class="tj-price-card tj-card-yearly">
-                    <div class="tj-card-header">
-                        <h3 class="tj-card-title">Essential<br>Features</h3>
-                        <div class="tj-free-badge">FREE ACCESS</div>
-                    </div>
-                    
-                    <ul class="tj-features-list">
-                        <li class="tj-feature-item">Thrive in Japan Platform</li>
-                        <li class="tj-feature-item">Unlimited Speaking Sessions</li>
-                        <li class="tj-feature-item">"Japan in Context" Curriculum</li>
-                        <li class="tj-feature-item">"JLPT in Context" Curriculum</li>
-                        <li class="tj-feature-item">Access to Exclusive Events and Meet Ups</li>
-                    </ul>
-                    
-                    <div class="tj-offer-text">
-                        <strong>Everything you need</strong> to master Japanese and thrive in Japan
-                    </div>
-                    
-                    <a href="#" class="tj-enroll-btn">Register for Free</a>
-                </div>
             </div>
             
             <!-- Join Community Section -->
@@ -783,12 +421,12 @@ Offer only valid for the first 100 seats</p>
                         <span class="tj-community-label">Active Learners</span>
                     </div>
                     <div class="tj-community-feature">
-                        <span class="tj-community-number">50+</span>
+                        <span class="tj-community-number">10+</span>
                         <span class="tj-community-label">Expert Coaches</span>
                     </div>
                     <div class="tj-community-feature">
-                        <span class="tj-community-number">100%</span>
-                        <span class="tj-community-label">Free Access</span>
+                        <span class="tj-community-number">Free</span>
+                        <span class="tj-community-label">(2 weeks)</span>
                     </div>
                 </div>
             </div>
@@ -808,65 +446,19 @@ Offer only valid for the first 100 seats</p>
             });
         });
         
-        // Add hover ripple effect to cards
-        const cards = document.querySelectorAll('.tj-price-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function(e) {
-                const ripple = document.createElement('div');
-                ripple.style.position = 'absolute';
-                ripple.style.width = '20px';
-                ripple.style.height = '20px';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-                ripple.style.pointerEvents = 'none';
-                ripple.style.transform = 'translate(-50%, -50%)';
-                ripple.style.animation = 'rippleExpand 1s ease-out forwards';
-                
-                const rect = card.getBoundingClientRect();
-                ripple.style.left = (e.clientX - rect.left) + 'px';
-                ripple.style.top = (e.clientY - rect.top) + 'px';
-                
-                card.appendChild(ripple);
-                
-                setTimeout(() => ripple.remove(), 1000);
-            });
-        });
-        
-        // Add CSS for ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rippleExpand {
-                0% {
-                    width: 20px;
-                    height: 20px;
-                    opacity: 0.3;
-                }
-                100% {
-                    width: 400px;
-                    height: 400px;
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Smooth scroll behavior for enroll buttons
-        document.querySelectorAll('.tj-enroll-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Add enrollment logic here
-                console.log('Free registration clicked for:', btn.closest('.tj-price-card').querySelector('.tj-card-title').textContent);
-            });
-        });
-        
         // Animate numbers on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const numbers = entry.target.querySelectorAll('.tj-community-number');
                     numbers.forEach(number => {
-                        const target = parseInt(number.textContent);
-                        const isPercentage = number.textContent.includes('%');
+                        const text = number.textContent;
+                        if (text === 'Free') {
+                            // Don't animate "Free" text
+                            return;
+                        }
+                        const target = parseInt(text);
+                        const isPlus = text.includes('+');
                         let current = 0;
                         const increment = target / 50;
                         const timer = setInterval(() => {
@@ -875,7 +467,7 @@ Offer only valid for the first 100 seats</p>
                                 current = target;
                                 clearInterval(timer);
                             }
-                            number.textContent = Math.floor(current) + (isPercentage ? '%' : '+');
+                            number.textContent = Math.floor(current) + (isPlus ? '+' : '');
                         }, 30);
                     });
                     observer.unobserve(entry.target);

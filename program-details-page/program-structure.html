@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Structure - Thrive in Japan</title>
+    <style>
+        /* Reset for this section */
+        .ps-section * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Program Structure Section */
+        .ps-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0a0a0a 0%, #283618 50%, #0a0a0a 100%);
+            padding: 100px 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Background Pattern */
+        .ps-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 188, 140, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(212, 188, 140, 0.06) 0%, transparent 40%);
+            z-index: 1;
+        }
+
+        /* Animated Grid */
+        .ps-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,.015) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255,255,255,.015) 2px, transparent 2px);
+            background-size: 60px 60px;
+            animation: psGridFlow 40s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes psGridFlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Container */
+        .ps-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Section Title */
+        .ps-title {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: psFadeInUp 1.2s ease forwards;
+        }
+
+        @keyframes psFadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ps-title h2 {
+            font-size: clamp(36px, 4vw, 48px);
+            font-weight: 900;
+            background: linear-gradient(90deg, #fff 0%, #D4BC8C 50%, #fff 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: psTitleGradient 5s ease-in-out infinite;
+            display: inline-block;
+            position: relative;
+        }
+
+        @keyframes psTitleGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Main Content Grid */
+        .ps-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        /* Journey Path Container */
+        .ps-journey-container {
+            position: relative;
+            opacity: 0;
+            animation: psSlideInLeft 1.2s ease 0.3s forwards;
+        }
+
+        @keyframes psSlideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Journey Container Layout */
+        .ps-journey-levels {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Level Cards */
+        .ps-level-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 188, 140, 0.3);
+            border-radius: 16px;
+            padding: 20px 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .ps-level-card:hover {
+            transform: translateX(10px);
+            background: rgba(212, 188, 140, 0.1);
+            box-shadow: 0 20px 40px rgba(212, 188, 140, 0.3);
+            border-color: #D4BC8C;
+        }
+
+        /* Level Icons */
+        .ps-level-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #D4BC8C 0%, #a89568 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ps-level-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .ps-level-card:hover .ps-level-icon::after {
+            transform: translateX(100%);
+        }
+
+        /* Level Text */
+        .ps-level-text h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #D4BC8C;
+            margin-bottom: 5px;
+        }
+
+        .ps-level-text p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Journey Container Layout */
+        .ps-journey-levels {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Remove absolute positioning for level cards */
+        .ps-level-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 188, 140, 0.3);
+            border-radius: 16px;
+            padding: 20px 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Remove unnecessary SVG path styling */
+        
+        /* Connecting lines between levels */
+        .ps-level-card::after {
+            content: '';
+            position: absolute;
+            left: 15px;
+            bottom: -20px;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(212, 188, 140, 0.3), transparent);
+        }
+
+        .ps-level-card:last-child::after {
+            display: none;
+        }
+
+        /* Weekly Sessions Card */
+        .ps-weekly-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 188, 140, 0.2);
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: psSlideInRight 1.2s ease 0.5s forwards;
+            text-align: center;
+        }
+
+        @keyframes psSlideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Weekly Sessions Icon */
+        .ps-weekly-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #D4BC8C 0%, #a89568 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Weekly Sessions Content */
+        .ps-weekly-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #D4BC8C;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .ps-weekly-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+
+        .ps-weekly-features {
+            list-style: none;
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .ps-weekly-feature {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .ps-weekly-feature::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 20px;
+            color: #D4BC8C;
+        }
+
+        /* Floating Elements */
+        .ps-float-element {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(212, 188, 140, 0.1);
+            font-weight: 900;
+            animation: psFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes psFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .ps-float-element:nth-child(1) {
+            top: 10%;
+            right: 5%;
+            animation-delay: 0s;
+        }
+
+        .ps-float-element:nth-child(2) {
+            bottom: 10%;
+            left: 5%;
+            animation-delay: 3s;
+        }
+
+        /* Particles */
+        .ps-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .ps-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #D4BC8C;
+            border-radius: 50%;
+            opacity: 0;
+            animation: psParticleFloat 20s linear infinite;
+        }
+
+        @keyframes psParticleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.6;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .ps-content-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .ps-journey-path {
+                height: 400px;
+            }
+
+            .ps-weekly-card {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ps-title h2 {
+                font-size: 32px;
+            }
+
+            .ps-weekly-title {
+                font-size: 24px;
+            }
+
+            .ps-weekly-card {
+                padding: 30px;
+            }
+
+            .ps-level-card {
+                margin-bottom: 20px;
+            }
+
+            .ps-journey-container {
+                width: 100%;
+            }
+
+            .ps-journey-levels {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Program Structure Section -->
+    <section class="ps-section">
+        <!-- Background Effects -->
+        <div class="ps-pattern"></div>
+        <div class="ps-grid"></div>
+        
+        <!-- Floating Elements -->
+        <div class="ps-float-element">学</div>
+        <div class="ps-float-element">習</div>
+        
+        <!-- Particles -->
+        <div class="ps-particles" id="psParticles"></div>
+        
+        <div class="ps-container">
+            <!-- Section Title -->
+            <div class="ps-title">
+                <h2>Program Structure</h2>
+            </div>
+            
+            <!-- Main Content Grid -->
+            <div class="ps-content-grid">
+                <!-- Journey Path -->
+                <div class="ps-journey-container">
+                    <div class="ps-journey-levels">
+                        <!-- Level Cards -->
+                        <div class="ps-level-card">
+                            <div class="ps-level-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#283618" stroke-width="2">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                                    <path d="M2 17L12 22L22 17"/>
+                                    <path d="M2 12L12 17L22 12"/>
+                                </svg>
+                            </div>
+                            <div class="ps-level-text">
+                                <h3>The Paradigm Shift</h3>
+                                <p>Transform your approach</p>
+                            </div>
+                        </div>
+                        
+                        <div class="ps-level-card">
+                            <div class="ps-level-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#283618" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="10" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0110 0v4"/>
+                                </svg>
+                            </div>
+                            <div class="ps-level-text">
+                                <h3>Foundation Course</h3>
+                                <p>Build strong basics</p>
+                            </div>
+                        </div>
+                        
+                        <div class="ps-level-card">
+                            <div class="ps-level-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#283618" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <div class="ps-level-text">
+                                <h3>N5 Level</h3>
+                                <p>Start your journey</p>
+                            </div>
+                        </div>
+                        
+                        <div class="ps-level-card">
+                            <div class="ps-level-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#283618" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <path d="M14 2v6h6"/>
+                                    <path d="M16 13H8"/>
+                                    <path d="M16 17H8"/>
+                                    <path d="M10 9H8"/>
+                                </svg>
+                            </div>
+                            <div class="ps-level-text">
+                                <h3>N4 Level</h3>
+                                <p>Coming November 2025</p>
+                            </div>
+                        </div>
+                        
+                        <div class="ps-level-card">
+                            <div class="ps-level-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#283618" stroke-width="2">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                            </div>
+                            <div class="ps-level-text">
+                                <h3>N3 Level</h3>
+                                <p>Coming 2026</p>
+                            </div>
+                        </div>
+                        
+                        <div class="ps-level-card">
+                            <div class="ps-level-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#283618" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <div class="ps-level-text">
+                                <h3>N2 Level</h3>
+                                <p>Coming 2026</p>
+                            </div>
+                        </div>
+                        
+                        <div class="ps-level-card">
+                            <div class="ps-level-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#283618" stroke-width="2">
+                                    <circle cx="12" cy="8" r="7"/>
+                                    <path d="M8.21 13.89L7 23 12 20 17 23 15.79 13.88"/>
+                                </svg>
+                            </div>
+                            <div class="ps-level-text">
+                                <h3>N1 Level</h3>
+                                <p>Coming 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Weekly Sessions Card -->
+                <div class="ps-weekly-card">
+                    <div class="ps-weekly-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#283618" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 010 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 class="ps-weekly-title">Weekly Online Group<br>Speaking Sessions</h3>
+                    <p class="ps-weekly-subtitle">Practice & Connect Every Week</p>
+                    <ul class="ps-weekly-features">
+                        <li class="ps-weekly-feature">Live interactive sessions with native speakers</li>
+                        <li class="ps-weekly-feature">Small group conversations for personalized attention</li>
+                        <li class="ps-weekly-feature">Real-world scenarios and practical applications</li>
+                        <li class="ps-weekly-feature">Build confidence in a supportive environment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create particles
+        const psParticles = document.getElementById('psParticles');
+        const psParticleCount = 15;
+
+        for (let i = 0; i < psParticleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'ps-particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 20}s`;
+            particle.style.animationDuration = `${20 + Math.random() * 10}s`;
+            psParticles.appendChild(particle);
+        }
+
+        // Interactive level cards
+        const levelCards = document.querySelectorAll('.ps-level-card');
+        levelCards.forEach((card, index) => {
+            card.addEventListener('mouseenter', () => {
+                card.style.zIndex = '20';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.zIndex = '10';
+            });
+        });
+
+        // Weekly card 3D effect
+        const weeklyCard = document.querySelector('.ps-weekly-card');
+        if (weeklyCard) {
+            weeklyCard.addEventListener('mousemove', (e) => {
+                const rect = weeklyCard.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 30;
+                const rotateY = (centerX - x) / 30;
+                
+                weeklyCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            weeklyCard.addEventListener('mouseleave', () => {
+                weeklyCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        }
+
+        // Parallax effect for floating elements
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            const floatElements = document.querySelectorAll('.ps-float-element');
+            floatElements.forEach((element, index) => {
+                const speed = (index + 1) * 20;
+                element.style.transform = `translateY(${y * speed}px) translateX(${x * speed}px) rotate(${x * 15}deg)`;
+            });
+        });
+
+        // Intersection Observer for animations
+        const psObserverOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const psObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('ps-visible');
+                }
+            });
+        }, psObserverOptions);
+
+        // Observe weekly features
+        document.querySelectorAll('.ps-weekly-feature').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            item.style.transition = `all 0.6s ease ${index * 0.1 + 0.5}s`;
+            
+            psObserver.observe(item);
+            
+            // Add visible class handler
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.target.classList.contains('ps-visible')) {
+                        mutation.target.style.opacity = '1';
+                        mutation.target.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+            
+            observer.observe(item, { attributes: true, attributeFilter: ['class'] });
+        });
+    </script>
+</body>
+</html>
