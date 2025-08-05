@@ -226,9 +226,49 @@
             gap: 15px;
         }
 
+        /* Custom Book Illustration for Lesson Icon */
         .tj-lesson-title::before {
-            content: '📚';
-            font-size: 36px;
+            content: '';
+            width: 40px;
+            height: 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tj-lesson-title::before {
+            background: 
+                /* Book spine */
+                linear-gradient(90deg, #D4BC8C 0%, #c9a870 8%, #D4BC8C 12%, transparent 12%),
+                /* Book pages */
+                linear-gradient(180deg, 
+                    transparent 15%, 
+                    #f5f5f5 15%, #f5f5f5 18%, 
+                    #e8e8e8 18%, #e8e8e8 21%,
+                    #f5f5f5 21%, #f5f5f5 24%,
+                    #e8e8e8 24%, #e8e8e8 27%,
+                    #f5f5f5 27%, #f5f5f5 30%,
+                    #e8e8e8 30%, #e8e8e8 85%,
+                    transparent 85%
+                ),
+                /* Book cover */
+                linear-gradient(135deg, #4C633A 0%, #5a7444 100%);
+            background-size: 100% 100%, 88% 100%, 100% 100%;
+            background-position: 0 0, right center, 0 0;
+            background-repeat: no-repeat;
+            border-radius: 2px 8px 8px 2px;
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.3),
+                inset -2px 0 4px rgba(0, 0, 0, 0.2);
+            transform: perspective(60px) rotateY(-5deg);
+            animation: bookFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes bookFloat {
+            0%, 100% { transform: perspective(60px) rotateY(-5deg) translateY(0); }
+            50% { transform: perspective(60px) rotateY(-5deg) translateY(-3px); }
         }
 
         .tj-lesson-features {
@@ -272,6 +312,17 @@
             animation: slideInRight 1.2s ease 0.7s forwards;
         }
 
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         @keyframes slideInRight {
             from {
                 opacity: 0;
@@ -293,9 +344,63 @@
             gap: 15px;
         }
 
+        /* Custom Gift Box Illustration for Benefits Icon */
         .tj-benefits-title::before {
-            content: '🎯';
-            font-size: 36px;
+            content: '';
+            width: 40px;
+            height: 40px;
+            position: relative;
+            display: block;
+            flex-shrink: 0;
+            background: 
+                /* Ribbon vertical */
+                linear-gradient(90deg, 
+                    transparent 45%, 
+                    #D4BC8C 45%, #D4BC8C 55%, 
+                    transparent 55%
+                ),
+                /* Ribbon horizontal */
+                linear-gradient(180deg, 
+                    transparent 20%, 
+                    #D4BC8C 20%, #D4BC8C 30%, 
+                    transparent 30%
+                ),
+                /* Box top highlight */
+                linear-gradient(135deg, 
+                    rgba(255, 255, 255, 0.2) 0%, 
+                    transparent 40%
+                ),
+                /* Main box */
+                linear-gradient(135deg, #4C633A 0%, #5a7444 100%);
+            border-radius: 4px;
+            box-shadow: 
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: rotate(-5deg);
+            animation: giftBounce 3s ease-in-out infinite;
+        }
+
+        /* Ribbon bow on top */
+        .tj-benefits-title::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: 12px;
+            top: -2px;
+            background: radial-gradient(circle, #D4BC8C 30%, #c9a870 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 0 2px #c9a870,
+                -8px -2px 0 -4px #D4BC8C,
+                8px -2px 0 -4px #D4BC8C;
+            transform: rotate(-5deg);
+        }
+
+        @keyframes giftBounce {
+            0%, 100% { transform: rotate(-5deg) translateY(0); }
+            25% { transform: rotate(-3deg) translateY(-2px); }
+            75% { transform: rotate(-7deg) translateY(1px); }
         }
 
         .tj-benefits-list {
