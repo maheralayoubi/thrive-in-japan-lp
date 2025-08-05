@@ -25,7 +25,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #283618 0%, #4C633A 50%, #483C32 100%);
         }
 
         /* Animated Background */
@@ -51,7 +51,7 @@
         .tj-kanji {
             position: absolute;
             font-size: 80px;
-            color: rgba(177, 45, 61, 0.1);
+            color: rgba(212, 188, 140, 0.1);
             font-weight: bold;
             user-select: none;
             transition: transform 0.3s ease;
@@ -91,7 +91,7 @@
         /* Intro Text */
         .tj-hero-intro {
             font-size: 18px;
-            color: #b12d3d;
+            color: #D4BC8C;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -115,7 +115,7 @@
 
         .tj-hero-headline em {
             font-style: normal;
-            color: #b12d3d;
+            color: #A6531C;
             position: relative;
             display: inline-block;
         }
@@ -127,7 +127,7 @@
             left: 0;
             width: 0;
             height: 3px;
-            background: #b12d3d;
+            background: #A6531C;
             animation: underlineExpand 1s ease 1.5s forwards;
         }
 
@@ -151,7 +151,7 @@
         .tj-hero-cta {
             display: inline-block;
             padding: 18px 40px;
-            background: #b12d3d;
+            background: #A6531C;
             color: #fff;
             text-decoration: none;
             font-size: 16px;
@@ -180,7 +180,7 @@
 
         .tj-hero-cta:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(177, 45, 61, 0.3);
+            box-shadow: 0 10px 30px rgba(166, 83, 28, 0.3);
         }
 
         .tj-hero-cta:hover::before {
@@ -232,7 +232,7 @@
             position: absolute;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(177, 45, 61, 0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212, 188, 140, 0.3) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(60px);
             animation: glowMove 10s ease-in-out infinite;
@@ -335,7 +335,7 @@
             kanjiEl.style.animation = `${animationName} ${duration}s ease-in-out ${delay}s infinite`;
             
             // Random opacity between 0.05 and 0.15
-            kanjiEl.style.color = `rgba(177, 45, 61, ${0.05 + Math.random() * 0.1})`;
+            kanjiEl.style.color = `rgba(212, 188, 140, ${0.05 + Math.random() * 0.1})`;
             
             // Random font size between 60 and 100px
             kanjiEl.style.fontSize = `${60 + Math.random() * 40}px`;
