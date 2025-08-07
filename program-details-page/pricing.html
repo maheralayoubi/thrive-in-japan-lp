@@ -240,6 +240,56 @@
             margin-right: 8px;
         }
 
+        /* Register Button */
+        .tj-register-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #D4BC8C 0%, #A6531C 100%);
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(212, 188, 140, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tj-register-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 188, 140, 0.4);
+        }
+
+        .tj-register-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tj-register-button:hover::before {
+            left: 100%;
+        }
+
+        .tj-register-button::after {
+            content: '→';
+            margin-left: 10px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .tj-register-button:hover::after {
+            transform: translateX(5px);
+        }
+
         /* Join Community Section */
         .tj-community-container {
             text-align: center;
@@ -353,11 +403,21 @@
                 width: 50px;
                 height: 50px;
             }
+
+            .tj-register-button {
+                padding: 16px 40px;
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 480px) {
             .tj-community-label {
                 font-size: 14px;
+            }
+
+            .tj-register-button {
+                padding: 14px 35px;
+                font-size: 16px;
             }
         }
     </style>
@@ -407,6 +467,7 @@
                 <p class="tj-pricing-subtitle">
                     Register early to secure your discount<strong> only 100 seats available at this special launch price!</strong>
                 </p>
+                <a href="https://thriveinjapan.com/register/" class="tj-register-button">Register Now</a>
             </div>
             
             <!-- Join Community Section -->
