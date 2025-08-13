@@ -3,283 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thrive in Japan - Navigation</title>
+    <title>Thrive in Japan - Responsive Navigation</title>
     <style>
-        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Navigation specific classes */
-        .tj-nav {
+        body {
+            font-family: Arial, sans-serif;
+            padding-top: 80px;
+        }
+
+        /* Navigation Header Styles */
+        .tij-nav-header {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            background: #fff;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            transition: all 0.3s ease;
-            padding: 20px 0;
-            height: 120px;
+            height: 80px;
         }
 
-        .tj-nav.scrolled {
-            padding: 12px 0;
-            box-shadow: 0 2px 20px rgba(177, 45, 61, 0.1);
-        }
-
-        .tj-nav-container {
+        .tij-nav-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            height: 100%;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 30px;
+            align-items: center;
         }
 
-        .tj-nav-left {
+        .tij-logo-wrapper {
+            height: 50px;
+            max-width: 100px;
             display: flex;
             align-items: center;
-            gap: 20px;
-            flex: 1;
-        }
-        
-        .tj-nav-left img{
-            max-width: 120px;
         }
 
-        .tj-logo {
-            height: 50px;
-            transition: height 0.3s ease;
+        .tij-logo {
+            height: 100%;
+            width: auto;
+            max-width: 100px;
+            object-fit: contain;
         }
 
-        .tj-nav.scrolled .tj-logo {
-            height: 40px;
-        }
-
-        .tj-tagline {
-            color: #333;
-            font-size: 14px;
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        .tj-nav-links {
+        .tij-nav-links {
             display: flex;
-            gap: 35px;
+            gap: 25px;
             align-items: center;
             list-style: none;
         }
 
-        .tj-nav-link {
-            color: #333;
+        .tij-nav-link {
             text-decoration: none;
-            font-size: 15px;
+            color: #333;
             font-weight: 500;
-            position: relative;
+            font-size: 15px;
             transition: color 0.3s ease;
             white-space: nowrap;
         }
 
-        .tj-nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #b12d3d;
-            transition: width 0.3s ease;
+        .tij-nav-link:hover {
+            color: #D4BC8C;
         }
 
-        .tj-nav-link:hover {
-            color: #b12d3d;
+        .tij-nav-link.tij-cta {
+            background-color: #D4BC8C;
+            color: #283618;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
 
-        .tj-nav-link:hover::after {
-            width: 100%;
+        .tij-nav-link.tij-cta:hover {
+            background-color: #4C633A;
+            color: white;
         }
 
-        /* Mobile menu button */
-        .tj-mobile-toggle {
+        /* Mobile Menu Toggle */
+        .tij-mobile-toggle {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
             padding: 5px;
+            width: 40px;
+            height: 40px;
+            position: relative;
         }
 
-        .tj-mobile-toggle span {
-            display: block;
+        .tij-hamburger {
             width: 25px;
-            height: 3px;
-            background: #333;
-            margin: 5px 0;
-            transition: all 0.3s ease;
+            height: 2px;
+            background-color: #333;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.3s ease;
         }
 
-        .tj-mobile-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .tj-mobile-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .tj-mobile-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        /* Mobile menu */
-        .tj-mobile-menu {
-            display: none;
-            position: fixed;
-            top: 100px;
+        .tij-hamburger::before,
+        .tij-hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
             left: 0;
-            right: 0;
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, top 0.3s ease;
         }
 
-        .tj-mobile-menu.active {
-            transform: translateY(0);
+        .tij-hamburger::before {
+            top: -8px;
         }
 
-        .tj-nav.scrolled + .tj-mobile-menu {
-            top: 74px;
+        .tij-hamburger::after {
+            top: 8px;
         }
 
-        .tj-mobile-menu .tj-nav-links {
-            flex-direction: column;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .tj-tagline {
-                display: none;
+        /* Responsive Styles */
+        
+        /* Large Tablets and Small Desktops */
+        @media (max-width: 1024px) {
+            .tij-nav-container {
+                padding: 0 15px;
+            }
+            
+            .tij-nav-links {
+                gap: 20px;
+            }
+            
+            .tij-nav-link {
+                font-size: 14px;
+            }
+            
+            .tij-nav-link.tij-cta {
+                padding: 8px 14px;
             }
         }
 
+        /* Tablets */
         @media (max-width: 768px) {
-            .tj-nav {
-                padding: 15px 0;
+            .tij-nav-header {
+                height: 70px;
             }
 
-            .tj-nav.scrolled {
-                padding: 10px 0;
+            body {
+                padding-top: 70px;
             }
 
-            .tj-logo {
+            .tij-logo-wrapper {
+                height: 45px;
+                max-width: 90px;
+            }
+
+            .tij-mobile-toggle {
+                display: block;
+            }
+
+            .tij-nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 100%;
+                max-width: 300px;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                padding: 30px 20px;
+                gap: 15px;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                overflow-y: auto;
+                align-items: stretch;
+            }
+
+            .tij-nav-links.tij-active {
+                right: 0;
+            }
+
+            .tij-nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 12px 0;
+                font-size: 16px;
+            }
+
+            .tij-nav-link.tij-cta {
+                padding: 12px 20px;
+            }
+
+            /* Mobile menu open state */
+            .tij-mobile-toggle.tij-active .tij-hamburger {
+                background-color: transparent;
+            }
+
+            .tij-mobile-toggle.tij-active .tij-hamburger::before {
+                transform: rotate(45deg);
+                top: 0;
+            }
+
+            .tij-mobile-toggle.tij-active .tij-hamburger::after {
+                transform: rotate(-45deg);
+                top: 0;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .tij-nav-header {
+                height: 60px;
+            }
+
+            body {
+                padding-top: 60px;
+            }
+
+            .tij-nav-container {
+                padding: 0 10px;
+            }
+
+            .tij-logo-wrapper {
                 height: 40px;
+                max-width: 80px;
             }
 
-            .tj-nav.scrolled .tj-logo {
+            .tij-nav-links {
+                top: 60px;
+                height: calc(100vh - 60px);
+                max-width: 280px;
+                padding: 20px 15px;
+            }
+
+            .tij-mobile-toggle {
+                width: 35px;
                 height: 35px;
             }
 
-            .tj-nav-links {
-                display: none;
+            .tij-hamburger {
+                width: 22px;
+            }
+        }
+
+        /* Very Small Mobile */
+        @media (max-width: 360px) {
+            .tij-logo-wrapper {
+                height: 35px;
+                max-width: 70px;
             }
 
-            .tj-mobile-toggle {
-                display: block;
+            .tij-nav-links {
+                max-width: 100%;
             }
 
-            .tj-mobile-menu {
-                display: block;
+            .tij-nav-link {
+                font-size: 15px;
+                padding: 10px 0;
             }
+        }
 
-            .tj-mobile-menu .tj-nav-links {
-                display: flex;
-            }
+        /* Demo Sections for Testing */
+        .demo-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .demo-section:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        .demo-section h2 {
+            margin-bottom: 10px;
+        }
+
+        .demo-section p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Device indicator for testing */
+        .device-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 9999;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="tj-nav" id="tjNav">
-        <div class="tj-nav-container">
-            <div class="tj-nav-left">
-                <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/04/1-1.png?w=500&ssl=1" 
-                     alt="Thrive in Japan" 
-                     class="tj-logo">
-                <span class="tj-tagline">Learn Japanese. Truly belong. Live Your Purpose.</span>
-            </div>
+    <!-- Navigation Header -->
+    <header class="tij-nav-header">
+        <div class="tij-nav-container">
+            <a href="#" class="tij-logo-wrapper">
+                <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/04/1-1.png?w=500&ssl=1" alt="Thrive in Japan Logo" class="tij-logo">
+            </a>
             
-            <ul class="tj-nav-links">
-                <li><a href="#welcome" class="tj-nav-link">Welcome to Thrive in Japan</a></li>
-                <li><a href="#program" class="tj-nav-link">Program Details & Sign Up</a></li>
-                <li><a href="#contact" class="tj-nav-link">FAQ/Contact Us</a></li>
-            </ul>
-
-            <button class="tj-mobile-toggle" id="mobileToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <nav>
+                <button class="tij-mobile-toggle" id="tijMobileToggle" aria-label="Toggle mobile menu">
+                    <span class="tij-hamburger"></span>
+                </button>
+                
+                <ul class="tij-nav-links" id="tijNavLinks">
+                    <li><a href="https://thriveinjapan.com/#learn-japanese" class="tij-nav-link">Learn Japanese</a></li>
+                    <li><a href="https://thriveinjapan.com/#testimonials" class="tij-nav-link">Testimonials</a></li>
+                    <li><a href="https://thriveinjapan.com/#reality-check" class="tij-nav-link">Reality Check</a></li>
+                    <li><a href="https://thriveinjapan.com/#roadmap" class="tij-nav-link">Roadmap</a></li>
+                    <li><a href="https://thriveinjapan.com/#solutions" class="tij-nav-link">Our Solutions</a></li>
+                    <li><a href="https://thriveinjapan.com/#team" class="tij-nav-link">Team</a></li>
+                    <li><a href="https://thriveinjapan.com/program-details/" class="tij-nav-link">Program Details</a></li>
+                    <li><a href="https://thriveinjapan.com/blogs/" class="tij-nav-link">Blog</a></li>
+                    <li><a href="https://thriveinjapan.com/contact/" class="tij-nav-link tij-cta">Contact Us</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Mobile Menu -->
-    <div class="tj-mobile-menu" id="mobileMenu">
-        <ul class="tj-nav-links">
-            <li><a href="#welcome" class="tj-nav-link">Welcome to Thrive in Japan</a></li>
-            <li><a href="#program" class="tj-nav-link">Program Details & Sign Up</a></li>
-            <li><a href="#contact" class="tj-nav-link">FAQ/Contact Us</a></li>
-        </ul>
-    </div>
+
+
+    <!-- Device Indicator -->
+    <div class="device-indicator" id="deviceIndicator"></div>
 
     <script>
-        // Scroll effects
-        let lastScroll = 0;
-        const nav = document.getElementById('tjNav');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileToggle = document.getElementById('mobileToggle');
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-
-            lastScroll = currentScroll;
-        });
-
         // Mobile menu toggle
-        mobileToggle.addEventListener('click', () => {
-            mobileToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
+        const mobileToggle = document.getElementById('tijMobileToggle');
+        const navLinks = document.getElementById('tijNavLinks');
+        
+        mobileToggle.addEventListener('click', function() {
+            this.classList.toggle('tij-active');
+            navLinks.classList.toggle('tij-active');
         });
 
-        // Close mobile menu when clicking a link
-        const mobileLinks = mobileMenu.querySelectorAll('.tj-nav-link');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = window.innerWidth <= 480 ? 60 : (window.innerWidth <= 768 ? 70 : 80);
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileToggle.classList.remove('tij-active');
+                    navLinks.classList.remove('tij-active');
+                }
             });
         });
 
         // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!nav.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.tij-nav-header')) {
+                mobileToggle.classList.remove('tij-active');
+                navLinks.classList.remove('tij-active');
             }
         });
+
+        // Device indicator for testing
+        function updateDeviceIndicator() {
+            const width = window.innerWidth;
+            const deviceIndicator = document.getElementById('deviceIndicator');
+            let device = '';
+            
+            if (width <= 360) {
+                device = 'Very Small Mobile';
+            } else if (width <= 480) {
+                device = 'Small Mobile';
+            } else if (width <= 768) {
+                device = 'Tablet';
+            } else if (width <= 1024) {
+                device = 'Small Desktop';
+            } else {
+                device = 'Desktop';
+            }
+            
+            deviceIndicator.textContent = `${device} (${width}px)`;
+        }
+
+        // Update on load and resize
+        updateDeviceIndicator();
+        window.addEventListener('resize', updateDeviceIndicator);
     </script>
 </body>
 </html>
