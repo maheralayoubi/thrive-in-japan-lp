@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BonZuttner Blog Content</title>
+    <style>
+        /* Reset and Base Styles for Blog Content */
+        .bzn-blog-content * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .bzn-blog-content {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Typography */
+        .bzn-blog-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0E2342;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #00A1E9;
+        }
+
+        .bzn-blog-content h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0E2342;
+            margin-bottom: 1.5rem;
+            margin-top: 3rem;
+            line-height: 1.4;
+        }
+
+        .bzn-blog-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0E2342;
+            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            line-height: 1.4;
+        }
+
+        .bzn-blog-content h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0E2342;
+            margin-bottom: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .bzn-blog-content p {
+            margin-bottom: 1.5rem;
+            color: #4a4a4a;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Article Meta Information */
+        .bzn-article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+
+        .bzn-article-tags {
+            margin-bottom: 2rem;
+        }
+
+        .bzn-article-tag {
+            background-color: #00A1E9;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Lists */
+        .bzn-blog-content ul, 
+        .bzn-blog-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bzn-blog-content li {
+            margin-bottom: 0.8rem;
+            color: #4a4a4a;
+            line-height: 1.8;
+        }
+
+        .bzn-blog-content li strong {
+            color: #0E2342;
+        }
+
+        /* Blockquote */
+        .bzn-quote {
+            border-left: 4px solid #00A1E9;
+            margin: 2.5rem 0;
+            padding: 1.5rem 2rem;
+            background-color: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+
+        .bzn-quote p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .bzn-quote small {
+            color: #666;
+            font-style: normal;
+            display: block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Highlight Text */
+        .bzn-highlight {
+            background-color: rgba(0, 161, 233, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Section Divider */
+        .bzn-section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #00A1E9, transparent);
+            margin: 3rem 0;
+            border: none;
+        }
+
+        /* Blog Grid */
+        .bzn-blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        /* Blog Card */
+        .bzn-blog-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .bzn-blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #00A1E9;
+        }
+
+        .bzn-card-header {
+            background: linear-gradient(135deg, #00A1E9 0%, #0E2342 100%);
+            padding: 1rem;
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .bzn-card-content {
+            padding: 1.5rem;
+        }
+
+        .bzn-card-title {
+            font-size: 1.25rem;
+            color: #0E2342;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .bzn-card-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .bzn-card-date {
+            color: #999;
+            font-size: 0.875rem;
+        }
+
+        /* CTA Section */
+        .bzn-cta-section {
+            background: linear-gradient(135deg, #0E2342 0%, #00A1E9 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 4rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .bzn-cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+            margin-top: 0;
+            font-size: 2.2rem;
+        }
+
+        .bzn-cta-section p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .bzn-cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #0E2342;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-size: 1.05rem;
+        }
+
+        .bzn-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background-color: #f8f9fa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .bzn-blog-content {
+                padding: 1.5rem;
+            }
+
+            .bzn-blog-content h1 {
+                font-size: 2rem;
+            }
+
+            .bzn-blog-content h2 {
+                font-size: 1.75rem;
+            }
+
+            .bzn-blog-content h3 {
+                font-size: 1.35rem;
+            }
+
+            .bzn-blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .bzn-cta-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .bzn-cta-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .bzn-cta-button {
+                padding: 0.875rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Animation on scroll */
+        .bzn-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .bzn-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bzn-blog-content">
+        <!-- Article Header -->
+        <article>
+            <div class="bzn-article-meta">
+                <span>2025年8月18日</span>
+                <span>・</span>
+                <span>読了時間: 10分</span>
+            </div>
+            
+            <h1>「社会問題」から「社会資産」へ - BonZuttnerが描く新しい難民支援の形</h1>
+            
+            <div class="bzn-article-tags">
+                <span class="bzn-article-tag">難民支援</span>
+                <span class="bzn-article-tag">ソーシャルビジネス</span>
+                <span class="bzn-article-tag">ITオフショア開発</span>
+            </div>
+
+            <h3>はじめに</h3>
+            <p>2015年、トルコの海岸に打ち上げられたシリア難民の少年の写真が世界中に衝撃を与えました。この悲劇的な出来事は、多くの人々に難民問題の深刻さを認識させることとなりました。しかし、私たちBonZuttnerは、この「問題」を単なる慈善事業の対象として見るのではなく、<span class="bzn-highlight">「社会資産」として捉え直す</span>ことで、持続可能な解決策を生み出せると考えています。</p>
+
+            <h3>難民の現実：数字が示す深刻さ</h3>
+            <p>現在、世界には8,240万人もの難民・国内避難民が存在しています。特にシリアは、2011年から続く内戦により、国内避難民590万人、国外難民660万人という、世界最大の難民発生国となっています。これらの人々の多くは、最低限の衣食住さえままならない状況で、長期的な避難生活を強いられています。</p>
+
+            <h3>「支援」から「協働」へのパラダイムシフト</h3>
+            <p>BonZuttnerの創業者である坂下裕基は、NPO活動を通じて多くの難民と出会う中で、重要な気づきを得ました。</p>
+
+            <blockquote class="bzn-quote">
+                <p>「最初は難民を『支援』しようと思っていました。しかし、実際に会ってみると、『支援』という言葉が失礼に感じるほど、優秀で経験豊富な人材が多くいることに驚きました」</p>
+                <small>- 坂下裕基（BonZuttner創業者）</small>
+            </blockquote>
+
+            <p>この発見が、BonZuttnerのビジネスモデルの核心となりました。難民を「助けるべき弱者」として見るのではなく、「共に価値を創造するパートナー」として捉える。これが私たちのアプローチです。</p>
+
+            <h3>シリアオフショア開発：Win-Winのビジネスモデル</h3>
+            <p>BonZuttnerは、シリアおよび周辺国に住むシリア人ITエンジニアに特化したオフショア開発サービスを提供しています。このモデルには以下のような特徴があります：</p>
+
+            <ol>
+                <li><strong>高度な技術力の活用</strong>：シリアには優秀なITエンジニアが多く存在し、その技術力は世界水準に達しています</li>
+                <li><strong>コスト効率性</strong>：オフショア開発のメリットを活かし、高品質なサービスをリーズナブルな価格で提供</li>
+                <li><strong>スムーズなコミュニケーション</strong>：マネジメント拠点を日本に置くことで、クライアントとのコミュニケーションは国内で完結</li>
+                <li><strong>社会的インパクト</strong>：ビジネスを通じて難民に安定した収入源を提供し、彼らの自立を支援</li>
+            </ol>
+
+            <h3>成功事例：イスカンダル・サラマ氏のストーリー</h3>
+            <p>BonZuttnerのCTO（最高技術責任者）を務めるイスカンダル・サラマ氏は、シリアのダマスカス大学でコンピューターサイエンスを学び、Webエンジニアとして活躍していました。内戦により国を離れざるを得なくなった後、日本政府のJISRプログラムを通じて来日し、現在はBonZuttnerで中心的な役割を果たしています。</p>
+
+            <p>彼のような高度人材が、難民というレッテルのために能力を発揮できない状況は、社会全体にとって大きな損失です。BonZuttnerは、こうした人材と日本企業をつなぐ架け橋となることで、双方にメリットをもたらしています。</p>
+
+            <h3>未来への展望：難民問題解決の新モデル</h3>
+            <p>BonZuttnerのアプローチは、従来の難民支援とは一線を画しています。一時的な援助ではなく、持続可能なビジネスモデルを通じて、難民が自らの力で生活を再建できる仕組みを作っています。</p>
+
+            <p>今後は、シリアだけでなく、ウクライナやアフリカなど、他の地域の難民にもこのモデルを展開していく予定です。また、女性難民向けのリモートワーク機会の創出など、より包括的な支援体制の構築を目指しています。</p>
+
+            <h3>おわりに</h3>
+            <p>「難民問題」を「社会資産」に変換する。これは単なるスローガンではなく、実現可能なビジョンです。BonZuttnerは、ビジネスの力を通じて、難民に対する偏見を打ち破り、彼らが持つ可能性を最大限に引き出すことで、より良い社会の実現に貢献していきます。</p>
+        </article>
+
+        <hr class="bzn-section-divider">
+
+        <!-- Related Articles Section -->
+        <section class="bzn-fade-in">
+            <h2>最新記事</h2>
+            <div class="bzn-blog-grid">
+                <div class="bzn-blog-card">
+                    <div class="bzn-card-header">ビジネスモデル</div>
+                    <div class="bzn-card-content">
+                        <h3 class="bzn-card-title">日本のIT人材不足とシリア難民エンジニア</h3>
+                        <p class="bzn-card-excerpt">2030年には最大79万人のIT人材が不足すると予測される日本。一方で、高度なスキルを持ちながら能力を発揮できない難民エンジニアたち。この二つの課題を同時に解決する革新的アプローチとは...</p>
+                        <p class="bzn-card-date">2025年8月15日</p>
+                    </div>
+                </div>
+
+                <div class="bzn-blog-card">
+                    <div class="bzn-card-header">社会的インパクト</div>
+                    <div class="bzn-card-content">
+                        <h3 class="bzn-card-title">女性難民エンパワーメント - リモートワークが拓く新たな可能性</h3>
+                        <p class="bzn-card-excerpt">育児や家事の責任を担いながら経済的困窮に直面する女性難民たち。BonZuttnerとBaobabの協働により、自宅から柔軟に働ける機会を創出。テクノロジーが可能にする新しい支援の形...</p>
+                        <p class="bzn-card-date">2025年8月10日</p>
+                    </div>
+                </div>
+
+                <div class="bzn-blog-card">
+                    <div class="bzn-card-header">パートナーシップ</div>
+                    <div class="bzn-card-content">
+                        <h3 class="bzn-card-title">パートナーシップで拓く未来 - ステークホルダー協働モデル</h3>
+                        <p class="bzn-card-excerpt">政府機関、NPO、企業、教育機関。多様なステークホルダーとの協働により、社会課題解決の新しいエコシステムを構築。収益の45%以上を社会還元する独自のモデルとは...</p>
+                        <p class="bzn-card-date">2025年8月5日</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <div class="bzn-cta-section bzn-fade-in">
+            <h2>一緒に社会を変えていきませんか？</h2>
+            <p>BonZuttnerは、ビジネスの力で難民問題を解決するという<br>明確なミッションのもと、情熱を持った仲間を募集しています。</p>
+            <a href="#" class="bzn-cta-button">採用情報を見る</a>
+        </div>
+    </div>
+
+    <script>
+        // Simple fade-in animation on scroll
+        const observeElements = () => {
+            const elements = document.querySelectorAll('.bzn-fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        };
+
+        // Run when DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', observeElements);
+        } else {
+            observeElements();
+        }
+    </script>
+</body>
+</html>
