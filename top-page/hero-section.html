@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Actually Learn Japanese - Thrive in Japan</title>
+    <title>Thrive in Japan - Learn Japanese. Truly belong. Live Your Purpose.</title>
     <style>
         /* Reset and base styles */
         * {
@@ -14,591 +14,277 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            color: #fff;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* Main Section */
-        .tj-learn-section {
+        /* Hero Section */
+        .tj-hero {
             position: relative;
             min-height: 100vh;
-            background: linear-gradient(180deg, #283618 0%, #483C32 50%, #283618 100%);
-        }
-
-        /* Animated Background Grid */
-        .tj-bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(212,188,140,.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(212,188,140,.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
-            z-index: 1;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        /* Container */
-        .tj-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Hero Section with Split Layout */
-        .tj-hero-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin-bottom: 100px;
-            min-height: 70vh;
-        }
-
-        /* Left Content */
-        .tj-hero-content {
-            opacity: 0;
-            animation: fadeInLeft 1s ease forwards;
-        }
-
-        @keyframes fadeInLeft {
-            from { 
-                opacity: 0; 
-                transform: translateX(-50px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateX(0);
-            }
-        }
-
-        .tj-section-label {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(212, 188, 140, 0.1);
-            border: 1px solid rgba(212, 188, 140, 0.3);
-            border-radius: 30px;
-            color: #D4BC8C;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            animation: labelGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes labelGlow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 188, 140, 0); }
-            50% { box-shadow: 0 0 20px 5px rgba(212, 188, 140, 0.3); }
-        }
-
-        .tj-hero-title {
-            font-size: clamp(36px, 5vw, 56px);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #D4BC8C 0%, #4C633A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: titleShimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes titleShimmer {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.2); }
-        }
-
-        .tj-hero-text {
-            font-size: 18px;
-            color: rgba(212, 188, 140, 0.9);
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .tj-hero-text em {
-            color: #A6531C;
-            font-style: italic;
-            font-weight: 600;
-            position: relative;
-        }
-
-        .tj-hero-text strong {
-            color: #D4BC8C;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-            animation: strongPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes strongPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Right Image Area */
-        .tj-hero-image {
-            position: relative;
-            height: 600px;
-            opacity: 0;
-            animation: fadeInRight 1s ease 0.3s forwards;
-        }
-
-        @keyframes fadeInRight {
-            from { 
-                opacity: 0; 
-                transform: translateX(50px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateX(0);
-            }
-        }
-
-        .tj-vertical-image {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 400px;
-            height: 600px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .tj-vertical-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-            transform: scale(1.1);
-        }
-
-        .tj-vertical-image:hover img {
-            transform: scale(1.3);
-        }
-
-        /* Floating Kanji Overlay */
-        .tj-kanji-overlay {
-            position: absolute;
-            top: 20%;
-            left: -50px;
-            font-size: 200px;
-            color: rgba(76, 99, 58, 0.1);
-            font-weight: bold;
-            animation: kanjiFloat 10s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        @keyframes kanjiFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-20px) rotate(5deg); }
-            50% { transform: translateY(10px) rotate(-3deg); }
-            75% { transform: translateY(-10px) rotate(2deg); }
-        }
-
-        /* Goals Section */
-        .tj-goals-section {
-            margin-bottom: 100px;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-            animation-timeline: view();
-            animation-range: entry 20% cover 40%;
-        }
-
-        .tj-goals-title {
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            color: #D4BC8C;
-        }
-
-        .tj-goals-title::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #A6531C, transparent);
-            animation: lineExpand 2s ease-in-out infinite;
-        }
-
-        @keyframes lineExpand {
-            0%, 100% { width: 100px; }
-            50% { width: 200px; }
-        }
-
-        /* Context Reveal Section */
-        .tj-context-reveal {
-            position: relative;
-            padding: 80px 0;
-            background: rgba(212, 188, 140, 0.02);
-            border-radius: 30px;
-            margin-bottom: 100px;
-            overflow: hidden;
-        }
-
-        .tj-context-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 0 40px;
-        }
-
-        .tj-percentage {
-            font-size: 120px;
-            font-weight: 900;
-            background: linear-gradient(45deg, #D4BC8C, #A6531C);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: percentReveal 1.5s ease forwards;
-            animation-timeline: view();
-            animation-range: entry 20% cover 40%;
-        }
-
-        @keyframes percentReveal {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.5) rotate(-10deg);
-                filter: blur(10px);
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) rotate(0deg);
-                filter: blur(0);
-            }
-        }
-
-        .tj-context-text {
-            font-size: 24px;
-            color: rgba(212, 188, 140, 0.9);
-            margin-bottom: 40px;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-            animation-timeline: view();
-            animation-range: entry 20% cover 40%;
-        }
-
-        /* Hidden Messages Effect */
-        .tj-hidden-messages {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-
-        .tj-hidden-msg {
-            position: absolute;
-            font-size: 14px;
-            color: rgba(166, 83, 28, 0.3);
-            font-style: italic;
-            opacity: 0;
-            animation: msgAppear 5s ease-in-out infinite;
-        }
-
-        .tj-hidden-msg:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .tj-hidden-msg:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
-        .tj-hidden-msg:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 2s; }
-        .tj-hidden-msg:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 3s; }
-
-        @keyframes msgAppear {
-            0%, 100% { opacity: 0; transform: translateY(10px); }
-            50% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Image Gallery Section */
-        .tj-gallery-section {
-            margin-bottom: 100px;
-        }
-
-        .tj-gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .tj-gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            height: 400px;
-            opacity: 0;
-            animation: galleryReveal 0.8s ease forwards;
-            animation-timeline: view();
-            animation-range: entry 20% cover 40%;
-        }
-
-        .tj-gallery-item:nth-child(1) { animation-delay: 0.1s; }
-        .tj-gallery-item:nth-child(2) { animation-delay: 0.2s; }
-
-        @keyframes galleryReveal {
-            0% { 
-                opacity: 0;
-                transform: scale(0.8) rotateY(20deg);
-            }
-            100% { 
-                opacity: 1;
-                transform: scale(1) rotateY(0);
-            }
-        }
-
-        .tj-gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.1);
-            transition: transform 0.6s ease, filter 0.6s ease;
-        }
-
-        .tj-gallery-item:hover img {
-            transform: scale(1.3);
-            filter: brightness(0.7);
-        }
-
-        .tj-gallery-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(40,54,24,0.8) 0%, transparent 50%);
-            display: flex;
-            align-items: flex-end;
-            padding: 30px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .tj-gallery-item:hover .tj-gallery-overlay {
-            opacity: 1;
-        }
-
-        .tj-gallery-text {
-            font-size: 18px;
-            font-weight: 600;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-            color: #D4BC8C;
-        }
-
-        .tj-gallery-item:hover .tj-gallery-text {
-            transform: translateY(0);
-        }
-
-        /* Truth Cards Section */
-        .tj-truths-section {
-            margin-bottom: 100px;
-        }
-
-        .tj-truth-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .tj-truth-card {
-            background: rgba(212, 188, 140, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 188, 140, 0.2);
-            border-radius: 20px;
-            padding: 60px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            opacity: 0;
-            animation: cardSlide 0.8s ease forwards;
-            animation-timeline: view();
-            animation-range: entry 20% cover 40%;
-        }
-
-        @keyframes cardSlide {
-            0% { 
-                opacity: 0;
-                transform: translateY(50px) rotateX(-10deg);
-            }
-            100% { 
-                opacity: 1;
-                transform: translateY(0) rotateX(0);
-            }
-        }
-
-        .tj-truth-card::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(212, 188, 140, 0.1) 0%, transparent 70%);
-            animation: cardGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes cardGlow {
-            0%, 100% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-            50% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-
-        .tj-truth-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(212, 188, 140, 0.4);
-            box-shadow: 0 20px 40px rgba(166, 83, 28, 0.2);
-        }
-
-        .tj-card-illustration {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-            background: linear-gradient(135deg, rgba(76, 99, 58, 0.1), rgba(212, 188, 140, 0.1));
-            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #283618 0%, #4C633A 50%, #483C32 100%);
+            padding: 40px 20px;
+        }
+
+        /* Animated Background */
+        .tj-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
+            animation: bgShift 20s linear infinite;
+        }
+
+        @keyframes bgShift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(70px, 70px); }
+        }
+
+        /* Floating Kanji Elements */
+        .tj-kanji {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(212, 188, 140, 0.1);
+            font-weight: bold;
+            user-select: none;
+            transition: transform 0.3s ease;
+        }
+
+        /* Different floating animations for variety */
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-15px) translateX(10px) rotate(3deg); }
+            50% { transform: translateY(10px) translateX(-5px) rotate(-2deg); }
+            75% { transform: translateY(-20px) translateX(-10px) rotate(5deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            20% { transform: translateY(15px) translateX(-15px) rotate(-4deg); }
+            40% { transform: translateY(-10px) translateX(10px) rotate(2deg); }
+            60% { transform: translateY(20px) translateX(5px) rotate(-3deg); }
+            80% { transform: translateY(-5px) translateX(-20px) rotate(4deg); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            33% { transform: translateY(-25px) translateX(15px) rotate(-5deg); }
+            66% { transform: translateY(15px) translateX(-20px) rotate(3deg); }
+        }
+
+        /* Content Container */
+        .tj-hero-content {
             position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+
+        /* Intro Text */
+        .tj-hero-intro {
+            font-size: 18px;
+            color: #D4BC8C;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Main Headline */
+        .tj-hero-headline {
+            font-size: clamp(32px, 6vw, 56px);
+            color: #fff;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .tj-hero-headline em {
+            font-style: normal;
+            color: #A6531C;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tj-hero-headline em::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #A6531C;
+            animation: underlineExpand 1s ease 1.5s forwards;
+        }
+
+        @keyframes underlineExpand {
+            to { width: 100%; }
+        }
+
+        /* Video Container */
+        .tj-video-container {
+            position: relative;
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(212, 188, 140, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .tj-video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
             overflow: hidden;
         }
 
-        .tj-card-illustration svg {
-            width: 150px;
-            height: 150px;
-            fill: #D4BC8C;
-            stroke: #4C633A;
-            stroke-width: 1;
-            opacity: 0.8;
+        .tj-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .tj-card-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            color: #D4BC8C;
-            text-align: center;
+        /* Custom Play Button */
+        .tj-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(166, 83, 28, 0.9);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
         }
 
-        .tj-card-text {
-            font-size: 18px;
-            color: rgba(212, 188, 140, 0.8);
-            line-height: 1.8;
-            text-align: center;
+        .tj-play-button:hover {
+            background: rgba(166, 83, 28, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 10px 30px rgba(166, 83, 28, 0.5);
         }
 
-        .tj-card-text strong {
-            color: #D4BC8C;
-            font-weight: 700;
+        .tj-play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 25px solid #fff;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
         }
 
-        .tj-card-text em {
-            color: #A6531C;
-            font-style: italic;
+        /* Hide play button when video is playing */
+        .tj-video-container.playing .tj-play-button {
+            display: none;
         }
 
-        /* Call to Action */
-        .tj-cta-section {
-            text-align: center;
-            padding: 80px 20px;
-            background: radial-gradient(circle at center, rgba(212, 188, 140, 0.1) 0%, transparent 50%);
-            border-radius: 30px;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-            animation-timeline: view();
-            animation-range: entry 20% cover 40%;
-        }
-
-        .tj-cta-title {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #D4BC8C;
-        }
-
-        .tj-cta-subtitle {
-            font-size: 20px;
-            color: rgba(212, 188, 140, 0.8);
+        /* Subheadline */
+        .tj-hero-sub {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+            line-height: 1.5;
             margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.9s forwards;
         }
 
-        .tj-cta-button {
+        /* CTA Button */
+        .tj-hero-cta {
             display: inline-block;
-            padding: 20px 50px;
-            background: linear-gradient(135deg, #4C633A, #283618);
-            color: #D4BC8C;
+            padding: 18px 40px;
+            background: #A6531C;
+            color: #fff;
             text-decoration: none;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 600;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            letter-spacing: 2px;
             border-radius: 50px;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(76, 99, 58, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 1.2s forwards;
         }
 
-        .tj-cta-button::before {
+        .tj-hero-cta::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212,188,140,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.5s ease;
         }
 
-        .tj-cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(76, 99, 58, 0.5);
+        .tj-hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(166, 83, 28, 0.3);
         }
 
-        .tj-cta-button:hover::before {
+        .tj-hero-cta:hover::before {
             left: 100%;
         }
 
-        /* Floating Particles */
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Particle Effect */
         .tj-particles {
-            position: fixed;
+            position: absolute;
             width: 100%;
             height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 2;
+            overflow: hidden;
         }
 
         .tj-particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(212, 188, 140, 0.6);
+            background: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
-            opacity: 0;
-            animation: particleFloat 15s linear infinite;
+            animation: particle 15s linear infinite;
         }
 
-        @keyframes particleFloat {
+        @keyframes particle {
             0% {
-                transform: translateY(100vh) translateX(0) scale(0);
+                transform: translateY(100vh) scale(0);
                 opacity: 0;
             }
             10% {
@@ -608,306 +294,262 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100vh) translateX(100px) scale(0);
+                transform: translateY(-100vh) scale(1);
                 opacity: 0;
             }
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .tj-hero-split {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .tj-hero-image {
-                height: 400px;
-                margin: 0 auto;
-                max-width: 400px;
-            }
-
-            .tj-vertical-image {
-                position: relative;
-                right: auto;
-                width: 100%;
-                height: 100%;
-            }
-
-            .tj-gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tj-percentage {
-                font-size: 80px;
-            }
-
-            .tj-truth-card {
-                padding: 40px 30px;
-            }
-
-            .tj-card-illustration {
-                width: 150px;
-                height: 150px;
-            }
-
-            .tj-card-illustration svg {
-                width: 100px;
-                height: 100px;
-            }
+        /* Glow Effect */
+        .tj-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 188, 140, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: glowMove 10s ease-in-out infinite;
         }
 
-        /* Scroll Reveal Animation */
-        @keyframes fadeInUp {
-            0% { 
-                opacity: 0; 
-                transform: translateY(40px);
+        .tj-glow:nth-child(1) {
+            top: -150px;
+            right: -150px;
+            animation-delay: 0s;
+        }
+
+        .tj-glow:nth-child(2) {
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 5s;
+        }
+
+        @keyframes glowMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.2); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tj-hero {
+                min-height: auto;
+                padding: 60px 20px;
             }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0);
+
+            .tj-kanji {
+                font-size: 50px;
+            }
+
+            .tj-hero-intro {
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+
+            .tj-hero-headline {
+                margin-bottom: 30px;
+            }
+
+            .tj-video-container {
+                margin-bottom: 30px;
+            }
+
+            .tj-play-button {
+                width: 60px;
+                height: 60px;
+            }
+
+            .tj-play-button::before {
+                border-left: 20px solid #fff;
+                border-top: 12px solid transparent;
+                border-bottom: 12px solid transparent;
+                margin-left: 4px;
+            }
+
+            .tj-hero-cta {
+                padding: 15px 30px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background Grid -->
-    <div class="tj-bg-grid"></div>
-    
-    <!-- Floating Particles -->
-    <div class="tj-particles" id="particlesContainer"></div>
-    
-    <!-- Main Section -->
-    <section class="tj-learn-section">
-        <div class="tj-container">
-            <!-- Hero Split Section -->
-            <div class="tj-hero-split">
-                <div class="tj-hero-content">
-                    <span class="tj-section-label">Beyond JLPT</span>
-                    <h1 class="tj-hero-title">How to Actually Learn Japanese</h1>
-                    <p class="tj-hero-text">
-                        Most of us are looking at the wrong results to measure our progress. An N1 can get you an interview, but it can't get you a <strong>job</strong>. N1 can start a conversation, but it can't get you a <strong>friend</strong>. JLPT certainly can be useful, but it's not going to make you <strong>happy.</strong>
-                    </p>
-                </div>
-                
-                <div class="tj-hero-image">
-                    <div class="tj-kanji-overlay">文脈</div>
-                    <div class="tj-vertical-image">
-                        <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/05/yodobashi.jpg?w=1289&ssl=1" alt="Japanese street scene">
-                    </div>
+    <!-- Hero Section -->
+    <section class="tj-hero">
+        <!-- Animated Background -->
+        <div class="tj-hero-bg"></div>
+        
+        <!-- Glow Effects -->
+        <div class="tj-glow"></div>
+        <div class="tj-glow"></div>
+        
+        <!-- Kanji container -->
+        <div id="kanji-container"></div>
+        
+        <!-- Particles -->
+        <div class="tj-particles" id="particles"></div>
+        
+        <!-- Content -->
+        <div class="tj-hero-content">
+            <p class="tj-hero-intro">The Secret is Out</p>
+            <h1 class="tj-hero-headline">
+                <em>Actually Learn Japanese</em> and<br>
+                Stop Getting Lost in Translation.
+            </h1>
+            
+            <!-- Video Section -->
+            <div class="tj-video-container" id="videoContainer">
+                <div class="tj-video-wrapper">
+                    <video class="tj-video" id="heroVideo" controls preload="metadata">
+                        <source src="https://thrive-in-japan-lms-public.s3.ap-northeast-1.amazonaws.com/Ready+to+Actually+Learn+Japanese..mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="tj-play-button" id="playButton"></div>
                 </div>
             </div>
             
-            <!-- Goals Section -->
-            <div class="tj-goals-section">
-                <h2 class="tj-goals-title">Japanese Language Goals Redefined</h2>
-                
-                <!-- Context Reveal -->
-                <div class="tj-context-reveal">
-                    <div class="tj-hidden-messages">
-                        <span class="tj-hidden-msg">what isn't said</span>
-                        <span class="tj-hidden-msg">unspoken rules</span>
-                        <span class="tj-hidden-msg">hidden meanings</span>
-                        <span class="tj-hidden-msg">context matters</span>
-                    </div>
-                    
-                    <div class="tj-context-content">
-                        <div class="tj-percentage">60-80%</div>
-                        <p class="tj-context-text">
-                            Japanese is the most high-context language in the world, where 60-80% of communication is <em>contextual.</em>
-                        </p>
-                        <p class="tj-hero-text">
-                            Yet, Japanese courses and textbooks focus almost entirely on vocabulary, grammar, and kanji—leaving you unprepared for the unspoken nuances that truly matter.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Image Gallery -->
-                <div class="tj-gallery-section">
-                    <div class="tj-gallery-grid">
-                        <div class="tj-gallery-item">
-                            <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/05/reverse-mask-scaled.jpg?resize=1536%2C1033&ssl=1" alt="Person wearing oni mask">
-                            <div class="tj-gallery-overlay">
-                                <p class="tj-gallery-text">What face are you showing?</p>
-                            </div>
-                        </div>
-                        <div class="tj-gallery-item">
-                            <img src="https://i0.wp.com/thriveinjapan.com/wp-content/uploads/2025/05/nankado.jpg?resize=1536%2C1022&ssl=1" alt="Rainy street scene">
-                            <div class="tj-gallery-overlay">
-                                <p class="tj-gallery-text">Reading between the lines</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Truth Cards -->
-                <div class="tj-truths-section">
-                    <div class="tj-truth-cards">
-                        <div class="tj-truth-card">
-                            <div class="tj-card-illustration">
-                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                    <!-- Book with pages -->
-                                    <rect x="50" y="60" width="100" height="120" rx="5" fill="#4C633A" opacity="0.3"/>
-                                    <rect x="55" y="65" width="90" height="110" fill="#D4BC8C" opacity="0.2"/>
-                                    <!-- Pages -->
-                                    <path d="M60 70 L140 70 M60 80 L140 80 M60 90 L140 90 M60 100 L140 100 M60 110 L140 110 M60 120 L140 120 M60 130 L140 130" stroke="#D4BC8C" stroke-width="2" opacity="0.5"/>
-                                    <!-- Mountain peak (representing journey) -->
-                                    <path d="M30 40 L100 10 L170 40" fill="none" stroke="#D4BC8C" stroke-width="3" stroke-linecap="round"/>
-                                    <!-- Flag at peak -->
-                                    <line x1="100" y1="10" x2="100" y2="5" stroke="#A6531C" stroke-width="2"/>
-                                    <path d="M100 5 L115 7 L100 9 Z" fill="#A6531C"/>
-                                    <!-- Winding path -->
-                                    <path d="M50 180 Q 70 140 60 100 T 100 60 T 140 100 Q 130 140 150 180" fill="none" stroke="#D4BC8C" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
-                                </svg>
-                            </div>
-                            <h3 class="tj-card-title">The Program Designed for the Real Japan</h3>
-                            <p class="tj-card-text">
-                                 Change to: You don’t need another app. You don’t need another textbook. You definitely don’t need another 
-                                 influencer preying on your desire to “easily” learn a language feeding you ideas that you can “learn like a child does” or “absorb the language unconsciously”.
-                                  These ideas sound nice and help sell subscriptions to their programs  but actual <em>peer-reviewed research</em> shows significant problems and limitations
-                                  to these learning methods especially for adult and intermediate/advanced learners.
-                            </p>
-                            <p class="tj-card-text" style="margin-top: 20px;">
-                                <strong>Thrive in Japan</strong> is a complete language and cultural immersion system built from the ground up to do what other programs can't:
-                            </p>
-                            <p class="tj-card-text" style="margin-top: 15px;">
-                                Make you fluent not just in words, but in nuance.<br>
-                                Prepare you not just for a test, but for life in Japan.<br>
-                                Show you what's <em>actually</em> being said—even when no words are spoken.
-                            </p>
-                            <p class="tj-card-text" style="margin-top: 20px;">
-                                It starts with a rock-solid foundation, then takes you through all five JLPT levels—using one continuous, real-world-inspired story told from multiple characters' perspectives. You don't just learn grammar and vocab. You gain cultural fluency, social awareness, and the ability to navigate real relationships in Japan.
-                            </p>
-                            <p class="tj-card-text" style="margin-top: 20px;">
-“Our speaking sessions are taught in small groups using a task based learning system. In recent years universities such as the University of Arizona, have had success with pilot program using task based language learning models but are struggling to find ways to integrate into their official curriculums. While they still struggle to integrate, Thrive in Japan has unlocked possibly the most effective form of speaking practice currently available. 
-Thrive in Japan is not just curriculum and speaking sessions. We have online and offline events aimed at helping you through your struggles in Japan. Loneliness in Japan is REAL. No one can get through loneliness alone (obviously!) Connect to a REAL community. Connect to real places in Japan and get professional help from people who have been through it and thrived!
-<br>
-If you want real success in the world's highest high-context society then you need all of these pieces.”
-
-
-
-                            </p>
-                            <p class="tj-card-text" style="margin-top: 20px;">
-                                This isn't theory. It's what top universities <em>wish</em> they could offer—but can't. They know what the research says about how languages should be taught, but decades of bureaucracy and outdated systems make real innovation nearly impossible.
-                            </p>
-                            <p class="tj-card-text" style="margin-top: 20px;">
-                                And language apps? They wish they could deliver what we do—but they lack one thing: expert teachers who can break down complex concepts and explain them in a way that's simple, human, and instantly usable.
-                            </p>
-                            <p class="tj-card-text" style="margin-top: 20px;">
-                                <strong>Thrive in Japan</strong> does what others can't—because we built it from the ground up to solve the problems no one else is addressing.
-                            </p>
-                            <p class="tj-card-text" style="margin-top: 20px;">
-                                You'll see the results in your conversations, your confidence, and your connection to the people and places around you.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- CTA Section -->
-            <div class="tj-cta-section">
-                <h2 class="tj-cta-title">You Don't Know What You Don't Know</h2>
-                <p class="tj-cta-subtitle">
-                    Without understanding the core principles of high-context communication, you remain blind to the silent conversations happening all around you.
-                </p>
-                <a href="https://thriveinjapan.com/program-details/" class="tj-cta-button">Discover What You're Missing</a>
-            </div>
+            <p class="tj-hero-sub">
+                Previously only available through private and direct connections,<br>
+                Thrive in Japan is going public.
+            </p>
+            <a href="https://thriveinjapan.com/program-details/" class="tj-hero-cta">Learn More</a>
         </div>
     </section>
 
     <script>
-        // Create floating particles
-        const particlesContainer = document.getElementById('particlesContainer');
+        // Kanji characters and their setup
+        const kanjiChars = ['学', '日', '本', '語', '心', '生', '愛', '夢'];
+        const kanjiContainer = document.getElementById('kanji-container');
+        const animations = ['float1', 'float2', 'float3'];
+        
+        // Create kanji elements with random positions
+        kanjiChars.forEach((char, index) => {
+            const kanjiEl = document.createElement('div');
+            kanjiEl.className = 'tj-kanji';
+            kanjiEl.textContent = char;
+            
+            // Random position within viewport bounds
+            const margin = 100; // Keep kanji away from edges
+            const x = margin + Math.random() * (window.innerWidth - 2 * margin);
+            const y = margin + Math.random() * (window.innerHeight - 2 * margin);
+            
+            kanjiEl.style.left = `${x}px`;
+            kanjiEl.style.top = `${y}px`;
+            
+            // Random animation
+            const animationName = animations[Math.floor(Math.random() * animations.length)];
+            const duration = 8 + Math.random() * 6; // 8-14 seconds
+            const delay = Math.random() * 5; // 0-5 seconds delay
+            
+            kanjiEl.style.animation = `${animationName} ${duration}s ease-in-out ${delay}s infinite`;
+            
+            // Random opacity between 0.05 and 0.15
+            kanjiEl.style.color = `rgba(212, 188, 140, ${0.05 + Math.random() * 0.1})`;
+            
+            // Random font size between 60 and 100px
+            kanjiEl.style.fontSize = `${60 + Math.random() * 40}px`;
+            
+            kanjiContainer.appendChild(kanjiEl);
+        });
+        
+        // Create particle effect
+        const particlesContainer = document.getElementById('particles');
         const particleCount = 30;
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'tj-particle';
+            
+            // Random size
+            const size = Math.random() * 4 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random position
             particle.style.left = `${Math.random() * 100}%`;
+            
+            // Random animation duration and delay
+            particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
             particle.style.animationDelay = `${Math.random() * 15}s`;
-            particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+            
             particlesContainer.appendChild(particle);
         }
 
-        // Parallax effect on scroll
-        let ticking = false;
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const bgGrid = document.querySelector('.tj-bg-grid');
-            const kanjiOverlay = document.querySelector('.tj-kanji-overlay');
-            
-            if (bgGrid) {
-                bgGrid.style.transform = `translateY(${scrolled * 0.1}px)`;
-            }
-            
-            if (kanjiOverlay) {
-                kanjiOverlay.style.transform = `translateY(${scrolled * 0.3}px) rotate(${scrolled * 0.02}deg)`;
-            }
-            
-            ticking = false;
-        }
-
-        function requestTick() {
-            if (!ticking) {
-                window.requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        }
-
-        window.addEventListener('scroll', requestTick);
-
-        // Mouse movement effect on hero image
-        const heroImage = document.querySelector('.tj-vertical-image');
-        document.addEventListener('mousemove', (e) => {
-            if (!heroImage) return;
-            
-            const x = (e.clientX / window.innerWidth - 0.5) * 20;
-            const y = (e.clientY / window.innerHeight - 0.5) * 20;
-            
-            heroImage.style.transform = `translateY(-50%) perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
-        });
-
-        // Reveal hidden messages on hover
-        const contextReveal = document.querySelector('.tj-context-reveal');
-        const hiddenMessages = document.querySelectorAll('.tj-hidden-msg');
+        // Enhanced parallax effect on mouse move
+        let mouseX = 0.5;
+        let mouseY = 0.5;
+        let currentX = 0.5;
+        let currentY = 0.5;
         
-        contextReveal.addEventListener('mouseenter', () => {
-            hiddenMessages.forEach((msg, index) => {
-                msg.style.animationPlayState = 'running';
-            });
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth;
+            mouseY = e.clientY / window.innerHeight;
         });
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements with scroll animations
-        const animatedElements = document.querySelectorAll('.tj-goals-section, .tj-percentage, .tj-context-text, .tj-gallery-item, .tj-truth-card, .tj-cta-section');
-        animatedElements.forEach(el => {
-            if (el.style.animationTimeline) {
-                observer.observe(el);
-            }
-        });
-
-        // Dynamic text highlighting effect
-        const highlightTexts = document.querySelectorAll('strong, em');
-        highlightTexts.forEach(text => {
-            text.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1)';
-                this.style.transition = 'transform 0.3s ease';
+        
+        // Smooth parallax animation
+        function updateParallax() {
+            // Smooth interpolation
+            currentX += (mouseX - currentX) * 0.1;
+            currentY += (mouseY - currentY) * 0.1;
+            
+            const kanji = document.querySelectorAll('.tj-kanji');
+            kanji.forEach((el, index) => {
+                const speed = (index % 3 + 1) * 0.5;
+                const x = (currentX - 0.5) * speed * 30;
+                const y = (currentY - 0.5) * speed * 30;
+                el.style.transform = `translate(${x}px, ${y}px)`;
             });
             
-            text.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
+            requestAnimationFrame(updateParallax);
+        }
+        updateParallax();
+
+        // Add typing effect to headline
+        const headline = document.querySelector('.tj-hero-headline em');
+        const text = headline.textContent;
+        headline.textContent = '';
+        headline.style.minHeight = '1.2em';
+        
+        setTimeout(() => {
+            let index = 0;
+            const typeInterval = setInterval(() => {
+                if (index < text.length) {
+                    headline.textContent += text[index];
+                    index++;
+                } else {
+                    clearInterval(typeInterval);
+                }
+            }, 50);
+        }, 1500);
+        
+        // Video play button functionality
+        const video = document.getElementById('heroVideo');
+        const playButton = document.getElementById('playButton');
+        const videoContainer = document.getElementById('videoContainer');
+        
+        playButton.addEventListener('click', () => {
+            video.play();
+            videoContainer.classList.add('playing');
+        });
+        
+        video.addEventListener('play', () => {
+            videoContainer.classList.add('playing');
+        });
+        
+        video.addEventListener('pause', () => {
+            videoContainer.classList.remove('playing');
+        });
+        
+        video.addEventListener('ended', () => {
+            videoContainer.classList.remove('playing');
+        });
+        
+        // Reposition kanji on window resize
+        window.addEventListener('resize', () => {
+            const kanji = document.querySelectorAll('.tj-kanji');
+            kanji.forEach((el) => {
+                const margin = 100;
+                const x = margin + Math.random() * (window.innerWidth - 2 * margin);
+                const y = margin + Math.random() * (window.innerHeight - 2 * margin);
+                el.style.left = `${x}px`;
+                el.style.top = `${y}px`;
             });
         });
     </script>
