@@ -214,6 +214,196 @@
             line-height: 1.5;
         }
 
+        /* Pricing Section */
+        .tij-ss-pricing {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .tij-ss-pricing-wrapper {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%);
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tij-ss-pricing-bg-accent {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 188, 140, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .tij-ss-pricing-bg-accent:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            bottom: -125px;
+            left: -125px;
+            top: auto;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .tij-ss-pricing-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tij-ss-pricing-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #283618;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tij-ss-pricing-subtitle {
+            font-size: 18px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .tij-ss-pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tij-ss-price-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 35px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .tij-ss-price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #D4BC8C, #A6531C);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .tij-ss-price-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .tij-ss-price-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tij-ss-price-card.featured {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(212, 188, 140, 0.25);
+        }
+
+        .tij-ss-price-card.featured::after {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(135deg, #D4BC8C, #A6531C);
+            color: #fff;
+            padding: 5px 40px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(45deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tij-ss-price-period {
+            font-size: 22px;
+            font-weight: 700;
+            color: #A6531C;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tij-ss-price-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: #283618;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .tij-ss-price-amount::before {
+            content: '$';
+            font-size: 28px;
+            position: absolute;
+            left: -20px;
+            top: 10px;
+            color: #D4BC8C;
+        }
+
+        .tij-ss-price-currency {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .tij-ss-price-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .tij-ss-price-feature {
+            font-size: 15px;
+            color: #4a4a4a;
+            line-height: 1.8;
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .tij-ss-price-feature::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #D4BC8C;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .tij-ss-price-savings {
+            background: rgba(212, 188, 140, 0.1);
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #A6531C;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
         /* Schedule Grid */
         .tij-ss-schedule-grid {
             display: grid;
@@ -382,6 +572,15 @@
                 gap: 20px;
             }
 
+            .tij-ss-pricing-cards {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .tij-ss-price-card.featured {
+                transform: scale(1);
+            }
+
             .tij-ss-schedule-grid {
                 grid-template-columns: 1fr;
             }
@@ -398,6 +597,20 @@
 
             .tij-ss-header {
                 margin-bottom: 50px;
+            }
+
+            .tij-ss-pricing-wrapper {
+                padding: 40px 20px;
+            }
+
+            .tij-ss-price-amount {
+                font-size: 36px;
+            }
+
+            .tij-ss-price-amount::before {
+                font-size: 24px;
+                left: -15px;
+                top: 5px;
             }
 
             .tij-ss-day-card {
@@ -482,6 +695,50 @@
                     <p class="tij-ss-feature-text">Book 2 sessions at a time, unlimited total</p>
                 </div>
             </div>
+
+            <!-- Pricing Section -->
+            <div class="tij-ss-pricing">
+                <div class="tij-ss-pricing-wrapper">
+                    <div class="tij-ss-pricing-bg-accent"></div>
+                    <div class="tij-ss-pricing-bg-accent"></div>
+                    
+                    <div class="tij-ss-pricing-header">
+                        <h3 class="tij-ss-pricing-title">Investment in Your Japanese Journey</h3>
+                        <p class="tij-ss-pricing-subtitle">Choose the plan that works best for you</p>
+                    </div>
+
+                    <div class="tij-ss-pricing-cards">
+                        <div class="tij-ss-price-card">
+                            <div class="tij-ss-price-period">Monthly</div>
+                            <div class="tij-ss-price-amount">200</div>
+                            <div class="tij-ss-price-currency">USD per month</div>
+                             <!--
+                            <ul class="tij-ss-price-features">
+                                <li class="tij-ss-price-feature">Unlimited speaking sessions</li>
+                                <li class="tij-ss-price-feature">All course materials included</li>
+                                <li class="tij-ss-price-feature">Progress tracking</li>
+                                <li class="tij-ss-price-feature">Cancel anytime</li>
+                            </ul>
+                        -->
+                        </div>
+
+                        <div class="tij-ss-price-card featured">
+                            <div class="tij-ss-price-period">Annual</div>
+                            <div class="tij-ss-price-amount">2000</div>
+                            <div class="tij-ss-price-currency">USD per year</div>
+                             <!--
+                            <ul class="tij-ss-price-features">
+                                <li class="tij-ss-price-feature">Everything in monthly plan</li>
+                                <li class="tij-ss-price-feature">Priority booking access</li>
+                                <li class="tij-ss-price-feature">Bonus cultural workshops</li>
+                                <li class="tij-ss-price-feature">1-on-1 progress reviews</li>
+                            </ul>
+                        -->
+                            <div class="tij-ss-price-savings">Save $400 (2 months free!)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -502,7 +759,7 @@
         }, observerOptions);
 
         // Observe elements
-        const elementsToObserve = document.querySelectorAll('.tij-ss-features, .tij-ss-day-card, .tij-ss-info-section');
+        const elementsToObserve = document.querySelectorAll('.tij-ss-features, .tij-ss-pricing, .tij-ss-day-card, .tij-ss-info-section');
         elementsToObserve.forEach(el => observer.observe(el));
 
         // Parallax effect on scroll
@@ -594,6 +851,18 @@
         const featureCards = document.querySelectorAll('.tij-ss-feature-card');
         featureCards.forEach((card, index) => {
             card.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Animate price cards on load
+        const priceCards = document.querySelectorAll('.tij-ss-price-card');
+        priceCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 800 + (index * 200));
         });
     </script>
 </body>
