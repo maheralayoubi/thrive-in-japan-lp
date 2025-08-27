@@ -18,6 +18,123 @@
             overflow-x: hidden;
         }
 
+        /* Limited Time Offer Banner */
+        .tij-promo-banner {
+            background: linear-gradient(135deg, #A6531C 0%, #D4BC8C 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tij-promo-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            50% { transform: translate(-30%, -30%) rotate(180deg); }
+        }
+
+        .tij-promo-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tij-promo-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .tij-promo-title {
+            font-size: clamp(36px, 5vw, 56px);
+            color: #fff;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tij-promo-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.4;
+        }
+
+        .tij-promo-cta {
+            display: inline-block;
+            background: #fff;
+            color: #A6531C;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tij-promo-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(166, 83, 28, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .tij-promo-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .tij-promo-cta:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .tij-promo-timer {
+            margin-top: 30px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .tij-promo-timer-highlight {
+            font-weight: 700;
+            color: #fff;
+            font-size: 18px;
+        }
+
         /* Speaking Sessions Section */
         .tij-speaking-sessions {
             position: relative;
@@ -365,6 +482,19 @@
             color: #D4BC8C;
         }
 
+        .tij-ss-price-amount.original {
+            font-size: 32px;
+            color: #999;
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+
+        .tij-ss-price-amount.original::before {
+            font-size: 20px;
+            left: -15px;
+            top: 5px;
+        }
+
         .tij-ss-price-currency {
             font-size: 16px;
             color: #666;
@@ -402,6 +532,23 @@
             color: #A6531C;
             font-weight: 600;
             margin-top: 15px;
+        }
+
+        .tij-ss-discount-badge {
+            display: inline-block;
+            background: #ff4757;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         /* Schedule Grid */
@@ -626,6 +773,15 @@
                 height: 50px;
                 font-size: 20px;
             }
+
+            .tij-promo-banner {
+                padding: 40px 15px;
+            }
+
+            .tij-promo-cta {
+                padding: 15px 35px;
+                font-size: 16px;
+            }
         }
 
         /* Animation helper classes */
@@ -650,6 +806,22 @@
     </style>
 </head>
 <body>
+    <!-- Limited Time Offer Banner -->
+    <section class="tij-promo-banner">
+        <div class="tij-promo-content">
+            <div class="tij-promo-badge">Limited Time Offer</div>
+            <h1 class="tij-promo-title">Don't Miss Out on 30% OFF!</h1>
+            <p class="tij-promo-subtitle">
+                Transform your Japanese speaking skills with our immersive weekly sessions.<br>
+                Save big with our exclusive discount – available for a limited time only!
+            </p>
+            <a href="#pricing" class="tij-promo-cta">Claim Your 30% Discount Now</a>
+            <div class="tij-promo-timer">
+                <span class="tij-promo-timer-highlight">⏰ Offer ends soon</span> – Secure your spot today!
+            </div>
+        </div>
+    </section>
+
     <section class="tij-speaking-sessions">
         <!-- Background Elements -->
         <div class="tij-ss-bg-elements">
@@ -709,32 +881,20 @@
 
                     <div class="tij-ss-pricing-cards">
                         <div class="tij-ss-price-card">
+                            <div class="tij-ss-discount-badge">30% OFF</div>
                             <div class="tij-ss-price-period">Monthly</div>
-                            <div class="tij-ss-price-amount">200</div>
+                            <div class="tij-ss-price-amount original">200</div>
+                            <div class="tij-ss-price-amount">140</div>
                             <div class="tij-ss-price-currency">USD per month</div>
-                             <!--
-                            <ul class="tij-ss-price-features">
-                                <li class="tij-ss-price-feature">Unlimited speaking sessions</li>
-                                <li class="tij-ss-price-feature">All course materials included</li>
-                                <li class="tij-ss-price-feature">Progress tracking</li>
-                                <li class="tij-ss-price-feature">Cancel anytime</li>
-                            </ul>
-                        -->
                         </div>
 
                         <div class="tij-ss-price-card featured">
+                            <div class="tij-ss-discount-badge">30% OFF</div>
                             <div class="tij-ss-price-period">Annual</div>
-                            <div class="tij-ss-price-amount">2000</div>
+                            <div class="tij-ss-price-amount original">2000</div>
+                            <div class="tij-ss-price-amount">1400</div>
                             <div class="tij-ss-price-currency">USD per year</div>
-                             <!--
-                            <ul class="tij-ss-price-features">
-                                <li class="tij-ss-price-feature">Everything in monthly plan</li>
-                                <li class="tij-ss-price-feature">Priority booking access</li>
-                                <li class="tij-ss-price-feature">Bonus cultural workshops</li>
-                                <li class="tij-ss-price-feature">1-on-1 progress reviews</li>
-                            </ul>
-                        -->
-                            <div class="tij-ss-price-savings">Save $400 (2 months free!)</div>
+                            <div class="tij-ss-price-savings">Save $1000 with annual plan!</div>
                         </div>
                     </div>
                 </div>
@@ -743,6 +903,18 @@
     </section>
 
     <script>
+        // Smooth scroll for CTA button
+        document.querySelector('.tij-promo-cta').addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+
         // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.2,
